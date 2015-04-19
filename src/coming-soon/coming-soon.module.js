@@ -2,8 +2,8 @@
     'use strict';
 
 angular
-    .module('movieClub', [
-        'movieClub.comingSoon'
+    .module('movieClub.comingSoon', [
+        'movieClub.core'
     ]);
 
 }(window.angular));

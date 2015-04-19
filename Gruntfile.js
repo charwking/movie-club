@@ -46,6 +46,19 @@ module.exports = function (grunt) {
             }
         },
 
+        html2js: {
+
+            options: {
+                fileHeaderString: '(function (angular) {\n\'use strict\';\n',
+                fileFooterString: '}(window.angular));'
+            },
+
+            main: {
+                src: config.input.templates,
+                dest: config.output.templates
+            }
+        },
+
         watch: {
 
             dist: {
@@ -69,10 +82,15 @@ module.exports = function (grunt) {
             concatExternal: {
                 files: config.input.js.external,
                 tasks: 'concat:external'
+            },
+
+            html2js: {
+                files: config.input.templates,
+                tasks: 'html2js'
             }
         }
     });
 
-    grunt.registerTask('compile', ['clean', 'copy', 'concat']);
+    grunt.registerTask('compile', ['clean', 'copy', 'concat', 'html2js']);
     grunt.registerTask('serve', ['compile', 'connect', 'watch']);
 };

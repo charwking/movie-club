@@ -11,7 +11,8 @@ module.exports = {
         js: {
             internal: dirs.output + 'internal.js',
             external: dirs.output + 'external.js'
-        }
+        },
+        templates: dirs.output + 'templates.js'
     },
 
     input: {
@@ -28,9 +29,14 @@ module.exports = {
                 '!**/*.spec.js'
             ],
             external: [
-                dirs.npm + 'angular/angular.js'
+                dirs.npm + 'angular/angular.js',
+                dirs.npm + 'angular-ui-router/release/angular-ui-router.js'
             ]
-        }
+        },
+        templates: [
+            dirs.source + '**/*.html',
+            '!' + dirs.source + 'index.html'
+        ]
     },
 
     dev: {

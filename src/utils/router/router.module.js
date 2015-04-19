@@ -2,8 +2,8 @@
     'use strict';
 
 angular
-    .module('movieClub', [
-        'movieClub.comingSoon'
+    .module('utils.router', [
+        'ui.router'
     ]);
 
 }(window.angular));
