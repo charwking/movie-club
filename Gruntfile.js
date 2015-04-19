@@ -69,6 +69,16 @@ module.exports = function (grunt) {
             }
         },
 
+        jshint: {
+            all: [
+                'Gruntfile.js',
+                config.input.dir + '/**/*.js'
+            ],
+            options: {
+                jshintrc: '.jshintrc'
+            }
+        },
+
         less: {
             all: {
                 src: config.input.less,
@@ -98,29 +108,30 @@ module.exports = function (grunt) {
                 tasks: 'copy:index',
             },
 
-            concatInternal: {
+            jsInternal: {
                 files: config.input.js.internal,
-                tasks: 'concat:internal'
+                tasks: ['analyze', 'concat:internal']
             },
 
-            concatExternal: {
+            jsExternal: {
                 files: config.input.js.external,
-                tasks: 'concat:external'
-            },
-
-            html2js: {
-                files: config.input.templates,
-                tasks: 'html2js'
+                tasks: ['analyze', 'concat:external']
             },
 
             less: {
                 files: config.input.less,
                 tasks: 'css'
+            },
+
+            templates: {
+                files: config.input.templates,
+                tasks: 'html2js'
             }
         }
     });
 
+    grunt.registerTask('analyze', ['jshint']);
     grunt.registerTask('css', ['less', 'autoprefixer']);
-    grunt.registerTask('compile', ['clean', 'copy', 'concat', 'css', 'html2js']);
+    grunt.registerTask('compile', ['clean', 'analyze', 'copy', 'concat', 'css', 'html2js']);
     grunt.registerTask('serve', ['compile', 'connect', 'watch']);
 };

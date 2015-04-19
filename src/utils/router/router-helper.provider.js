@@ -7,13 +7,14 @@ angular
 
 function routerHelperProvider($stateProvider, $urlRouterProvider) {
 
+    // jshint validthis:true
     this.$get = RouterHelper;
 
     function RouterHelper($state) {
 
         var service = {
             configureStates: configureStates,
-            getStates, getStates
+            getStates: getStates
         };
         return service;
 
