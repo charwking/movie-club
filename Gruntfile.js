@@ -14,6 +14,11 @@ module.exports = function (grunt) {
             internal: {
                 src: config.input.js.internal,
                 dest: config.output.js.internal
+            },
+
+            external: {
+                src: config.input.js.external,
+                dest: config.output.js.external
             }
         },
 

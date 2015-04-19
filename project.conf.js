@@ -1,6 +1,7 @@
 var dirs = {
     output: 'dist',
-    input: 'src'
+    source: 'src',
+    npm: 'node_modules'
 };
 
 module.exports = {
@@ -14,15 +15,18 @@ module.exports = {
     },
 
     input: {
-        dir: dirs.input,
+        dir: dirs.source,
         html: {
             internal: ['index.html']
         },
         js: {
             internal: [
-                dirs.input + '/**/*.module.js',
-                dirs.input + '/**/*.js',
+                dirs.source + '/**/*.module.js',
+                dirs.source + '/**/*.js',
                 '!**/*.spec.js'
+            ],
+            external: [
+                dirs.npm + '/angular/angular.js'
             ]
         }
     }
