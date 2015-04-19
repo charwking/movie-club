@@ -7,32 +7,49 @@ var dirs = {
 module.exports = {
 
     output: {
+
         dir: dirs.output,
+
         js: {
             internal: dirs.output + 'internal.js',
             external: dirs.output + 'external.js'
         },
+
+        less: {
+            css: dirs.output + 'app.css',
+            map: dirs.output + 'app.css.map',
+            mapUrl: 'app.css.map'
+        },
+
         templates: dirs.output + 'templates.js'
     },
 
     input: {
+
         dir: dirs.source,
+
         html: {
             internal: [
                 dirs.source + 'index.html'
             ]
         },
+
         js: {
+
             internal: [
                 dirs.source + '**/*.module.js',
                 dirs.source + '**/*.js',
                 '!**/*.spec.js'
             ],
+
             external: [
                 dirs.npm + 'angular/angular.js',
                 dirs.npm + 'angular-ui-router/release/angular-ui-router.js'
             ]
         },
+
+        less: dirs.source + 'styles/app.less',
+
         templates: [
             dirs.source + '**/*.html',
             '!' + dirs.source + 'index.html'

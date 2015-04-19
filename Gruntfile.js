@@ -6,6 +6,16 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
 
+        autoprefixer: {
+            options: {
+                browsers: ['last 2 versions'],
+                map: true
+            },
+            single_file: {
+                src: config.output.less.css
+            }
+        },
+
         clean: {
             outputDir: [config.output.dir]
         },
@@ -59,6 +69,20 @@ module.exports = function (grunt) {
             }
         },
 
+        less: {
+            all: {
+                src: config.input.less,
+                dest: config.output.less.css,
+                options: {
+                    compress: true,
+                    sourceMap: true,
+                    outputSourceFiles: true,
+                    sourceMapFilename: config.output.less.map,
+                    sourceMapURL: config.output.less.mapUrl
+                }
+            }
+        },
+
         watch: {
 
             dist: {
@@ -87,10 +111,16 @@ module.exports = function (grunt) {
             html2js: {
                 files: config.input.templates,
                 tasks: 'html2js'
+            },
+
+            less: {
+                files: config.input.less,
+                tasks: 'css'
             }
         }
     });
 
-    grunt.registerTask('compile', ['clean', 'copy', 'concat', 'html2js']);
+    grunt.registerTask('css', ['less', 'autoprefixer']);
+    grunt.registerTask('compile', ['clean', 'copy', 'concat', 'css', 'html2js']);
     grunt.registerTask('serve', ['compile', 'connect', 'watch']);
 };

@@ -1,7 +1,8 @@
 (function (angular) {
     'use strict';
 
-angular.module('movieClub.comingSoon')
+angular
+    .module('movieClub.comingSoon')
     .controller('ComingSoonController', ComingSoonController);
 
 function ComingSoonController() {
