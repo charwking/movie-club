@@ -7,22 +7,22 @@ module.exports = function (grunt) {
     grunt.initConfig({
 
         clean: {
-            outputDir: [config.outputDir]
+            outputDir: [config.output.dir]
         },
 
         concat: {
             internal: {
-                src: [config.srcDir + '/**/*.module.js'],
-                dest: config.outputDir + '/internal.js'
+                src: config.input.js.internal,
+                dest: config.output.js.internal
             }
         },
 
         copy: {
             index: {
                 files: [{
-                    cwd: config.srcDir,
-                    src: ['index.html'],
-                    dest: config.outputDir,
+                    cwd: config.input.dir,
+                    src: config.input.html.internal,
+                    dest: config.output.dir,
                     expand: true
                 }]
             }
