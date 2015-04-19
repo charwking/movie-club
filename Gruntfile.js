@@ -11,7 +11,7 @@ module.exports = function (grunt) {
                 browsers: ['last 2 versions'],
                 map: true
             },
-            single_file: {
+            all: {
                 src: config.output.less.css
             }
         },
@@ -66,6 +66,16 @@ module.exports = function (grunt) {
             main: {
                 src: config.input.templates,
                 dest: config.output.templates
+            }
+        },
+
+        jscs: {
+            all: [
+                'Gruntfile.js',
+                config.input.dir + '/**/*.js'
+            ],
+            options: {
+                config: '.jscsrc'
             }
         },
 
@@ -130,7 +140,7 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('analyze', ['jshint']);
+    grunt.registerTask('analyze', ['jshint', 'jscs']);
     grunt.registerTask('css', ['less', 'autoprefixer']);
     grunt.registerTask('compile', ['clean', 'analyze', 'copy', 'concat', 'css', 'html2js']);
     grunt.registerTask('serve', ['compile', 'connect', 'watch']);
