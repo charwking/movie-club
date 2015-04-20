@@ -10,6 +10,8 @@ module.exports = {
 
         dir: dirs.output,
 
+        html: dirs.output + 'index.html',
+
         js: {
             internal: dirs.output + 'internal.js',
             external: dirs.output + 'external.js'
@@ -48,7 +50,14 @@ module.exports = {
             ]
         },
 
-        less: dirs.source + 'styles/app.less',
+        less: {
+
+            root: dirs.source + 'styles/app.less',
+
+            internal: [
+                dirs.source + 'styles/*.less'
+            ]
+        },
 
         templates: [
             dirs.source + '**/*.html',

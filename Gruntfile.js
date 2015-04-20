@@ -16,6 +16,17 @@ module.exports = function (grunt) {
             }
         },
 
+        cacheBust: {
+            options: {
+                rename: false
+            },
+            all: {
+                files: [{
+                    src: config.output.html
+                }]
+            }
+        },
+
         clean: {
             outputDir: [config.output.dir]
         },
@@ -91,7 +102,7 @@ module.exports = function (grunt) {
 
         less: {
             all: {
-                src: config.input.less,
+                src: config.input.less.root,
                 dest: config.output.less.css,
                 options: {
                     compress: true,
@@ -106,16 +117,22 @@ module.exports = function (grunt) {
         watch: {
 
             dist: {
-                files: config.output.dir + '/*.*',
-                tasks: [],
+                files: [
+                    config.output.dir + '/*.*',
+                    '!' + config.output.html
+                ],
+                tasks: 'cacheBust',
                 options: {
                     livereload: config.dev.server.livereload
                 }
             },
 
-            copyIndex: {
+            index: {
                 files: config.input.html.internal,
                 tasks: 'copy:index',
+                options: {
+                    livereload: config.dev.server.livereload
+                }
             },
 
             jsInternal: {
@@ -129,7 +146,7 @@ module.exports = function (grunt) {
             },
 
             less: {
-                files: config.input.less,
+                files: config.input.less.internal,
                 tasks: 'css'
             },
 
@@ -143,5 +160,5 @@ module.exports = function (grunt) {
     grunt.registerTask('analyze', ['jshint', 'jscs']);
     grunt.registerTask('css', ['less', 'autoprefixer']);
     grunt.registerTask('compile', ['clean', 'analyze', 'copy', 'concat', 'css', 'html2js']);
-    grunt.registerTask('serve', ['compile', 'connect', 'watch']);
+    grunt.registerTask('serve', ['compile', 'cacheBust', 'connect', 'watch']);
 };
