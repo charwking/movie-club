@@ -54,7 +54,12 @@
     "node": true,
 
     "globals": {
+        "$": false,
         "angular": false,
-        "$": false
+        "beforeEach": false,
+        "describe": false,
+        "expect": false,
+        "inject": false,
+        "it": false
     }
 }

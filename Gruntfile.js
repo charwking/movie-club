@@ -12,7 +12,7 @@ module.exports = function (grunt) {
                 map: true
             },
             all: {
-                src: config.output.less.css
+                src: config.out.cssFile
             }
         },
 
@@ -22,36 +22,36 @@ module.exports = function (grunt) {
             },
             all: {
                 files: [{
-                    src: config.output.html
+                    src: config.out.htmlMainFile
                 }]
             }
         },
 
         clean: {
-            outputDir: [config.output.dir]
+            outputDir: [config.out.dir]
         },
 
         concat: {
             internal: {
-                src: config.input.js.internal,
-                dest: config.output.js.internal
+                src: config.in.jsAppClientFiles,
+                dest: config.out.jsAppClientFile
             },
 
             external: {
-                src: config.input.js.external,
-                dest: config.output.js.external
+                src: config.in.jsThirdPartyClientFiles,
+                dest: config.out.jsThirdPartyClientFile
             }
         },
 
         connect: {
             server: {
                 options: {
-                    base: config.output.dir,
-                    protocol: config.dev.server.protocol,
-                    hostname: config.dev.server.hostname,
-                    port: config.dev.server.port,
+                    base: config.out.dir,
+                    protocol: config.dev.serverProtocol,
+                    hostname: config.dev.serverHostname,
+                    port: config.dev.serverPort,
                     open: true,
-                    livereload: config.dev.server.livereload
+                    livereload: config.dev.serverLivereload
                 }
             }
         },
@@ -59,8 +59,8 @@ module.exports = function (grunt) {
         copy: {
             index: {
                 files: [{
-                    src: config.input.html.internal,
-                    dest: config.output.dir,
+                    src: config.in.htmlMainFile,
+                    dest: config.out.dir,
                     expand: true,
                     flatten: true
                 }]
@@ -75,15 +75,16 @@ module.exports = function (grunt) {
             },
 
             main: {
-                src: config.input.templates,
-                dest: config.output.templates
+                src: config.in.htmlTemplateFiles,
+                dest: config.out.htmlTemplateFile
             }
         },
 
         jscs: {
             all: [
                 'Gruntfile.js',
-                config.input.dir + '/**/*.js'
+                config.in.jsAppClientFiles,
+                config.in.jsAppTestFiles
             ],
             options: {
                 config: '.jscsrc'
@@ -93,23 +94,31 @@ module.exports = function (grunt) {
         jshint: {
             all: [
                 'Gruntfile.js',
-                config.input.dir + '/**/*.js'
+                config.in.jsAppClientFiles,
+                config.in.jsAppTestFiles
             ],
             options: {
                 jshintrc: '.jshintrc'
             }
         },
 
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js',
+                singleRun: true
+            }
+        },
+
         less: {
             all: {
-                src: config.input.less.root,
-                dest: config.output.less.css,
+                src: config.in.lessMainFile,
+                dest: config.out.cssFile,
                 options: {
                     compress: true,
                     sourceMap: true,
                     outputSourceFiles: true,
-                    sourceMapFilename: config.output.less.map,
-                    sourceMapURL: config.output.less.mapUrl
+                    sourceMapFilename: config.out.cssMapFile,
+                    sourceMapURL: config.out.cssMapUrl
                 }
             }
         },
@@ -118,47 +127,48 @@ module.exports = function (grunt) {
 
             dist: {
                 files: [
-                    config.output.dir + '/*.*',
-                    '!' + config.output.html
+                    config.out.dir + '/*.*',
+                    '!' + config.out.htmlMainFile
                 ],
                 tasks: 'cacheBust',
                 options: {
-                    livereload: config.dev.server.livereload
+                    livereload: config.dev.serverLivereload
                 }
             },
 
             index: {
-                files: config.input.html.internal,
+                files: config.in.htmlMainFile,
                 tasks: 'copy:index',
                 options: {
-                    livereload: config.dev.server.livereload
+                    livereload: config.dev.serverLivereload
                 }
             },
 
             jsInternal: {
-                files: config.input.js.internal,
+                files: config.in.jsAppClientFiles
+                    .concat(config.in.jsAppTestFiles),
                 tasks: ['analyze', 'concat:internal']
             },
 
             jsExternal: {
-                files: config.input.js.external,
+                files: config.in.jsThirdPartyClientFiles,
                 tasks: ['analyze', 'concat:external']
             },
 
             less: {
-                files: config.input.less.internal,
+                files: config.in.lessMainFile,
                 tasks: 'css'
             },
 
             templates: {
-                files: config.input.templates,
+                files: config.in.htmlTemplateFiles,
                 tasks: 'html2js'
             }
         }
     });
 
-    grunt.registerTask('analyze', ['jshint', 'jscs']);
+    grunt.registerTask('analyze', ['jshint', 'jscs', 'karma:unit']);
     grunt.registerTask('css', ['less', 'autoprefixer']);
-    grunt.registerTask('compile', ['clean', 'analyze', 'copy', 'concat', 'css', 'html2js']);
+    grunt.registerTask('compile', ['clean', 'copy', 'concat', 'css', 'html2js', 'analyze']);
     grunt.registerTask('serve', ['compile', 'cacheBust', 'connect', 'watch']);
 };
