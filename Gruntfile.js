@@ -123,6 +123,13 @@ module.exports = function (grunt) {
             }
         },
 
+        ngAnnotate: {
+            internal: {
+                src: config.out.jsAppClientFile,
+                dest: config.out.jsAppClientFile
+            }
+        },
+
         watch: {
 
             dist: {
@@ -170,5 +177,6 @@ module.exports = function (grunt) {
     grunt.registerTask('analyze', ['jshint', 'jscs', 'karma:unit']);
     grunt.registerTask('css', ['less', 'autoprefixer']);
     grunt.registerTask('compile', ['clean', 'copy', 'concat', 'css', 'html2js', 'analyze']);
+    grunt.registerTask('optimize', ['ngAnnotate']);
     grunt.registerTask('serve', ['compile', 'cacheBust', 'connect', 'watch']);
 };
