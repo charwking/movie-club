@@ -7,7 +7,7 @@
 
     function ComingSoonController() {
         var vm = this;
-        vm.message = 'Coming Soon!';
+        vm.message = 'Coming Soon Dude!';
     }
 
 }(window.angular));
