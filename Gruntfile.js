@@ -130,6 +130,20 @@ module.exports = function (grunt) {
             }
         },
 
+        uglify: {
+            all: {
+                options: {
+                    sourceMap: true
+                },
+                files: [{
+                    expand: true,
+                    cwd: config.out.dir,
+                    src: '**/*.js',
+                    dest: config.out.dir
+                }]
+            }
+        },
+
         watch: {
 
             dist: {
@@ -177,6 +191,7 @@ module.exports = function (grunt) {
     grunt.registerTask('analyze', ['jshint', 'jscs', 'karma:unit']);
     grunt.registerTask('css', ['less', 'autoprefixer']);
     grunt.registerTask('compile', ['clean', 'copy', 'concat', 'css', 'html2js', 'analyze']);
-    grunt.registerTask('optimize', ['ngAnnotate']);
+    grunt.registerTask('optimize', ['ngAnnotate', 'uglify']);
+    grunt.registerTask('package', ['compile', 'optimize']);
     grunt.registerTask('serve', ['compile', 'cacheBust', 'connect', 'watch']);
 };
