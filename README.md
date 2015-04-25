@@ -14,7 +14,7 @@ Assuming you're on a mac...
     npm install -g grunt-cli
     ```
 
-* Clone the repo and cd into the directory:
+* Clone the repo:
 
     ```
     git clone git@github.com:charwking/movie-club.git
