@@ -2,6 +2,7 @@ var dirs = {
     output: 'dist/',
     source: 'src/',
     test: 'test/',
+    bower: 'bower_components/',
     npm: 'node_modules/'
 };
 
@@ -31,9 +32,9 @@ module.exports = {
         ],
         jsAppTestFiles: dirs.test + '**/*.js',
         jsThirdPartyClientFiles: [
-            dirs.npm + 'angular/angular.js',
-            dirs.npm + 'angular-ui-router/release/angular-ui-router.js',
-            dirs.npm + 'angular-google-analytics/dist/angular-google-analytics.js'
+            dirs.bower + 'angular/angular.js',
+            dirs.bower + 'angular-ui-router/release/angular-ui-router.js',
+            dirs.bower + 'angular-google-analytics/dist/angular-google-analytics.js'
         ],
         jsThirdPartyTestFiles: [
             dirs.npm + 'angular-mocks/angular-mocks.js'
