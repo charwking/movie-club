@@ -12,7 +12,7 @@
         // setup analytics
         AnalyticsProvider.setAccount('UA-52798669-1');
         AnalyticsProvider.trackPages(true);
-        // AnalyticsProvider.trackUrlParams(true);
+        AnalyticsProvider.trackUrlParams(true);
         AnalyticsProvider.trackPrefix('movie-club');
     }
 
