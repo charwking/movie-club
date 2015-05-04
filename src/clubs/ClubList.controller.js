@@ -3,9 +3,9 @@
 
     angular
         .module('movieClub.clubs')
-        .controller('ClubsController', ClubsController);
+        .controller('ClubListController', ClubListController);
 
-    function ClubsController(clubsApi) {
+    function ClubListController(clubsApi) {
         var vm = this;
         vm.clubs = clubsApi.getClubs();
     }

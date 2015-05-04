@@ -8,10 +8,10 @@
     function appRun(routerHelper) {
         routerHelper.configureStates([
             {
-                state: 'listClubs',
+                state: 'clubList',
                 config: {
                     url: '/clubs',
-                    templateUrl: 'clubs/clubs.html'
+                    templateUrl: 'clubs/clubList.html'
                 }
             }
         ]);

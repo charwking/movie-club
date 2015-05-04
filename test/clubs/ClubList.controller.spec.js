@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    describe('ClubsController', function () {
+    describe('ClubListController', function () {
 
         var subject,
             clubs = 'available clubs';
@@ -12,7 +12,7 @@
             spyOn(clubsApi, 'getClubs');
             clubsApi.getClubs.and.returnValue(clubs);
 
-            subject = $controller('ClubsController', clubsApi);
+            subject = $controller('ClubListController', clubsApi);
         }));
 
         it('should expose the result of the clubsApi call as clubs', function () {
