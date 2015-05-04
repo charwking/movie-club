@@ -3,6 +3,7 @@
 
     angular
         .module('movieClub', [
+            'movieClub.clubs',
             'movieClub.comingSoon'
         ]);
 

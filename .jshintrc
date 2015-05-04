@@ -59,7 +59,9 @@
         "beforeEach": false,
         "describe": false,
         "expect": false,
+        "jasmine": false,
         "inject": false,
-        "it": false
+        "it": false,
+        "spyOn": false
     }
 }
