@@ -3,8 +3,7 @@
 
     angular
         .module('movieClub', [
-            'movieClub.clubs',
-            'movieClub.comingSoon'
+            'movieClub.clubs'
         ]);
 
 }(window.angular));
