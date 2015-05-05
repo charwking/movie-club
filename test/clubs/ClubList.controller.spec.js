@@ -7,17 +7,16 @@
             clubs = 'available clubs';
 
         beforeEach(module('movieClub.clubs'));
-        beforeEach(inject(function ($controller, clubsApi) {
+        beforeEach(inject(function ($controller, firebaseApi) {
 
-            spyOn(clubsApi, 'getClubs');
-            clubsApi.getClubs.and.returnValue(clubs);
+            spyOn(firebaseApi, 'getClubs');
+            firebaseApi.getClubs.and.returnValue(clubs);
 
-            subject = $controller('ClubListController', clubsApi);
+            subject = $controller('ClubListController', firebaseApi);
         }));
 
-        it('should expose the result of the clubsApi call as clubs', function () {
+        it('should expose the result of the firebaseApi call as clubs', function () {
             expect(subject.clubs).toBe(clubs);
         });
     });
-
 }());

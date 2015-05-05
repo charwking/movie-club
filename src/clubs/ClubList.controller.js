@@ -5,9 +5,14 @@
         .module('movieClub.clubs')
         .controller('ClubListController', ClubListController);
 
-    function ClubListController(clubsApi) {
+    function ClubListController(firebaseApi) {
         var vm = this;
-        vm.clubs = clubsApi.getClubs();
+        vm.clubs = [];
+        init();
+
+        function init() {
+            vm.clubs = firebaseApi.getClubs();
+        }
     }
 
 }(window.angular));

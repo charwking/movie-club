@@ -13,6 +13,13 @@
                     url: '/clubs',
                     templateUrl: 'clubs/clubList.html'
                 }
+            },
+            {
+                state: 'club',
+                config: {
+                    url: '/clubs/:clubId',
+                    templateUrl: 'clubs/club.html'
+                }
             }
         ]);
     }
