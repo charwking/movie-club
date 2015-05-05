@@ -57,9 +57,15 @@
         "$": false,
         "angular": false,
         "beforeEach": false,
+        "ddescribe": false,
         "describe": false,
         "expect": false,
+        "jasmine": false,
+        "iit": false,
         "inject": false,
-        "it": false
+        "it": false,
+        "spyOn": false,
+        "xdescribe": false,
+        "xit": false
     }
 }

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('movieClub.comingSoon', [
+        .module('movieClub.clubs', [
             'movieClub.core'
         ]);
 

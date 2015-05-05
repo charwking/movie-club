@@ -1,0 +1,4 @@
+<section ng-controller="ClubController as vm">
+    <h3 ng-if="!vm.club.$isLoading && vm.club.name">Welcome to {{vm.club.name}}</h3>
+    <h3 ng-if="!vm.club.$isLoading && !vm.club.name">Sorry, club not found!</h3>
+</section>

@@ -7,7 +7,7 @@
     function appConfig($urlRouterProvider, AnalyticsProvider) {
 
         // default route
-        $urlRouterProvider.when('', '/coming-soon');
+        $urlRouterProvider.when('', '/clubs/-JoCOivuTNhgFsWhSLSf');
 
         // setup analytics
         AnalyticsProvider.setAccount('UA-52798669-1');
