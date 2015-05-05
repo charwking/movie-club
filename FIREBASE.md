@@ -16,15 +16,11 @@ In general, my strategy is to keep permissions restrictive until a use-case appe
     "clubs": {
 
       ".read": true,
-      
-      // a club must have a name
       ".validate": "newData.hasChildren(['name'])",
 
-      "$club_id": {
-        
+      "$clubId": {
+
         "name": {
-        
-          // name is a string between 1 and 50 characters
           ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 50"
         }
       }
