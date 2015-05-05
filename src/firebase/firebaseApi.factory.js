@@ -5,7 +5,7 @@
         .module('movieClub.firebase')
         .factory('firebaseApi', firebaseApi);
 
-    function firebaseApi($firebaseObject, firebaseUtils) {
+    function firebaseApi(firebaseUtils) {
 
         var factory = {
                 getClubs: getClubs,
