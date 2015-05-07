@@ -3,7 +3,8 @@
 
     angular
         .module('movieClub.clubs', [
-            'movieClub.core'
+            'movieClub.core',
+            'firebase'
         ]);
 
 }(window.angular));

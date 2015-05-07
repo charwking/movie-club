@@ -5,13 +5,18 @@
         .module('movieClub.clubs')
         .controller('ClubController', ClubController);
 
-    function ClubController($stateParams, firebaseApi) {
+    function ClubController($stateParams, clubsApi) {
         var vm = this;
         vm.club = {};
         init();
 
         function init() {
-            vm.club = firebaseApi.getClubById($stateParams.clubId);
+            vm.club.$isLoading = true;
+            clubsApi.getById($stateParams.clubId)
+                .then(function (club) {
+                    vm.club = club;
+                    vm.club.$isLoading = false;
+                });
         }
     }
 
