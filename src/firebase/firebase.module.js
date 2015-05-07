@@ -2,8 +2,6 @@
     'use strict';
 
     angular
-        .module('movieClub.firebase', [
-            'firebase'
-        ]);
+        .module('movieClub.firebase', []);
 
 }(window.angular));
