@@ -26,6 +26,7 @@ module.exports = {
             dirs.source + '**/*.html',
             '!' + dirs.source + 'index.html'
         ],
+        imageFiles: dirs.source + 'images/**/*',
         jsAppClientFiles: [
             dirs.source + '**/*.module.js',
             dirs.source + '**/*.js'
