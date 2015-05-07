@@ -10,17 +10,21 @@ module.exports = {
 
     out: {
         dir: dirs.output,
-        cssFile: dirs.output + 'app.css',
-        cssMapFile: dirs.output + 'app.css.map',
-        cssMapUrl: 'app.css.map',
+        cssFile: dirs.output + 'css/app.css',
+        cssMapFile: dirs.output + 'css/app.css.map',
+        cssMapUrl: 'css/app.css.map',
+        fontDir: dirs.output + '/fonts',
         htmlMainFile: dirs.output + 'index.html',
-        htmlTemplateFile: dirs.output + 'templates.js',
-        jsAppClientFile: dirs.output + 'internal.js',
-        jsThirdPartyClientFile: dirs.output + 'external.js'
+        htmlTemplateFile: dirs.output + 'js/templates.js',
+        imageDir: dirs.output + '/images',
+        jsDir: dirs.output + 'js/',
+        jsAppClientFile: dirs.output + 'js/internal.js',
+        jsThirdPartyClientFile: dirs.output + 'js/external.js'
     },
 
     in: {
         dir: dirs.source,
+        fontFiles: dirs.bower + 'font-awesome/fonts/**/*',
         htmlMainFile: dirs.source + 'index.html',
         htmlTemplateFiles: [
             dirs.source + '**/*.html',

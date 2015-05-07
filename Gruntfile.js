@@ -58,10 +58,19 @@ module.exports = function (grunt) {
 
         copy: {
 
+            fonts: {
+                files: [{
+                    src: config.in.fontFiles,
+                    dest: config.out.fontDir,
+                    expand: true,
+                    flatten: true
+                }]
+            },
+
             images: {
                 files: [{
                     src: config.in.imageFiles,
-                    dest: config.out.dir,
+                    dest: config.out.imageDir,
                     expand: true,
                     flatten: true
                 }]
@@ -147,9 +156,9 @@ module.exports = function (grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: config.out.dir,
+                    cwd: config.out.jsDir,
                     src: '**/*.js',
-                    dest: config.out.dir
+                    dest: config.out.jsDir
                 }]
             }
         },
@@ -158,7 +167,7 @@ module.exports = function (grunt) {
 
             dist: {
                 files: [
-                    config.out.dir + '/*.*',
+                    config.out.dir + '/**/*.*',
                     '!' + config.out.htmlMainFile
                 ],
                 tasks: 'cacheBust',
