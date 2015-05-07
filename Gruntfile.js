@@ -57,6 +57,16 @@ module.exports = function (grunt) {
         },
 
         copy: {
+
+            images: {
+                files: [{
+                    src: config.in.imageFiles,
+                    dest: config.out.dir,
+                    expand: true,
+                    flatten: true
+                }]
+            },
+
             index: {
                 files: [{
                     src: config.in.htmlMainFile,
@@ -155,6 +165,11 @@ module.exports = function (grunt) {
                 options: {
                     livereload: config.dev.serverLivereload
                 }
+            },
+
+            images: {
+                files: config.in.imageFiles,
+                tasks: 'copy:images'
             },
 
             index: {
