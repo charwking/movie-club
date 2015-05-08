@@ -201,7 +201,7 @@ module.exports = function (grunt) {
             },
 
             less: {
-                files: config.in.lessMainFile,
+                files: config.in.lessFiles,
                 tasks: 'css'
             },
 

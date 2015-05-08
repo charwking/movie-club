@@ -46,6 +46,7 @@ module.exports = {
         jsThirdPartyTestFiles: [
             dirs.npm + 'angular-mocks/angular-mocks.js'
         ],
+        lessFiles: dirs.source + '/**/*.less',
         lessMainFile: dirs.source + 'styles/app.less'
     },
 
