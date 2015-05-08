@@ -2,10 +2,9 @@
     'use strict';
 
     angular
-        .module('movieClub', [
+        .module('movieClub.nav', [
             'movieClub.auth',
-            'movieClub.clubs',
-            'movieClub.nav'
+            'movieClub.core'
         ]);
 
 }(window.angular));

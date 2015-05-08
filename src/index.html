@@ -9,6 +9,11 @@
 </head>
 
 <body>
+    <nav ng-controller="NavController as vm">
+        <div ng-if="vm.isLoggedIn()"><a ui-sref="auth({action: 'logout'})">Logout</a></div>
+        <div ng-if="!vm.isLoggedIn()"><a ui-sref="auth">Sign In / Register</a></div>
+    </nav>
+
     <div id="content-main" ui-view></div>
 
     <script src="js/external.js" type="text/javascript"></script>
