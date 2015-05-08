@@ -1,0 +1,78 @@
+<div ng-controller="AuthController as vm">
+
+    <section ng-if="vm.userLoggedOut">
+        <h3>You are now logged out!</h3>
+    </section>
+
+    <section>
+
+        <h3>Already have an account? Login here</h3>
+
+        <form name="vm.login.form">
+
+            <input
+                maxlength="50"
+                name="email"
+                ng-model="vm.login.email"
+                placeholder="Email"
+                required=""
+                type="email"
+            />
+            </br>
+
+            <input
+                maxlength="50"
+                name="password"
+                ng-model="vm.login.password"
+                placeholder="Password"
+                required=""
+                type="password"
+            />
+            </br>
+
+            <button
+                ng-click="vm.login()"
+                ng-disabled="!vm.login.form.$valid"
+            >
+                Submit
+            </button>
+
+        </form>
+    </section>
+
+    <section>
+
+        <h3>Need an account? Register here</h3>
+
+        <form name="vm.register.form">
+
+            <input
+                maxlength="50"
+                name="email"
+                ng-model="vm.register.email"
+                placeholder="Email"
+                required=""
+                type="email"
+            />
+            </br>
+
+            <input
+                maxlength="50"
+                name="password"
+                ng-model="vm.register.password"
+                placeholder="Password"
+                required=""
+                type="password"
+            />
+            </br>
+
+            <button
+                ng-click="vm.register()"
+                ng-disabled="!vm.register.form.$valid"
+            >
+                Submit
+            </button>
+
+        </form>
+    </section>
+</div>
