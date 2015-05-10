@@ -5,11 +5,11 @@
         .module('movieClub.auth')
         .factory('authApi', authApi);
 
-    function authApi($firebaseAuth, firebaseRef) {
+    function authApi($firebaseAuth, usersApi, firebaseRef) {
         var factory = {
-                getCurrentUser: getCurrentUser,
                 login: login,
                 logout: logout,
+                onAuth: onAuth,
                 register: register
             },
             authRef = $firebaseAuth(firebaseRef);
@@ -27,7 +27,11 @@
             authRef.$unauth();
         }
 
-        function register(email, password) {
+        function onAuth(func) {
+            return authRef.$onAuth(func);
+        }
+
+        function register(username, email, password) {
             var credentials = {
                 email: email,
                 password: password
@@ -35,12 +39,11 @@
 
             return authRef.$createUser(credentials)
                 .then(function () {
-                    return login(email, password);
+                    return login(email, password)
+                        .then(function (auth) {
+                            usersApi.create(auth.uid, username);
+                        });
                 });
-        }
-
-        function getCurrentUser() {
-            return authRef.$getAuth();
         }
     }
 
