@@ -27,7 +27,7 @@
         }
 
         function register() {
-            authApi.register(vm.register.email, vm.register.password)
+            authApi.register(vm.register.username, vm.register.email, vm.register.password)
                 .then(function () {
                     $state.go('club', {clubId: '-JoCOivuTNhgFsWhSLSf'});
                 });

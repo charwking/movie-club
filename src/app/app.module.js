@@ -5,7 +5,8 @@
         .module('movieClub', [
             'movieClub.auth',
             'movieClub.clubs',
-            'movieClub.nav'
+            'movieClub.nav',
+            'movieClub.users'
         ]);
 
 }(window.angular));

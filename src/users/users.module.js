@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('movieClub.nav', [
-            'movieClub.users',
+        .module('movieClub.users', [
+            'movieClub.auth',
             'movieClub.core'
         ]);
 

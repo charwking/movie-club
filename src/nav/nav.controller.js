@@ -5,12 +5,17 @@
         .module('movieClub.nav')
         .controller('NavController', NavController);
 
-    function NavController($state, authApi) {
+    function NavController($state, currentUser) {
         var vm = this;
-        vm.isLoggedIn = isLoggedIn;
+        vm.isLoggedIn = currentUser.isLoggedIn;
+        vm.getUsername = getUsername;
 
-        function isLoggedIn() {
-            return !!authApi.getCurrentUser();
+        function getUsername() {
+            var user = vm.isLoggedIn() ? currentUser.get() : null;
+            if (user && user.username) {
+                return user.username;
+            }
+            return null;
         }
     }
 
