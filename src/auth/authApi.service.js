@@ -7,7 +7,6 @@
 
     function authApi($firebaseAuth, usersApi, firebaseRef) {
         var factory = {
-                getCurrentAuth: getCurrentAuth,
                 login: login,
                 logout: logout,
                 onAuth: onAuth,
@@ -45,10 +44,6 @@
                             usersApi.create(auth.uid, username);
                         });
                 });
-        }
-
-        function getCurrentAuth() {
-            return authRef.$getAuth();
         }
     }
 
