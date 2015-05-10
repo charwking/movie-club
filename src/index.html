@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <nav ng-controller="NavController as vm">
+    <nav ng-controller="NavController as vm" ng-cloak>
         <div ng-if="vm.isLoggedIn()"><a ui-sref="auth({action: 'logout'})">Logout</a></div>
         <div ng-if="!vm.isLoggedIn()"><a ui-sref="auth">Sign In / Register</a></div>
     </nav>
