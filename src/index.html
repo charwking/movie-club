@@ -11,8 +11,10 @@
 		
 		<body>
 		    <nav class="top-header-nav" ng-controller="NavController as vm" ng-cloak>
+			    <div ng-if="vm.isLoggedIn()"><a ui-sref="auth({action: 'logout'})">My Movies</a></div>
 		        <div ng-if="vm.isLoggedIn()"><a ui-sref="auth({action: 'logout'})">Logout</a></div>
 		        <div ng-if="!vm.isLoggedIn()"><a ui-sref="auth">Sign In / Register</a></div>
+		        <div ng-if="vm.isLoggedIn()"><a ui-sref="auth({action: 'logout'})">Admin</a></div>
 		    </nav>
 		    
 		    <div id="content-main" ui-view></div>

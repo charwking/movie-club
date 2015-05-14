@@ -1,11 +1,18 @@
 <div class="image-area">
-	<img src="images/movieStills.png">
+	<img src="images/MovieStills.jpg">
 </div>
 
-<img src="images/kitten.jpg" />
+<section class="now-showing-section">
+	<h2>Now Showing</h2>
+</section>
 
-<section ng-controller="ClubController as vm">
-    <h3 ng-if="!vm.club.$isLoading && vm.club.name">
+<section class="recently-watched-section">
+	<h2>Recently Watched</h2>
+</section>
+
+<section ng-controller="ClubController as vm" class="about-club-section">
+	<h2>About our Club</h2>
+	 <h3 ng-if="!vm.club.$isLoading && vm.club.name">
         <i class="fa fa-video-camera"></i>
         Welcome to {{vm.club.name}}
     </h3>
