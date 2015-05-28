@@ -1,10 +1,12 @@
-<div ng-controller="AuthController as vm">
+<div class="auth-container" ng-controller="AuthController as vm">
 
-    <section ng-if="vm.userLoggedOut">
-        <h3>You are now logged out!</h3>
-    </section>
-
-    <section>
+    <div ng-if="vm.userLoggedOut">
+        
+    	<h3>You are now logged out!</h3>
+    	
+	</div>
+    
+    <section class="two-columns">
 
         <h3>Already have an account? Login here</h3>
 
@@ -39,8 +41,10 @@
 
         </form>
     </section>
+    
+    <div class="divider-element"></div>
 
-    <section>
+    <section class="two-columns">
 
         <h3>Need an account? Register here</h3>
 
