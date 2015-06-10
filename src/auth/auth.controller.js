@@ -22,14 +22,14 @@
         function login() {
             authApi.login(vm.login.email, vm.login.password)
                 .then(function () {
-                    $state.go('club', {clubId: '-JoCOivuTNhgFsWhSLSf'});
+                    $state.go('dashboard');
                 });
         }
 
         function register() {
             authApi.register(vm.register.username, vm.register.email, vm.register.password)
                 .then(function () {
-                    $state.go('club', {clubId: '-JoCOivuTNhgFsWhSLSf'});
+                    $state.go('dashboard');
                 });
         }
     }
