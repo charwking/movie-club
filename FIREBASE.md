@@ -13,19 +13,14 @@ In general, my strategy is to keep permissions restrictive until a use-case appe
     ".read": false,
     ".write": false,
 
-    "clubs": {
-
+    "properties": {
       ".read": true,
-      ".validate": "newData.hasChildren(['name'])",
 
-      "$clubId": {
-
-        "name": {
-          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 50"
-        }
+      "clubName": {
+        ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 50"
       }
     },
-  
+
     "users": {
 
       "$userId": {
@@ -36,7 +31,7 @@ In general, my strategy is to keep permissions restrictive until a use-case appe
         "username": {
           ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 50"
         }
-      }  
+      }
     }
   }
 }

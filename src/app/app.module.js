@@ -4,7 +4,7 @@
     angular
         .module('movieClub', [
             'movieClub.auth',
-            'movieClub.clubs',
+            'movieClub.dashboard',
             'movieClub.nav',
             'movieClub.users'
         ]);

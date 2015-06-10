@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('movieClub.clubs', [
+        .module('movieClub.properties', [
             'movieClub.core',
             'firebase'
         ]);
