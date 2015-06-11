@@ -23,9 +23,11 @@ In general, my strategy is to keep permissions restrictive until a use-case appe
 
     "users": {
 
+      ".read": "true",
+
       "$userId": {
 
-        ".read": "auth.uid === $userId",
+        ".read": "true",
         ".write": "auth.uid === $userId",
 
         "username": {

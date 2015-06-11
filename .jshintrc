@@ -55,6 +55,7 @@
 
     "globals": {
         "$": false,
+        "_": false,
         "angular": false,
         "beforeEach": false,
         "ddescribe": false,

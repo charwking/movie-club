@@ -5,6 +5,7 @@
         .module('movieClub.dashboard', [
             'movieClub.core',
             'movieClub.properties',
+            'movieClub.users',
             'firebase'
         ]);
 
