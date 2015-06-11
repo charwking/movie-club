@@ -16,7 +16,7 @@
 
         function init() {
             authApi.onAuth(function (data) {
-                user = (data && data.uid) ? usersApi.get(data.uid) : null;
+                user = (data && data.uid) ? usersApi.getById(data.uid) : null;
             });
         }
 

@@ -1,11 +1,22 @@
-<header class="image-area">
-    <img src="images/movieStills.png">
-</header>
+<div ng-controller="DashboardController as vm">
 
-<section ng-controller="DashboardController as vm">
-    <h3 ng-if="!vm.properties.$isLoading && vm.properties.clubName">
-        <i class="fa fa-video-camera"></i>
-        Welcome to {{vm.properties.clubName}}
-    </h3>
-    <h3 ng-if="!vm.properties.$isLoading && !vm.properties.clubName">Ack, catastrophic error!</h3>
-</section>
+    <header class="image-area">
+        <img src="images/movieStills.png">
+    </header>
+
+    <section>
+        <h3 ng-if="!vm.properties.$isLoading && vm.properties.clubName">
+            <i class="fa fa-video-camera"></i>
+            Welcome to {{vm.properties.clubName}}
+        </h3>
+        <h3 ng-if="!vm.properties.$isLoading && !vm.properties.clubName">Ack, catastrophic error!</h3>
+    </section>
+
+    <section ng-if="!vm.usernames.$isLoading && vm.usernames">
+        <h3>The Cast</h3>
+        <ul>
+            <li ng-repeat="username in vm.usernames | orderBy:'toString()'">{{username}}</li>
+        </ul>
+    </section>
+
+</div>
