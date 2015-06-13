@@ -13,6 +13,13 @@
                     url: '/auth/:action',
                     templateUrl: 'auth/auth.html'
                 }
+            },
+            {
+                state: 'register',
+                config: {
+                    url: '/register',
+                    templateUrl: 'auth/register.html'
+                }
             }
         ]);
     }
