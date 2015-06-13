@@ -30,8 +30,10 @@
                 ng-click="vm.login()"
                 ng-disabled="!vm.loginForm.$valid"
             >
-                Submit
+                <i ng-if="vm.isLoading" class="fa fa-spin fa-spinner"></i> Submit
             </button>
+
+            <h4 ng-if="vm.loginFailed">Login failed, please try again.</h4>
 
         </form>
     </section>
