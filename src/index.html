@@ -11,8 +11,8 @@
 
 		<body>
 		    <nav class="top-header-nav" ng-controller="NavController as vm" ng-cloak>
-		        <div ng-if="vm.isLoggedIn()"><a ui-sref="auth({action: 'logout'})">Logout</a></div>
-		        <div ng-if="!vm.isLoggedIn()"><a ui-sref="auth">Sign In</a> / <a ui-sref="register">Sign Up</a></div>
+		        <div ng-if="vm.isLoggedIn()"><a ui-sref="logout">Logout</a></div>
+		        <div ng-if="!vm.isLoggedIn()"><a ui-sref="login">Sign In</a> / <a ui-sref="register">Sign Up</a></div>
 		    </nav>
 
 		    <div id="content-main" ui-view></div>

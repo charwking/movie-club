@@ -3,20 +3,11 @@
 
     angular
         .module('movieClub.auth')
-        .controller('AuthController', AuthController);
+        .controller('LoginController', LoginController);
 
-    function AuthController($state, $stateParams, authApi) {
+    function LoginController($state, authApi) {
         var vm = this;
         vm.login = login;
-        vm.userLoggedOut = false;
-        init();
-
-        function init() {
-            if ($stateParams.action === 'logout') {
-                authApi.logout();
-                vm.userLoggedOut = true;
-            }
-        }
 
         function login() {
             if (!vm.loginForm.$valid) {
