@@ -19,7 +19,11 @@
         }
 
         function login() {
-            authApi.login(vm.login.email, vm.login.password)
+            if (!vm.loginForm.$valid) {
+                return;
+            }
+
+            authApi.login(vm.email, vm.password)
                 .then(function () {
                     $state.go('dashboard');
                 });

@@ -8,12 +8,12 @@
 
         <h3>Already have an account? Login here</h3>
 
-        <form name="vm.login.form">
+        <form name="vm.loginForm" ng-submit="vm.login()">
 
             <input
                 maxlength="50"
                 name="email"
-                ng-model="vm.login.email"
+                ng-model="vm.email"
                 placeholder="Email"
                 required=""
                 type="email"
@@ -23,7 +23,7 @@
             <input
                 maxlength="50"
                 name="password"
-                ng-model="vm.login.password"
+                ng-model="vm.password"
                 placeholder="Password"
                 required=""
                 type="password"
@@ -32,7 +32,7 @@
 
             <button
                 ng-click="vm.login()"
-                ng-disabled="!vm.login.form.$valid"
+                ng-disabled="!vm.loginForm.$valid"
             >
                 Submit
             </button>

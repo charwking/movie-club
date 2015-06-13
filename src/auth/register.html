@@ -4,14 +4,17 @@
 
         <h3>Need an account? Register here</h3>
 
-        <form name="vm.register.form">
+        <form
+            name="vm.registrationForm"
+            ng-submit="vm.register()"
+        >
 
             <input
                 maxlength="50"
                 name="username"
-                ng-model="vm.register.username"
+                ng-model="vm.username"
                 placeholder="Username"
-                required=""
+                required
                 type="text"
             /> * This will be publicly viewable by the entire Internet
             </br>
@@ -19,9 +22,9 @@
             <input
                 maxlength="50"
                 name="email"
-                ng-model="vm.register.email"
+                ng-model="vm.email"
                 placeholder="Email"
-                required=""
+                required
                 type="email"
             />
             </br>
@@ -29,16 +32,16 @@
             <input
                 maxlength="50"
                 name="password"
-                ng-model="vm.register.password"
+                ng-model="vm.password"
                 placeholder="Password"
-                required=""
+                required
                 type="password"
             />
             </br>
 
             <button
                 ng-click="vm.register()"
-                ng-disabled="!vm.register.form.$valid"
+                ng-disabled="!vm.registrationForm.$valid"
             >
                 Submit
             </button>

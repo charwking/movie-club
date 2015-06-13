@@ -10,7 +10,12 @@
         vm.register = register;
 
         function register() {
-            authApi.register(vm.register.username, vm.register.email, vm.register.password)
+
+            if (!vm.registrationForm.$valid) {
+                return;
+            }
+
+            authApi.register(vm.username, vm.email, vm.password)
                 .then(function () {
                     $state.go('dashboard');
                 });
