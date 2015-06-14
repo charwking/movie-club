@@ -4,14 +4,17 @@
 
         <h3>Already have an account? Login here</h3>
 
-        <form name="vm.loginForm" ng-submit="vm.login()">
+        <form
+            name="vm.loginForm"
+            ng-submit="vm.login()"
+        >
 
             <input
                 maxlength="50"
                 name="email"
                 ng-model="vm.email"
                 placeholder="Email"
-                required=""
+                required
                 type="email"
             />
             </br>
@@ -21,7 +24,7 @@
                 name="password"
                 ng-model="vm.password"
                 placeholder="Password"
-                required=""
+                required
                 type="password"
             />
             </br>

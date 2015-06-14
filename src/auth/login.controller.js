@@ -24,7 +24,7 @@
                     $state.go('dashboard');
                 })
                 .catch(function () {
-                    vm.password = "";
+                    vm.password = '';
                     vm.isLoading = false;
                     vm.loginFailed = true;
                 });

@@ -9,6 +9,8 @@
             ng-submit="vm.register()"
         >
 
+            Your username will be publicly viewable by the entire Internet
+            </br>
             <input
                 maxlength="50"
                 name="username"
@@ -17,8 +19,6 @@
                 required
                 type="text"
             />
-            </br>
-            Your username will be publicly viewable by the entire Internet
             </br>
 
             <input
@@ -45,8 +45,10 @@
                 ng-click="vm.register()"
                 ng-disabled="!vm.registrationForm.$valid"
             >
-                Submit
+                <i ng-if="vm.isLoading" class="fa fa-spin fa-spinner"></i> Submit
             </button>
+
+            <h4 ng-if="vm.registrationFailed">Registration failed, please try again.</h4>
 
         </form>
     </section>
