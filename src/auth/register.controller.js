@@ -8,15 +8,18 @@
     function RegisterController($state, authApi, usersService) {
         var vm = this;
         vm.register = register;
-        vm.isLoading = false;
+        vm.isLoading = true;
+        vm.isSubmitting = false;
         vm.registrationFailed = false;
-        vm.usernames = [];
         init();
 
         function init() {
             usersService.getUsernames()
                 .then(function (usernames) {
                     vm.usernames = usernames;
+                })
+                .finally(function () {
+                    vm.isLoading = false;
                 });
         }
 
@@ -26,7 +29,7 @@
                 return;
             }
 
-            vm.isLoading = true;
+            vm.isSubmitting = true;
             vm.registrationFailed = false;
 
             authApi.register(vm.username, vm.email, vm.password)
@@ -35,8 +38,10 @@
                 })
                 .catch(function () {
                     vm.password = '';
-                    vm.isLoading = false;
                     vm.registrationFailed = true;
+                })
+                .finally(function () {
+                    vm.isSubmitting = false;
                 });
         }
     }

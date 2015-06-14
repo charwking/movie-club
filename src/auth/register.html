@@ -4,8 +4,19 @@
 
         <h3>Need an account? Register here</h3>
 
+        <div ng-if="vm.isLoading">
+            <i class="fa fa-spin fa-spinner"></i> Initializing...
+        </div>
+
+        <div ng-if="!vm.isLoading && !vm.usernames">
+            <h4>
+                Oops! There was a problem initializing this form. You'll have to try registering again later.
+            </h4>
+        </div>
+
         <form
             name="vm.registrationForm"
+            ng-if="!vm.isLoading && vm.usernames"
             ng-submit="vm.register()"
         >
 
@@ -45,7 +56,7 @@
                 ng-click="vm.register()"
                 ng-disabled="!vm.registrationForm.$valid"
             >
-                <i ng-if="vm.isLoading" class="fa fa-spin fa-spinner"></i> Submit
+                <i ng-if="vm.isSubmitting" class="fa fa-spin fa-spinner"></i> Submit
             </button>
 
             <h4 ng-if="vm.registrationFailed">Registration failed, please try again.</h4>
