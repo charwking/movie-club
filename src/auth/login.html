@@ -1,0 +1,43 @@
+<div ng-controller="LoginController as vm">
+
+    <section>
+
+        <h3>Already have an account? Login here</h3>
+
+        <form
+            name="vm.loginForm"
+            ng-submit="vm.login()"
+        >
+
+            <input
+                maxlength="50"
+                name="email"
+                ng-model="vm.email"
+                placeholder="Email"
+                required
+                type="email"
+            />
+            </br>
+
+            <input
+                maxlength="50"
+                name="password"
+                ng-model="vm.password"
+                placeholder="Password"
+                required
+                type="password"
+            />
+            </br>
+
+            <button
+                ng-click="vm.login()"
+                ng-disabled="!vm.loginForm.$valid"
+            >
+                <i ng-if="vm.isLoading" class="fa fa-spin fa-spinner"></i> Submit
+            </button>
+
+            <h4 ng-if="vm.loginFailed">Login failed, please try again.</h4>
+
+        </form>
+    </section>
+</div>
