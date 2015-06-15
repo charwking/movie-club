@@ -1,7 +1,8 @@
 body {
-    font-family: 'Fira Sans', sans-serif;
-    margin: 0;
-    text-align: center;
+	margin: 0;
+	text-align: center;
+	font-family: 'Fira Sans', sans-serif;
+	color: #3c3c49;	
 }
 
 button {
@@ -27,4 +28,48 @@ input {
             color: #333;
         });
     }
+}
+
+.image-area {
+	height: 247px;
+	width: 100%;
+	background-color: #606066;
+	margin: 0 auto;
+	overflow: hidden;
+	border-bottom: 10px solid #606066;
+	background-position: center;
+	background-image: url(http://localhost:8000/images/MovieStills.jpg);
+}
+
+h2 {
+	text-transform: uppercase;
+	font-weight: 400;
+}
+
+h3 {
+	font-weight: 200;	
+}
+
+section {
+	min-height: 150px;
+	padding: 10px;
+}
+	.now-showing-section {
+		color: #3c3c49;
+	}
+	
+	.recently-watched-section {
+		color: #ffffff;
+		background-color: #3c3c49;	
+	}
+	
+	.about-club-section {
+		color: #ffffff;
+		background-color: #c45b5b;
+	}
+	
+.asterisk-text {
+	font-style: italic;
+	font-size: 12px;
+	padding: 10px 0 30px;
 }
