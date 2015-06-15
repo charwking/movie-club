@@ -2,8 +2,10 @@
     'use strict';
 
     angular
-        .module('movieClub.clubs', [
+        .module('movieClub.dashboard', [
             'movieClub.core',
+            'movieClub.properties',
+            'movieClub.users',
             'firebase'
         ]);
 

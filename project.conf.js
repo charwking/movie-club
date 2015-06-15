@@ -41,7 +41,8 @@ module.exports = {
             dirs.bower + 'angular-ui-router/release/angular-ui-router.js',
             dirs.bower + 'angular-google-analytics/dist/angular-google-analytics.js',
             dirs.bower + 'firebase/firebase.js',
-            dirs.bower + 'angularfire/dist/angularfire.js'
+            dirs.bower + 'angularfire/dist/angularfire.js',
+            dirs.bower + 'lodash/lodash.js'
         ],
         jsThirdPartyTestFiles: [
             dirs.npm + 'angular-mocks/angular-mocks.js'

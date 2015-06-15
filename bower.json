@@ -12,6 +12,7 @@
     "angular-ui-router": "0.2.14",
     "angularfire": "1.1.1",
     "firebase": "2.2.4",
-    "font-awesome": "4.3.0"
+    "font-awesome": "4.3.0",
+    "lodash": "3.9.3"
   }
 }

@@ -11,16 +11,14 @@
 		
 		<body>
 			
-			<a href="index.html#/clubs/-JoCOivuTNhgFsWhSLSf"> 
+			<a href="index.html#/dashboard"> 
 				<img class="logo" src="images/MovieClubLogo.png" alt="Movie Club Logo"> 
 			</a>
 			
-		    <nav class="top-header-nav" ng-controller="NavController as vm" ng-cloak>
-			    <li class="left-nav-item" ng-if="vm.isLoggedIn()"><a>My Movies</a></li>
-		        <li ng-if="vm.isLoggedIn()"><a ui-sref="auth({action: 'logout'})">Logout</a></li>
-		        <li ng-if="!vm.isLoggedIn()"><a ui-sref="auth">Sign In / Register</a></li>
-		        <li ng-if="vm.isLoggedIn()"><a ui-sref="auth">Admin</a></li>
-		    </nav>
+	        <nav class="top-header-nav" ng-controller="NavController as vm" ng-cloak>
+	            <div ng-if="vm.isLoggedIn()"><a ui-sref="logout">Logout</a></div>
+	            <div ng-if="!vm.isLoggedIn()"><a ui-sref="login">Sign In</a> / <a ui-sref="register">Sign Up</a></div>
+	        </nav>
 		    
 		    <div id="content-main" ui-view></div>
 		

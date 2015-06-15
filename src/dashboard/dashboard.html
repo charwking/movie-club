@@ -1,5 +1,6 @@
+<div ng-controller="DashboardController as vm">
+
 <div class="image-area">
-<!-- 	<img src="images/MovieStills.jpg"> -->
 </div>
 
 <section class="now-showing-section">
@@ -19,11 +20,20 @@
 	<h2>Recently Watched</h2>
 </section>
 
-<section ng-controller="ClubController as vm" class="about-club-section">
+<section class="about-club-section">
 	<h2>About our Club</h2>
-	 <h3 ng-if="!vm.club.$isLoading && vm.club.name">
+	 <h3 ng-if="!vm.properties.$isLoading && vm.properties.clubName">
         <i class="fa fa-video-camera"></i>
-        Welcome to {{vm.club.name}}
+        Welcome to {{vm.properties.clubName}}
     </h3>
-    <h3 ng-if="!vm.club.$isLoading && !vm.club.name">Sorry, club not found!</h3>
+    <h3 ng-if="!vm.properties.$isLoading && !vm.properties.clubName">Ack, catastrophic error!</h3>
 </section>
+
+<section ng-if="!vm.usernames.$isLoading && vm.usernames">
+        <h3>The Cast</h3>
+        <ul>
+            <li ng-repeat="username in vm.usernames | orderBy:'toString()'">{{username}}</li>
+        </ul>
+ </section>
+
+</div>

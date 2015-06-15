@@ -8,7 +8,8 @@
     function usersApi($firebaseObject, $q, firebaseRef) {
         var factory = {
             create: create,
-            get: get
+            getById: getById,
+            getAll: getAll
         };
         return factory;
 
@@ -23,8 +24,12 @@
             return deferred.promise;
         }
 
-        function get(userId) {
+        function getById(userId) {
             return $firebaseObject(firebaseRef.child('users').child(userId));
+        }
+
+        function getAll() {
+            return $firebaseObject(firebaseRef.child('users')).$loaded();
         }
     }
 
