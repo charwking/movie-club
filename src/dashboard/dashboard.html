@@ -1,39 +1,52 @@
 <div ng-controller="DashboardController as vm">
 
-<div class="image-area">
-</div>
+    <div class="image-area"></div>
 
-<section class="now-showing-section">
-    <h2>Now Showing</h2>
+    <section class="now-showing-section">
+        <h2>Now Showing</h2>
 
         <div class="left">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/aA98dqgJBgQ" frameborder="0" allowfullscreen></iframe>
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/aA98dqgJBgQ"
+                frameborder="0"
+                allowfullscreen
+            >
+            </iframe>
         </div>
+
         <div>
             <i class="fa fa-calendar"></i>
             <p>Tuesday's at noon, Building 62, Broadway Room</p>
             <p>Bring your lunch!</p>
         </div>
-</section>
+    </section>
 
-<section class="recently-watched-section">
-    <h2>Recently Watched</h2>
-</section>
+    <section class="recently-watched-section">
+        <h2>Recently Watched</h2>
+    </section>
 
-<section class="about-club-section">
-    <h2>About our Club</h2>
-     <h3 ng-if="!vm.properties.$isLoading && vm.properties.clubName">
-        <i class="fa fa-video-camera"></i>
-        Welcome to {{vm.properties.clubName}}
-    </h3>
-    <h3 ng-if="!vm.properties.$isLoading && !vm.properties.clubName">Ack, catastrophic error!</h3>
-</section>
+    <section class="about-club-section">
 
-<section ng-if="!vm.usernames.$isLoading && vm.usernames">
+        <h2>About our Club</h2>
+
+        <h3 ng-if="!vm.properties.$isLoading && vm.properties.clubName">
+            <i class="fa fa-video-camera"></i>
+            Welcome to {{vm.properties.clubName}}
+        </h3>
+
+        <h3 ng-if="!vm.properties.$isLoading && !vm.properties.clubName">
+            Ack, catastrophic error!
+        </h3>
+    </section>
+
+    <section ng-if="!vm.usernames.$isLoading && vm.usernames">
         <h3>The Cast</h3>
         <ul>
-            <li ng-repeat="username in vm.usernames | orderBy:'toString()'">{{username}}</li>
+            <li ng-repeat="username in vm.usernames | orderBy:'toString()'">
+                {{username}}
+            </li>
         </ul>
- </section>
-
+     </section>
 </div>
