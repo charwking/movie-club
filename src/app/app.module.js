@@ -6,7 +6,8 @@
             'movieClub.auth',
             'movieClub.dashboard',
             'movieClub.nav',
-            'movieClub.users'
+            'movieClub.users',
+            'movieClub.userMovies'
         ]);
 
 }(window.angular));
