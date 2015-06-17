@@ -13,6 +13,11 @@ button {
     margin: 2px;
 }
 
+.container {
+	max-width: 1020px;
+	margin: 0 auto;
+}
+
 input {
 
     border: 1px solid #ccc;
@@ -43,6 +48,7 @@ input {
 h2 {
     text-transform: uppercase;
     font-weight: 400;
+    font-family: 'Fira Sans', sans-serif;
 }
 
 h3 {
@@ -55,20 +61,62 @@ section {
 }
     .now-showing-section {
         color: #3c3c49;
+        
+        .now-showing-content {
+	        display: flex;
+        }
+        
+        .join-us-text {
+	        font-weight: 600;
+	        font-style: italic;
+	        padding-top: 50px;
+        }
+        
+        .now-showing-movie-title {
+	        text-transform: uppercase;
+	        color: #d9413e;
+	        font-weight: 600;
+        }
+        
+        .submitted-by-text {
+	        font-size: 12px;
+	        font-style: italic;
+        }
     }
 
     .recently-watched-section {
         color: #ffffff;
         background-color: #3c3c49;
+        
+        ul {
+			list-style-type: none;
+			padding: 0;
+	    }
     }
 
     .about-club-section {
         color: #ffffff;
         background-color: #c45b5b;
     }
+    
+    .cast-section {
+	      
+	    ul {
+			list-style-type: none;
+			padding: 0;
+	    }
+    }
+    
+.columns {
+	width: 50%;
+	display: block;    
+}
 
 .asterisk-text {
     font-style: italic;
     font-size: 12px;
     padding: 10px 0 30px;
+}
+.movie-width {
+	width: 100%;
 }
