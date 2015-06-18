@@ -55,10 +55,7 @@
             />
             </br>
 
-            <button
-                ng-click="vm.register()"
-                ng-disabled="!vm.registrationForm.$valid"
-            >
+            <button ng-disabled="!vm.registrationForm.$valid">
                 <i ng-if="vm.isSubmitting" class="fa fa-spin fa-spinner"></i> Submit
             </button>
 

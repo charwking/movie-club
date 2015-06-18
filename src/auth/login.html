@@ -29,10 +29,7 @@
             />
             </br>
 
-            <button
-                ng-click="vm.login()"
-                ng-disabled="!vm.loginForm.$valid"
-            >
+            <button ng-disabled="!vm.loginForm.$valid">
                 <i ng-if="vm.isLoading" class="fa fa-spin fa-spinner"></i> Submit
             </button>
 
