@@ -10,7 +10,7 @@
             {
                 state: 'user-movies',
                 config: {
-                    url: '/',
+                    url: '/my-movies',
                     templateUrl: 'user-movies/user-movies.html'
                 }
             }
