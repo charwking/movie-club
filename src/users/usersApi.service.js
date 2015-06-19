@@ -5,7 +5,7 @@
         .module('movieClub.users')
         .factory('usersApi', usersApi);
 
-    function usersApi($firebaseObject, $q, firebaseRef) {
+    function usersApi($firebaseArray, $firebaseObject, $q, firebaseRef) {
         var factory = {
             create: create,
             getById: getById,
@@ -29,7 +29,7 @@
         }
 
         function getAll() {
-            return $firebaseObject(firebaseRef.child('users')).$loaded();
+            return $firebaseArray(firebaseRef.child('users'));
         }
     }
 

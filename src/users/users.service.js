@@ -12,7 +12,7 @@
         return factory;
 
         function getUsernames() {
-            return usersApi.getAll()
+            return usersApi.getAll().$loaded()
                 .then(function (users) {
                     return _(users)
                         .filter('username')
