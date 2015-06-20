@@ -5,23 +5,16 @@
         .module('movieClub.auth')
         .controller('RegisterController', RegisterController);
 
-    function RegisterController($state, authApi, usersApi) {
+    function RegisterController($state, authApi, users) {
         var vm = this;
-        vm.register = register;
-        vm.isLoading = true;
-        vm.isSubmitting = false;
-        vm.registrationFailed = false;
-        init();
 
-        function init() {
-            usersApi.getAll().$loaded()
-                .then(function (users) {
-                    vm.usernames = _.pluck(users, 'username');
-                })
-                .finally(function () {
-                    vm.isLoading = false;
-                });
-        }
+        // vars
+        vm.isSubmitting = false;
+        vm.hasRegistrationFailed = false;
+        vm.usernames = _.pluck(users, 'username');
+
+        // funcs
+        vm.register = register;
 
         function register() {
 
@@ -30,7 +23,7 @@
             }
 
             vm.isSubmitting = true;
-            vm.registrationFailed = false;
+            vm.hasRegistrationFailed = false;
 
             authApi.register(vm.username, vm.email, vm.password)
                 .then(function () {
@@ -38,7 +31,7 @@
                 })
                 .catch(function () {
                     vm.password = '';
-                    vm.registrationFailed = true;
+                    vm.hasRegistrationFailed = true;
                 })
                 .finally(function () {
                     vm.isSubmitting = false;

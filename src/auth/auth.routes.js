@@ -18,7 +18,13 @@
                 state: 'register',
                 config: {
                     url: '/auth/register',
-                    templateUrl: 'auth/register.html'
+                    templateUrl: 'auth/register.html',
+                    controller: 'RegisterController as registerVm',
+                    resolve: {
+                        users: function (usersApi) {
+                            return usersApi.getAll().$loaded();
+                        }
+                    }
                 }
             },
             {
