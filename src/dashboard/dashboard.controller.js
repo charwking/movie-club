@@ -5,7 +5,7 @@
         .module('movieClub.dashboard')
         .controller('DashboardController', DashboardController);
 
-    function DashboardController(propertiesApi, usersService) {
+    function DashboardController(propertiesApi, usersApi) {
         var vm = this;
         vm.properties = {};
         vm.usernames = [];
@@ -21,9 +21,9 @@
                 });
 
             vm.usernames.$isLoading = true;
-            usersService.getUsernames()
-                .then(function (usernames) {
-                    vm.usernames = usernames;
+            usersApi.getAll().$loaded()
+                .then(function (users) {
+                    vm.usernames = _.pluck(users, 'username');
                     vm.usernames.$isLoading = false;
                 });
         }

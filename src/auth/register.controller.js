@@ -5,7 +5,7 @@
         .module('movieClub.auth')
         .controller('RegisterController', RegisterController);
 
-    function RegisterController($state, authApi, usersService) {
+    function RegisterController($state, authApi, usersApi) {
         var vm = this;
         vm.register = register;
         vm.isLoading = true;
@@ -14,9 +14,9 @@
         init();
 
         function init() {
-            usersService.getUsernames()
-                .then(function (usernames) {
-                    vm.usernames = usernames;
+            usersApi.getAll().$loaded()
+                .then(function (users) {
+                    vm.usernames = _.pluck(users, 'username');
                 })
                 .finally(function () {
                     vm.isLoading = false;
