@@ -3,18 +3,15 @@
 
     angular
         .module('movieClub.userMovies')
-        .run(appRun);
+        .config(appConfig);
 
-    function appRun(routerHelper) {
-        routerHelper.configureStates([
-            {
-                state: 'user-movies',
-                config: {
-                    url: '/my-movies',
-                    templateUrl: 'user-movies/user-movies.html'
-                }
-            }
-        ]);
+    function appConfig($stateProvider) {
+
+        $stateProvider
+            .state('user-movies', {
+                templateUrl: 'user-movies/user-movies.html',
+                url: '/my-movies'
+            });
     }
 
 }(window.angular));
