@@ -7,17 +7,21 @@
 
     function LoginController($state, authApi) {
         var vm = this;
+
+        // vars
+        vm.isSubmitting = false;
+        vm.hasLoginFailed = false;
+
+        // funcs
         vm.login = login;
-        vm.isLoading = false;
-        vm.loginFailed = false;
 
         function login() {
             if (!vm.loginForm.$valid) {
                 return;
             }
 
-            vm.isLoading = true;
-            vm.loginFailed = false;
+            vm.isSubmitting = true;
+            vm.hasLoginFailed = false;
 
             authApi.login(vm.email, vm.password)
                 .then(function () {
@@ -25,8 +29,8 @@
                 })
                 .catch(function () {
                     vm.password = '';
-                    vm.isLoading = false;
-                    vm.loginFailed = true;
+                    vm.isSubmitting = false;
+                    vm.hasLoginFailed = true;
                 });
         }
     }
