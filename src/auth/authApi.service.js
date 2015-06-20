@@ -36,8 +36,7 @@
         function addUsername(auth, username) {
             var user = usersApi.getById(auth.uid);
             user.username = username;
-            user.$save();
-            return user.$loaded();
+            return user.$save();
         }
     }
 
