@@ -10,22 +10,30 @@
             {
                 state: 'login',
                 config: {
-                    url: '/auth/login',
-                    templateUrl: 'auth/login.html'
+                    controller: 'LoginController as loginVm',
+                    templateUrl: 'auth/login.html',
+                    url: '/auth/login'
                 }
             },
             {
                 state: 'register',
                 config: {
+                    controller: 'RegisterController as registerVm',
+                    templateUrl: 'auth/register.html',
                     url: '/auth/register',
-                    templateUrl: 'auth/register.html'
+                    resolve: {
+                        users: function (usersApi) {
+                            return usersApi.getAll().$loaded();
+                        }
+                    }
                 }
             },
             {
                 state: 'logout',
                 config: {
-                    url: '/auth/logout',
-                    templateUrl: 'auth/logout.html'
+                    controller: 'LogoutController as logoutVm',
+                    templateUrl: 'auth/logout.html',
+                    url: '/auth/logout'
                 }
             }
         ]);
