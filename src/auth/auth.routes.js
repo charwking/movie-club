@@ -31,6 +31,7 @@
             {
                 state: 'logout',
                 config: {
+                    controller: 'LogoutController as logoutVm',
                     templateUrl: 'auth/logout.html',
                     url: '/auth/logout'
                 }
