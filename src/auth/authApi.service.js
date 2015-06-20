@@ -41,7 +41,10 @@
                 .then(function () {
                     return login(email, password)
                         .then(function (auth) {
-                            usersApi.create(auth.uid, username);
+                            var user = usersApi.getById(auth.uid);
+                            user.username = username;
+                            user.$save();
+                            return user.$loaded();
                         });
                 });
         }
