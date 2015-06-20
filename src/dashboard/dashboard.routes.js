@@ -3,18 +3,15 @@
 
     angular
         .module('movieClub.dashboard')
-        .run(appRun);
+        .config(appConfig);
 
-    function appRun(routerHelper) {
-        routerHelper.configureStates([
-            {
-                state: 'dashboard',
-                config: {
-                    url: '/',
-                    templateUrl: 'dashboard/dashboard.html'
-                }
-            }
-        ]);
+    function appConfig($stateProvider) {
+
+        $stateProvider
+            .state('dashboard', {
+                templateUrl: 'dashboard/dashboard.html',
+                url: '/'
+            });
     }
 
 }(window.angular));

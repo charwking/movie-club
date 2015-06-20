@@ -7,7 +7,6 @@
             'firebase',
             'movieClub.firebase',
             'templates-main',
-            'utils.router',
             'ui.router'
         ]);
 
