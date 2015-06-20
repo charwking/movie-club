@@ -1,0 +1,14 @@
+<section>
+    <br/>
+
+    <h2>Users</h2>
+
+    <div>
+        Note: This only removes the app-specific user data. You must still go in and remove the user in Firebase Forge.
+    </div>
+    </br>
+
+    <div ng-repeat="user in userManagementVm.users | orderBy:'username'">
+        {{user.username}} (<a ng-click="userManagementVm.deleteUser(user)" href="#">delete</a>)
+    </div>
+</section>

@@ -7,6 +7,7 @@
             'movieClub.dashboard',
             'movieClub.nav',
             'movieClub.users',
+            'movieClub.userManagement',
             'movieClub.userMovies'
         ]);
 
