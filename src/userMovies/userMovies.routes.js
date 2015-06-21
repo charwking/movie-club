@@ -8,8 +8,9 @@
     function appConfig($stateProvider) {
 
         $stateProvider
-            .state('user-movies', {
-                templateUrl: 'user-movies/user-movies.html',
+            .state('userMovies', {
+                controller: 'UserMovieController as userMovieVm',
+                templateUrl: 'userMovies/userMovies.html',
                 url: '/my-movies'
             });
     }
