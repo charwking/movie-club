@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('movieClub.firebase')
+        .module('movieClub')
         .factory('firebaseRef', firebaseRef);
 
     function firebaseRef() {
