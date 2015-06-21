@@ -1,9 +1,9 @@
 (function () {
     'use strict';
 
-    describe('propertiesApi', function () {
+    describe('propertyStoreApi', function () {
 
-        beforeEach(module('movieClub.propertiesApi'));
+        beforeEach(module('movieClub.propertyStore'));
 
         it('should have one test so that karma is satisfied', function () {
             expect(true).toEqual(true);

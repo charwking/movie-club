@@ -4,7 +4,7 @@
     angular
         .module('movieClub.dashboard', [
             'movieClub.core',
-            'movieClub.properties',
+            'movieClub.propertyStore',
             'movieClub.users',
             'firebase'
         ]);
