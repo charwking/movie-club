@@ -3,32 +3,31 @@
 
     angular
         .module('movieClub.auth')
-        .run(appRun);
+        .config(appConfig);
 
-    function appRun(routerHelper) {
-        routerHelper.configureStates([
-            {
-                state: 'login',
-                config: {
-                    url: '/auth/login',
-                    templateUrl: 'auth/login.html'
+    function appConfig($stateProvider) {
+
+        $stateProvider
+            .state('login', {
+                controller: 'LoginController as loginVm',
+                templateUrl: 'auth/login.html',
+                url: '/auth/login'
+            })
+            .state('register', {
+                controller: 'RegisterController as registerVm',
+                templateUrl: 'auth/register.html',
+                url: '/auth/register',
+                resolve: {
+                    users: function (usersApi) {
+                        return usersApi.getAll().$loaded();
+                    }
                 }
-            },
-            {
-                state: 'register',
-                config: {
-                    url: '/auth/register',
-                    templateUrl: 'auth/register.html'
-                }
-            },
-            {
-                state: 'logout',
-                config: {
-                    url: '/auth/logout',
-                    templateUrl: 'auth/logout.html'
-                }
-            }
-        ]);
+            })
+            .state('logout', {
+                controller: 'LogoutController as logoutVm',
+                templateUrl: 'auth/logout.html',
+                url: '/auth/logout'
+            });
     }
 
 }(window.angular));

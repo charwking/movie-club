@@ -16,34 +16,27 @@
         return factory;
 
         function login(email, password) {
-            var credentials = {
-                email: email,
-                password: password
-            };
-            return authRef.$authWithPassword(credentials);
+            return authRef.$authWithPassword({email: email, password: password});
         }
 
         function logout() {
             authRef.$unauth();
         }
 
+        function register(username, email, password) {
+            return authRef.$createUser({email: email, password: password})
+                .then(_.partial(login, email, password))
+                .then(_.partialRight(addUsername, username));
+        }
+
         function onAuth(func) {
             return authRef.$onAuth(func);
         }
 
-        function register(username, email, password) {
-            var credentials = {
-                email: email,
-                password: password
-            };
-
-            return authRef.$createUser(credentials)
-                .then(function () {
-                    return login(email, password)
-                        .then(function (auth) {
-                            usersApi.create(auth.uid, username);
-                        });
-                });
+        function addUsername(auth, username) {
+            var user = usersApi.getById(auth.uid);
+            user.username = username;
+            return user.$save();
         }
     }
 

@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('utils.router', [
-            'ui.router'
+        .module('movieClub.userManagement', [
+            'movieClub.core'
         ]);
 
 }(window.angular));

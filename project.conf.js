@@ -33,9 +33,10 @@ module.exports = {
         imageFiles: dirs.source + 'images/**/*',
         jsAppClientFiles: [
             dirs.source + '**/*.module.js',
-            dirs.source + '**/*.js'
+            dirs.source + '**/*.js',
+            '!' + dirs.source + '**/*.spec.js'
         ],
-        jsAppTestFiles: dirs.test + '**/*.js',
+        jsAppTestFiles: dirs.source + '**/*.spec.js',
         jsThirdPartyClientFiles: [
             dirs.bower + 'angular/angular.js',
             dirs.bower + 'angular-ui-router/release/angular-ui-router.js',
