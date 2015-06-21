@@ -9,7 +9,6 @@
         var vm = this;
         vm.propertyStore = propertyStore;
         vm.usernames = _.pluck(users, 'username');
-        console.log(vm.propertyStore);
     }
 
 }(window.angular));
