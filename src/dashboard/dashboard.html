@@ -4,29 +4,36 @@
         <img src="images/MovieStills.jpg" />
     </div>
 
-    <section class="now-showing-section">
+    <section class="container now-showing-section">
         <h2>Now Showing</h2>
-
-        <div class="left">
-            <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/aA98dqgJBgQ"
-                frameborder="0"
-                allowfullscreen
-            >
-            </iframe>
-        </div>
-
-        <div>
-            <i class="fa fa-calendar"></i>
-            <p>Tuesday's at noon, Building 62, Broadway Room</p>
-            <p>Bring your lunch!</p>
-        </div>
+		<div class="now-showing-content">
+	        <div class="columns">
+	            <iframe
+	                width="100%"
+	                height="315"
+	                src="https://www.youtube.com/embed/aA98dqgJBgQ"
+	                frameborder="0"
+	                allowfullscreen
+	            >
+	            </iframe>
+	        </div>
+	
+	        <div class="columns">
+	            <p class="join-us-text">Join us for the next Movie Club discussion:</p>
+	            <p class="now-showing-movie-title">Movie Title, 2015</p>
+	            <p class="submitted-by-text">Potentially submitted by: Name, Name, Name, Name</p>
+	            <p><i class="fa fa-calendar"></i> Tuesday's at noon, Building 62, Broadway Room</p>
+	            <p>Bring your lunch!</p>
+	        </div>
+		</div>
     </section>
 
     <section class="recently-watched-section">
         <h2>Recently Watched</h2>
+        	<ul>
+	        	<li>Despicable Me</li>
+	        	<li>3 Ninjas</li>
+        	</ul>
     </section>
 
     <section class="about-club-section">
@@ -43,8 +50,8 @@
         </h3>
     </section>
 
-    <section ng-if="!vm.usernames.$isLoading && vm.usernames">
-        <h3>The Cast</h3>
+    <section class="cast-section" ng-if="!vm.usernames.$isLoading && vm.usernames">
+        <h2>The Cast</h2>
         <ul>
             <li ng-repeat="username in vm.usernames | orderBy:'toString()'">
                 {{username}}
