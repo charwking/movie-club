@@ -13,7 +13,7 @@ In general, my strategy is to keep permissions restrictive until a use-case appe
     ".read": false,
     ".write": false,
 
-    "properties": {
+    "propertyStore": {
       ".read": true,
 
       "clubName": {
