@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('movieClub.nav')
+        .module('movieClub')
         .controller('NavController', NavController);
 
     function NavController($state, currentUser) {

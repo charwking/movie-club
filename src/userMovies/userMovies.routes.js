@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('movieClub.userMovies')
+        .module('movieClub')
         .config(appConfig);
 
     function appConfig($stateProvider) {

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('movieClub.auth')
+        .module('movieClub')
         .factory('authApi', authApi);
 
     function authApi($firebaseAuth, usersApi, firebaseRef) {

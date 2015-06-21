@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('movieClub.userMovies')
+        .module('movieClub')
         .controller('UserMoviesController', UserMoviesController);
 
     function UserMoviesController() {

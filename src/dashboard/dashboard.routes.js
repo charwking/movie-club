@@ -2,15 +2,25 @@
     'use strict';
 
     angular
-        .module('movieClub.dashboard')
+        .module('movieClub')
         .config(appConfig);
 
     function appConfig($stateProvider) {
 
         $stateProvider
             .state('dashboard', {
+                controller: 'DashboardController as dashboardVm',
                 templateUrl: 'dashboard/dashboard.html',
-                url: '/'
+                url: '/',
+
+                resolve: {
+                    propertyStore: function (propertyStoreApi) {
+                        return propertyStoreApi.get().$loaded();
+                    },
+                    users: function (usersApi) {
+                        return usersApi.getAll().$loaded();
+                    }
+                }
             });
     }
 

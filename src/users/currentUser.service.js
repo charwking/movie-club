@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('movieClub.users')
+        .module('movieClub')
         .factory('currentUser', currentUser);
 
     function currentUser(authApi, usersApi) {
