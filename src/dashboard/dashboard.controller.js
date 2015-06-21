@@ -2,13 +2,14 @@
     'use strict';
 
     angular
-        .module('movieClub.dashboard')
+        .module('movieClub')
         .controller('DashboardController', DashboardController);
 
     function DashboardController(propertyStore, users) {
         var vm = this;
         vm.propertyStore = propertyStore;
         vm.usernames = _.pluck(users, 'username');
+        console.log(vm.propertyStore);
     }
 
 }(window.angular));

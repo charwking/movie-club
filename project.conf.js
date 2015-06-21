@@ -32,7 +32,7 @@ module.exports = {
         ],
         imageFiles: dirs.source + 'images/**/*',
         jsAppClientFiles: [
-            dirs.source + '**/*.module.js',
+            dirs.source + 'app.js',
             dirs.source + '**/*.js',
             '!' + dirs.source + '**/*.spec.js'
         ],

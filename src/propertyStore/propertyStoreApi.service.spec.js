@@ -3,7 +3,7 @@
 
     describe('propertyStoreApi', function () {
 
-        beforeEach(module('movieClub.propertyStore'));
+        beforeEach(module('movieClub'));
 
         it('should have one test so that karma is satisfied', function () {
             expect(true).toEqual(true);

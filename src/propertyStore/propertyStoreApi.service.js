@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('movieClub.propertyStore')
+        .module('movieClub')
         .factory('propertyStoreApi', propertyStoreApi);
 
     function propertyStoreApi($firebaseObject, firebaseRef) {
