@@ -12,6 +12,9 @@
                 controller: 'UserManagementController as userManagementVm',
                 templateUrl: 'userManagement/userManagement.html',
                 url: '/admin/user-management',
+
+                authRequired: true,
+
                 resolve: {
                     users: function (usersApi) {
                         return usersApi.getAll().$loaded();
