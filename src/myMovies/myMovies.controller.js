@@ -29,12 +29,12 @@
         }
 
         function moveDown(movie) {
-            var movieBelow = _.find(vm.movies, {order: currentOrder + 1});
+            var movieBelow = _.find(vm.movies, {order: movie.order + 1});
             swapMovies(movie, movieBelow);
         }
 
         function moveUp(movie) {
-            var movieAbove = _.find(vm.movies, {order: currentOrder - 1});
+            var movieAbove = _.find(vm.movies, {order: movie.order - 1});
             swapMovies(movie, movieAbove);
         }
 
