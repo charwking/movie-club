@@ -5,21 +5,29 @@
         .module('movieClub')
         .factory('authApi', authApi);
 
-    function authApi($firebaseAuth, usersApi, firebaseRef) {
+    function authApi($firebaseAuth, $q, usersApi, firebaseRef) {
         var factory = {
                 login: login,
                 logout: logout,
-                onAuth: onAuth,
-                register: register
+                register: register,
+                getCurrentUser: getCurrentUser,
+                isLoggedIn: isLoggedIn
             },
+            currentUserId,
             authRef = $firebaseAuth(firebaseRef);
         return factory;
 
         function login(email, password) {
-            return authRef.$authWithPassword({email: email, password: password});
+            return authRef
+                .$authWithPassword({email: email, password: password})
+                .then(function (auth) {
+                    currentUserId = auth.uid;
+                    return auth;
+                });
         }
 
         function logout() {
+            currentUserId = null;
             authRef.$unauth();
         }
 
@@ -29,14 +37,24 @@
                 .then(_.partialRight(addUsername, username));
         }
 
-        function onAuth(func) {
-            return authRef.$onAuth(func);
-        }
-
         function addUsername(auth, username) {
             var user = usersApi.getById(auth.uid);
             user.username = username;
             return user.$save();
+        }
+
+        function getCurrentUser() {
+            return currentUserId ? usersApi.getById(currentUserId) : getUnauthorizedUser();
+        }
+
+        function getUnauthorizedUser() {
+            var user = {'$id': null};
+            user.$loaded = _.partial($q.when, user);
+            return user;
+        }
+
+        function isLoggedIn() {
+            return !!currentUserId;
         }
     }
 
