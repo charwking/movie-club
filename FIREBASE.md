@@ -10,9 +10,6 @@ In general, my strategy is to keep permissions restrictive until a use-case appe
 {
   "rules": {
 
-    ".read": false,
-    ".write": false,
-
     "propertyStore": {
       ".read": true,
 
@@ -39,6 +36,29 @@ In general, my strategy is to keep permissions restrictive until a use-case appe
 
         "username": {
           ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 50"
+        }
+      }
+    },
+
+    "userMovies": {
+      "$userId": {
+        "movies": {
+
+          ".read": "auth.uid === $userId",
+          ".write": "auth.uid === $userId",
+
+          "$movieId": {
+
+            ".validate": "newData.hasChildren(['name', 'order'])",
+
+            "name": {
+              ".validate": "newData.isString() && newData.val().length > 0"
+            },
+
+            "order": {
+              ".validate": "newData.isNumber()"
+            }
+          }
         }
       }
     }
