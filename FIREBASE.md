@@ -18,7 +18,10 @@ In general, my strategy is to keep permissions restrictive until a use-case appe
       }
     },
 
-    "admins": {
+    "adminStore": {
+
+      ".read": true,
+
       "$userId": {
         ".validate": "newData.isBoolean()"
       }
