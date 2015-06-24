@@ -3,6 +3,19 @@
 </a>
 
 <nav class="top-header-nav" ng-controller="NavController as navVm" ng-cloak>
+<<<<<<< HEAD
     <div ng-if="navVm.isLoggedIn()"><a ui-sref="userMovies" class="left-nav-item"><i class="fa fa-ticket"></i> My Movies</a><a ui-sref="logout">Logout</a></div>
     <div ng-if="!navVm.isLoggedIn()"><a ui-sref="login"><i class="fa fa-user"></i> Sign In</a> / <a ui-sref="register"><i class="fa fa-user-plus"></i> Sign Up</a></div>
+=======
+
+    <div ng-if="navVm.isLoggedIn()">
+        <a ui-sref="myMovies">My Movies</a> /
+        <a ui-sref="logout">Sign Out</a>
+    </div>
+
+    <div ng-if="!navVm.isLoggedIn()">
+        <a ui-sref="login">Sign In</a> /
+        <a ui-sref="register">Sign Up</a>
+    </div>
+>>>>>>> master
 </nav>

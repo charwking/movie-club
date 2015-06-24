@@ -10,23 +10,35 @@
 
     angular
         .module('movieClub', moduleDependencies)
-        .config(appConfig)
-        .run(appRun);
+        .config(setDefaultRoute)
+        .config(configureAnalytics)
+        .run(injectAnalytics)
+        .run(handleAuthStates);
 
-    function appConfig($urlRouterProvider, AnalyticsProvider) {
-
-        // default route
+    function setDefaultRoute($urlRouterProvider) {
         $urlRouterProvider.when('', '/');
+    }
 
-        // setup analytics
+    function configureAnalytics(AnalyticsProvider) {
         AnalyticsProvider.setAccount('UA-52798669-1');
         AnalyticsProvider.trackPages(true);
         AnalyticsProvider.trackUrlParams(true);
         AnalyticsProvider.trackPrefix('movie-club');
     }
 
-    function appRun(Analytics) {
+    function injectAnalytics(Analytics) {
         // Analytics injected to enable automatic page tracking
+    }
+
+    function handleAuthStates($rootScope, $state, authApi) {
+        $rootScope.$on('$stateChangeStart',
+            function (event, toState, toParams, fromState, fromParams) {
+                if (toState.authRequired && !authApi.isLoggedIn()) {
+                    $state.transitionTo('login');
+                    event.preventDefault();
+                }
+            }
+        );
     }
 
 }(window.angular));
