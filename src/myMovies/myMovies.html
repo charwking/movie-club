@@ -1,17 +1,20 @@
-<br/>
-<br/>
-<section>
-    <div ng-repeat="movie in myMoviesVm.movies | orderBy:'order'">
-        {{movie.name}}
-        <i ng-if="!$last" class="fa fa-arrow-down" ng-click="myMoviesVm.moveDown(movie)"></i>
-        <i ng-if="!$first" class="fa fa-arrow-up" ng-click="myMoviesVm.moveUp(movie)"></i>
-        <i class="fa fa-trash-o" ng-click="myMoviesVm.removeMovie(movie)"></i>
+<section class="container">
+	<div class="columns">
+	    <form ng-submit="myMoviesVm.addMovie()">
+	        <input type="text" ng-model="myMoviesVm.newMovieName" Movie/>
+	        <button>
+	            <i ng-if="myMoviesVm.isSubmitting" class="fa fa-spin fa-spinner"></i>
+	            Add
+	        </button>
+	    </form>
+    </div>	
+	
+	<div class="columns">
+	    <div ng-repeat="movie in myMoviesVm.movies | orderBy:'order'">
+	        {{movie.name}}
+	        <i ng-if="!$last" class="fa fa-arrow-down" ng-click="myMoviesVm.moveDown(movie)"></i>
+	        <i ng-if="!$first" class="fa fa-arrow-up" ng-click="myMoviesVm.moveUp(movie)"></i>
+	        <i class="fa fa-trash-o" ng-click="myMoviesVm.removeMovie(movie)"></i>
+	    </div>
     </div>
-    <form ng-submit="myMoviesVm.addMovie()">
-        <input type="text" ng-model="myMoviesVm.newMovieName" />
-        <button>
-            <i ng-if="myMoviesVm.isSubmitting" class="fa fa-spin fa-spinner"></i>
-            Add
-        </button>
-    </form>
 </section>
