@@ -33,7 +33,8 @@
     function handleAuthStates($rootScope, $state, authApi) {
         $rootScope.$on('$stateChangeStart',
             function (event, toState, toParams, fromState, fromParams) {
-                if (toState.authRequired && !authApi.isLoggedIn()) {
+                if ((toState.authRequired && !authApi.isLoggedIn()) ||
+                    (toState.adminRequired && !authApi.isAdmin())) {
                     $state.transitionTo('login');
                     event.preventDefault();
                 }
