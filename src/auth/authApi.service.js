@@ -17,20 +17,28 @@
             currentUserId,
             isAdminFlag,
             authRef = $firebaseAuth(firebaseRef);
+
+        init();
         return factory;
+
+        function init() {
+            recordUser(authRef.$getAuth());
+        }
+
+        function recordUser(authData) {
+            if (authData && authData.uid) {
+                currentUserId = authData.uid;
+                return adminStoreApi.get().$loaded().then(function (adminStore) {
+                    isAdminFlag = adminStore[currentUserId];
+                    return authData;
+                });
+            }
+        }
 
         function login(email, password) {
             return authRef
                 .$authWithPassword({email: email, password: password})
-                .then(function (auth) {
-                    currentUserId = auth.uid;
-                    return auth;
-                }).then(function (auth) {
-                    return adminStoreApi.get().$loaded().then(function (adminStore) {
-                        isAdminFlag = adminStore[currentUserId];
-                        return auth;
-                    });
-                });
+                .then(recordUser);
         }
 
         function logout() {
