@@ -13,7 +13,13 @@
                 templateUrl: 'hostMeeting/hostMeeting.html',
                 url: '/admin/host-meeting',
 
-                adminRequired: true
+                adminRequired: true,
+
+                resolve: {
+                    users: function (usersApi) {
+                        return usersApi.getAll().$loaded();
+                    }
+                }
             });
     }
 
