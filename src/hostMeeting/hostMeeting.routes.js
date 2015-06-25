@@ -18,6 +18,9 @@
                 resolve: {
                     users: function (usersApi) {
                         return usersApi.getAll().$loaded();
+                    },
+                    userMovies: function (userMoviesApi) {
+                        return userMoviesApi.getAll().$loaded();
                     }
                 }
             });

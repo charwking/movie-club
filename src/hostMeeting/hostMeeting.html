@@ -7,7 +7,7 @@
         ng-repeat="user in hostMeetingVm.absentUsers | orderBy:'username'"
         ng-click="hostMeetingVm.moveUserToPresent(user)"
     >
-        {{user.username}}
+        {{user.username}} <i ng-if="user.nextMovie" class="fa fa-video-camera"></i>
     </div>
 </section>
 
@@ -17,6 +17,6 @@
         ng-repeat="user in hostMeetingVm.presentUsers | orderBy:'username'"
         ng-click="hostMeetingVm.moveUserToAbsent(user)"
     >
-        {{user.username}}
+        {{user.username}} <i ng-if="user.nextMovie" class="fa fa-video-camera"></i>
     </div>
 </section>

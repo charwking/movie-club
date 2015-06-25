@@ -5,12 +5,10 @@
         .module('movieClub')
         .controller('HostMeetingController', HostMeetingController);
 
-    function HostMeetingController(users) {
+    function HostMeetingController(users, userMovies) {
         var vm = this;
         vm.presentUsers = [];
-        vm.absentUsers = _.map(users, function (user) {
-            return {username: user.username, id: user.$id};
-        });
+        vm.absentUsers = getAbsentUsers();
 
         vm.moveUserToPresent = moveUserToPresent;
         vm.moveUserToAbsent = moveUserToAbsent;
@@ -23,6 +21,24 @@
         function moveUserToAbsent(user) {
             _.remove(vm.presentUsers, user);
             vm.absentUsers.push(user);
+        }
+
+        function getNextUserMovie(user) {
+            var userMovieObj = _.find(userMovies, {'$id': user.$id});
+            if (userMovieObj) {
+                return _.find(userMovieObj.movies, {'order': 0});
+            }
+            return null;
+        }
+
+        function getAbsentUsers() {
+            return _.map(users, function (user) {
+                return {
+                    id: user.$id,
+                    username: user.username,
+                    nextMovie: getNextUserMovie(user)
+                };
+            });
         }
 
     }
