@@ -3,18 +3,35 @@
 </a>
 
 <nav class="top-header-nav" ng-controller="NavController as navVm" ng-cloak>
-
-    <div ng-if="navVm.isAdmin()">
-        <a ui-sref="hostMeeting">Host a Meeting</a> /
-    </div>
-
-    <div ng-if="navVm.isLoggedIn()">
-        <a ui-sref="myMovies" class="left-nav-item"><i class="fa fa-ticket"></i> My Movies</a>
-        <a ui-sref="logout">Sign Out</a>
-    </div>
-
-    <div ng-if="!navVm.isLoggedIn()">
-        <a ui-sref="login"><i class="fa fa-user"></i> Sign In</a> /
-        <a ui-sref="register"><i class="fa fa-user-plus"></i> Sign Up</a>
-    </div>
+	<ul>
+	    <li ng-if="navVm.isLoggedIn()">
+	        <a ui-sref="myMovies"><i class="fa fa-ticket"></i> My Movies</a> /
+	        <a ui-sref="logout"> Sign Out</a>
+	    </li>
+	    
+	    <li ng-if="navVm.isAdmin()">
+	        <a ui-sref="hostMeeting"> Host a Meeting</a> /
+	    </li>
+	
+	    <li ng-if="!navVm.isLoggedIn()">
+	        <a ui-sref="login"><i class="fa fa-user"></i> Sign In</a> /
+	        <a ui-sref="register"><i class="fa fa-user-plus"></i> Sign Up</a>
+	    </li>
+    </ul>
 </nav>
+
+<!--
+	    <div ng-if="navVm.isLoggedIn()">
+	        <a ui-sref="myMovies" class="left-nav-item"><i class="fa fa-ticket"></i> My Movies</a>
+	        <a ui-sref="logout">Sign Out</a>
+	    </div>
+	    
+	    <div ng-if="navVm.isAdmin()">
+	        <a ui-sref="hostMeeting">Host a Meeting</a> /
+	    </div>
+	
+	    <div ng-if="!navVm.isLoggedIn()">
+	        <a ui-sref="login"><i class="fa fa-user"></i> Sign In</a> /
+	        <a ui-sref="register"><i class="fa fa-user-plus"></i> Sign Up</a>
+	    </div>
+-->
