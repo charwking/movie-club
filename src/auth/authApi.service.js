@@ -37,7 +37,7 @@
 
         function login(email, password) {
             return authRef
-                .$authWithPassword({email: email, password: password}, {remember: true})
+                .$authWithPassword({email: email, password: password})
                 .then(recordUser);
         }
 
