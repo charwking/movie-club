@@ -1,0 +1,22 @@
+<br/>
+<h3>Host a Meeting</h3>
+
+<section>
+    <h2>Absent Users</h2>
+    <div
+        ng-repeat="user in hostMeetingVm.absentUsers | orderBy:'username'"
+        ng-click="hostMeetingVm.moveUserToPresent(user)"
+    >
+        {{user.username}} <i ng-if="user.nextMovie" class="fa fa-video-camera"></i>
+    </div>
+</section>
+
+<section>
+    <h2>Present Users</h2>
+    <div
+        ng-repeat="user in hostMeetingVm.presentUsers | orderBy:'username'"
+        ng-click="hostMeetingVm.moveUserToAbsent(user)"
+    >
+        {{user.username}} <i ng-if="user.nextMovie" class="fa fa-video-camera"></i>
+    </div>
+</section>

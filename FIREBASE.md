@@ -10,7 +10,17 @@ In general, my strategy is to keep permissions restrictive until a use-case appe
 {
   "rules": {
 
+    "adminStore": {
+
+      ".read": true,
+
+      "$userId": {
+        ".validate": "newData.isBoolean()"
+      }
+    },
+
     "propertyStore": {
+
       ".read": true,
 
       "clubName": {
@@ -18,16 +28,10 @@ In general, my strategy is to keep permissions restrictive until a use-case appe
       }
     },
 
-    "admins": {
-      "$userId": {
-        ".validate": "newData.isBoolean()"
-      }
-    },
-
     "users": {
 
       ".read": "true",
-      ".write": "root.child('admins').child(auth.uid).val() === true",
+      ".write": "root.child('adminStore').child(auth.uid).val() === true",
 
       "$userId": {
 
@@ -41,6 +45,9 @@ In general, my strategy is to keep permissions restrictive until a use-case appe
     },
 
     "userMovies": {
+
+      ".read": "root.child('adminStore').child(auth.uid).val() === true",
+
       "$userId": {
         "movies": {
 
@@ -64,5 +71,4 @@ In general, my strategy is to keep permissions restrictive until a use-case appe
     }
   }
 }
-
 ```

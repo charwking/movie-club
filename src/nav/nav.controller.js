@@ -7,6 +7,7 @@
 
     function NavController($state, authApi) {
         var vm = this;
+        vm.isAdmin = authApi.isAdmin;
         vm.isLoggedIn = authApi.isLoggedIn;
     }
 

@@ -5,29 +5,45 @@
         .module('movieClub')
         .factory('authApi', authApi);
 
-    function authApi($firebaseAuth, $q, usersApi, firebaseRef) {
+    function authApi($firebaseAuth, $q, adminStoreApi, firebaseRef, usersApi) {
         var factory = {
                 login: login,
                 logout: logout,
                 register: register,
                 getCurrentUser: getCurrentUser,
-                isLoggedIn: isLoggedIn
+                isLoggedIn: isLoggedIn,
+                isAdmin: isAdmin
             },
             currentUserId,
+            isAdminFlag,
             authRef = $firebaseAuth(firebaseRef);
+
+        init();
         return factory;
+
+        function init() {
+            recordUser(authRef.$getAuth());
+        }
+
+        function recordUser(authData) {
+            if (authData && authData.uid) {
+                currentUserId = authData.uid;
+                return adminStoreApi.get().$loaded().then(function (adminStore) {
+                    isAdminFlag = adminStore[currentUserId];
+                    return authData;
+                });
+            }
+        }
 
         function login(email, password) {
             return authRef
                 .$authWithPassword({email: email, password: password})
-                .then(function (auth) {
-                    currentUserId = auth.uid;
-                    return auth;
-                });
+                .then(recordUser);
         }
 
         function logout() {
             currentUserId = null;
+            isAdminFlag = false;
             authRef.$unauth();
         }
 
@@ -55,6 +71,10 @@
 
         function isLoggedIn() {
             return !!currentUserId;
+        }
+
+        function isAdmin() {
+            return isAdminFlag;
         }
     }
 
