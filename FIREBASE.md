@@ -28,6 +28,26 @@ In general, my strategy is to keep permissions restrictive until a use-case appe
       }
     },
 
+    "currentMovie": {
+
+      ".read": true,
+      ".write": "root.child('adminStore').child(auth.uid).val() === true",
+
+      "name": {
+        ".validate": "newData.isString() && newData.val().length > 0"
+      }
+    },
+
+    "currentMovieUser": {
+
+      ".read": "root.child('adminStore').child(auth.uid).val() === true",
+      ".write": "root.child('adminStore').child(auth.uid).val() === true",
+
+      "userId": {
+        ".validate": "root.child('users').hasChild(newData.val())"
+      }
+    },
+
     "users": {
 
       ".read": "true",

@@ -5,13 +5,16 @@
         .module('movieClub')
         .controller('HostMeetingController', HostMeetingController);
 
-    function HostMeetingController(users, userMovies) {
+    function HostMeetingController(currentMovie, currentMovieUser, users, userMovies) {
         var vm = this;
         vm.presentUsers = [];
         vm.absentUsers = getAbsentUsers();
+        vm.currentMovie = currentMovie;
 
         vm.moveUserToPresent = moveUserToPresent;
         vm.moveUserToAbsent = moveUserToAbsent;
+        vm.isMovieAvailable = isMovieAvailable;
+        vm.selectMovie = selectMovie;
 
         function moveUserToPresent(user) {
             _.remove(vm.absentUsers, user);
@@ -41,6 +44,25 @@
             });
         }
 
+        function isMovieAvailable() {
+            return (getUsersWithMovies().length > 0);
+        }
+
+        function selectMovie() {
+            var usersWithMovies = getUsersWithMovies();
+            var userIndex = _.random(usersWithMovies.length - 1);
+            var user = usersWithMovies[userIndex];
+            currentMovie.name = user.nextMovie.name;
+            currentMovie.$save();
+            currentMovieUser.userId = user.id;
+            currentMovieUser.$save();
+        }
+
+        function getUsersWithMovies() {
+            return _.filter(vm.presentUsers, function (user) {
+                return !!user.nextMovie;
+            });
+        }
     }
 
 }(window.angular));

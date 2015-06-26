@@ -20,3 +20,13 @@
         {{user.username}} <i ng-if="user.nextMovie" class="fa fa-video-camera"></i>
     </div>
 </section>
+
+<button
+    ng-disabled="!hostMeetingVm.isMovieAvailable()"
+    ng-click="hostMeetingVm.selectMovie()"
+>
+Select Movie
+</button>
+
+<br/>
+Current Movie: {{hostMeetingVm.currentMovie.name}}

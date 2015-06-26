@@ -16,6 +16,12 @@
                 adminRequired: true,
 
                 resolve: {
+                    currentMovie: function (currentMovieApi) {
+                        return currentMovieApi.get().$loaded();
+                    },
+                    currentMovieUser: function (currentMovieUserApi) {
+                        return currentMovieUserApi.get().$loaded();
+                    },
                     users: function (usersApi) {
                         return usersApi.getAll().$loaded();
                     },
