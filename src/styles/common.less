@@ -24,11 +24,16 @@ button {
 	&:focus {
 		outline: none;
 	}
+	
+	&:disabled {
+		opacity: 0.7;
+	}
 }
 
 .container {
     max-width: 1020px;
     margin: 0 auto;
+    padding-top: 50px;
 }
 
 input {
@@ -140,6 +145,7 @@ section {
 .columns {
     width: 50%;
     display: block;
+    float: left;
 }
 
 .asterisk-text {
