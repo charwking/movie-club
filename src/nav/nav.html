@@ -3,19 +3,23 @@
 </a>
 
 <nav class="top-header-nav" ng-controller="NavController as navVm" ng-cloak>
-	<ul>
-	    <li ng-if="navVm.isLoggedIn()">
-	        <a ui-sref="myMovies"><i class="fa fa-ticket"></i> My Movies</a> /
-	        <a ui-sref="logout"> Sign Out</a>
-	    </li>
-	    
-	    <li ng-if="navVm.isAdmin()">
-	        <a ui-sref="hostMeeting"> Host a Meeting</a> /
-	    </li>
-	
-	    <li ng-if="!navVm.isLoggedIn()">
-	        <a ui-sref="login"><i class="fa fa-user"></i> Sign In</a> /
-	        <a ui-sref="register"><i class="fa fa-user-plus"></i> Sign Up</a>
-	    </li>
-    </ul>
+	<div class="header-nav-text">
+		<ul class="left-nav">
+			<li ng-if="navVm.isLoggedIn()">
+				<a ui-sref="myMovies"><i class="fa fa-ticket"></i>My Movies</a>
+			</li>
+		</ul>
+		<ul class="right-nav">
+		    <li ng-if="navVm.isLoggedIn()">
+		        <a ui-sref="logout">Sign Out</a>
+		    </li>
+		    <li ng-if="navVm.isAdmin()">
+		        <a ui-sref="hostMeeting">Host a Meeting</a>
+		    </li>
+		    <li ng-if="!navVm.isLoggedIn()">
+		        <a ui-sref="login"><i class="fa fa-user"></i>Sign In</a>
+		        <a ui-sref="register"><i class="fa fa-user-plus"></i>Sign Up</a>
+		    </li>
+	    </ul>
+	</div>
 </nav>
