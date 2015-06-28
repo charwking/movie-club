@@ -5,7 +5,7 @@
         .module('movieClub')
         .controller('HostMeetingController', HostMeetingController);
 
-    function HostMeetingController(currentMovie, currentMovieUser, users, userMovies) {
+    function HostMeetingController(currentMovie, currentMovieUser, users, userMovies, userMoviesApi) {
         var vm = this;
         vm.presentUsers = [];
         vm.absentUsers = getAbsentUsers();
@@ -29,7 +29,7 @@
         function getNextUserMovie(user) {
             var userMovieObj = _.find(userMovies, {'$id': user.$id});
             if (userMovieObj) {
-                return _.find(userMovieObj.movies, {'order': 0});
+                return _(userMovieObj.movies).sortBy('order').first();
             }
             return null;
         }
@@ -56,6 +56,13 @@
             currentMovie.$save();
             currentMovieUser.userId = user.id;
             currentMovieUser.$save();
+
+            userMoviesApi.getAllByUserId(user.id)
+                .$loaded()
+                .then(function (movies) {
+                    var movie = _.find(movies, {order: user.nextMovie.order});
+                    return movies.$remove(movie);
+                });
         }
 
         function getUsersWithMovies() {

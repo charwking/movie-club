@@ -72,7 +72,7 @@ In general, my strategy is to keep permissions restrictive until a use-case appe
         "movies": {
 
           ".read": "auth.uid === $userId",
-          ".write": "auth.uid === $userId",
+          ".write": "auth.uid === $userId || root.child('adminStore').child(auth.uid).val() === true",
 
           "$movieId": {
 
