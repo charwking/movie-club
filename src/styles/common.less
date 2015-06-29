@@ -1,33 +1,44 @@
 body {
+    color: #3c3c49;
+    font-family: 'Fira Sans', sans-serif;
     margin: 0;
     text-align: center;
-    font-family: 'Fira Sans', sans-serif;
-    color: #3c3c49;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.no-bullets {
+    list-style-type: none;
+    padding: 0;
 }
 
 button {
-	border: 0px;
-	cursor: pointer;
-	font-size: 14px;
-	margin: 15px 0;
-	padding: 8px 21px;
-	background-color: #3C3C49;
-	color: #D2D2D2;
-	box-shadow: 1px 1px 2px 1px #CCC;
 
-	&:hover {
-		background-color: #5C5C6F;
-		color: #fafafa;
-		transition: all 0.5s ease;
-	}
+    .clickable;
 
-	&:focus {
-		outline: none;
-	}
+    border: 0px;
+    font-size: 14px;
+    margin: 15px 0;
+    padding: 8px 21px;
+    background-color: #3C3C49;
+    color: #D2D2D2;
+    box-shadow: 1px 1px 2px 1px #CCC;
 
-	&:disabled {
-		opacity: 0.7;
-	}
+    &:hover {
+        background-color: #5C5C6F;
+        color: #fafafa;
+        transition: all 0.5s ease;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &:disabled {
+        opacity: 0.7;
+    }
 }
 
 .container {
@@ -37,18 +48,18 @@ button {
 }
 
 input {
-	background-color: #fff;
+    background-color: #fff;
     border: 2px solid #ccc;
     border-radius: 0px;
     font-size: 14px;
     height: 28px;
     margin: 5px 2px;
-   	padding: 2px 10px;
+    padding: 2px 10px;
 
-   	&:focus {
-	   	outline: none;
-	   	border: 2px solid #8282B6;
-   	}
+    &:focus {
+        outline: none;
+        border: 2px solid #8282B6;
+    }
 
     &.ng-dirty.ng-invalid {
         background-color: #f59d9d;
@@ -83,54 +94,44 @@ section {
     min-height: 150px;
     padding: 10px;
 }
-    .now-showing-section {
-        color: #3c3c49;
-        padding: 10px 0 40px;
 
-        .join-us-text {
-            font-weight: 600;
-            font-style: italic;
-        }
+.now-showing-section {
+    color: #3c3c49;
+    padding: 10px 0 40px;
 
-        .now-showing-movie-title {
-            text-transform: uppercase;
-            color: #d9413e;
-            font-weight: 600;
-        }
+    .join-us-text {
+        font-weight: 600;
+        font-style: italic;
     }
 
-    .recently-watched-section {
-        color: #ffffff;
-        background-color: #3c3c49;
-        height: 400px;
+    .now-showing-movie-title {
+        text-transform: uppercase;
+        color: #d9413e;
+        font-weight: 600;
+    }
+}
 
-        ul {
-            list-style-type: none;
-            padding: 0;
+.recently-watched-section {
+    color: #ffffff;
+    background-color: #3c3c49;
+    height: 400px;
 
-            li {
-	            display: inline-flex;
-	            box-shadow: 2px 2px 2px #4B4B4B;
+    ul {
+        li {
+            display: inline-flex;
+            box-shadow: 2px 2px 2px #4B4B4B;
 
-	            img {
-		            height: 300px;
-	            }
+            img {
+                height: 300px;
             }
         }
     }
+}
 
-    .about-club-section {
-        color: #ffffff;
-        background-color: #c45b5b;
-    }
-
-    .cast-section {
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-    }
+.about-club-section {
+    color: #ffffff;
+    background-color: #c45b5b;
+}
 
 .columns {
     width: 50%;

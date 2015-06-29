@@ -28,7 +28,7 @@
 
 <section class="recently-watched-section">
     <h2>Recently Watched</h2>
-    <ul>
+    <ul class="no-bullets">
         <li><img src="images/_0003_shawshank.jpg" alt="Shawshank Redemption"></li>
         <li><img src="images/_0004_usual-suspects.jpg" alt="Usual Suspects"></li>
         <li><img src="images/_0001_safety-not-guaranteed.jpg" alt="Safety Not Guaranteed"></li>
@@ -48,9 +48,9 @@
     </ul>
 </section>
 
-<section class="cast-section" ng-if="dashboardVm.usernames">
+<section ng-if="dashboardVm.usernames">
     <h2>The Cast</h2>
-    <ul>
+    <ul class="no-bullets">
         <li ng-repeat="username in dashboardVm.usernames | orderBy:'toString()'">
             {{username}}
         </li>

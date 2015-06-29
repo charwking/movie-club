@@ -3,17 +3,21 @@
 
 <section>
     <h2>Absent Users</h2>
-    <div
-        ng-repeat="user in hostMeetingVm.absentUsers | orderBy:'username'"
-        ng-click="hostMeetingVm.moveUserToPresent(user)"
-    >
-        {{user.username}} <i ng-if="user.nextMovie" class="fa fa-video-camera"></i>
-    </div>
+    <ul class="no-bullets">
+        <li
+            class="clickable"
+            ng-repeat="user in hostMeetingVm.absentUsers | orderBy:'username'"
+            ng-click="hostMeetingVm.moveUserToPresent(user)"
+        >
+            {{user.username}} <i ng-if="user.nextMovie" class="fa fa-video-camera"></i>
+        </li>
+    </ul>
 </section>
 
 <section>
     <h2>Present Users</h2>
     <div
+        class="clickable"
         ng-repeat="user in hostMeetingVm.presentUsers | orderBy:'username'"
         ng-click="hostMeetingVm.moveUserToAbsent(user)"
     >
