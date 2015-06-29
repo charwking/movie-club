@@ -5,8 +5,9 @@
         .module('movieClub')
         .controller('DashboardController', DashboardController);
 
-    function DashboardController(propertyStore, users) {
+    function DashboardController(currentMovie, propertyStore, users) {
         var vm = this;
+        vm.currentMovie = currentMovie;
         vm.propertyStore = propertyStore;
         vm.usernames = _.pluck(users, 'username');
     }
