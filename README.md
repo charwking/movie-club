@@ -56,6 +56,6 @@ If you need to make adjustments to the firebase rules, update the FIREBASE.md do
 
 ## Contributors
 
-[@charwking](https://github.com/charwking)
-[@ttonyan10](https://github.com/ttonyan10)
+* [@charwking](https://github.com/charwking)
+* [@ttonyan10](https://github.com/ttonyan10)
 
