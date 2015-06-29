@@ -5,7 +5,7 @@
         .module('movieClub')
         .controller('HostMeetingController', HostMeetingController);
 
-    function HostMeetingController(currentMovie, currentMovieUser, users, userMovies, userMoviesApi) {
+    function HostMeetingController($state, currentMovie, currentMovieUser, users, userMovies, userMoviesApi) {
         var vm = this;
         vm.presentUsers = [];
         vm.absentUsers = getAbsentUsers();
@@ -62,6 +62,8 @@
                 .then(function (movies) {
                     var movie = _.find(movies, {order: user.nextMovie.order});
                     return movies.$remove(movie);
+                }).then(function () {
+                    $state.go('dashboard');
                 });
         }
 
