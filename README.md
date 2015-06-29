@@ -8,7 +8,7 @@ Have a question? Want to suggest a feature? Found a bug? Post a github issue!
 
 ## Want to contribute?
 
-Please feel free to fork and submit pull requests! Be warned though, @charwking is a bit OCD, so don't be surprised or offended if he merges your changes and then makes a bunch of changes of his own. :)
+Please feel free to fork and submit pull requests! Be warned though, @charwking is a bit OCD, so don't be surprised or offended if he merges your changes and then makes a bunch of changes of his own. :) Make sure you add your name to the contributors section below as part of your pull request!
 
 ## Run locally
 
@@ -56,6 +56,6 @@ If you need to make adjustments to the firebase rules, update the FIREBASE.md do
 
 ## Contributors
 
-@charwking
-@ttonyan10
+[@charwking](https://github.com/charwking)
+[@ttonyan10](https://github.com/ttonyan10)
 
