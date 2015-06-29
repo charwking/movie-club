@@ -14,6 +14,9 @@
                 url: '/',
 
                 resolve: {
+                    currentMovie: function (currentMovieApi) {
+                        return currentMovieApi.get().$loaded();
+                    },
                     propertyStore: function (propertyStoreApi) {
                         return propertyStoreApi.get().$loaded();
                     },
