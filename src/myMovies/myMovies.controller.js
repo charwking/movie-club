@@ -21,10 +21,12 @@
 
         function removeMovie(movie) {
             vm.movies.$remove(movie).then(function () {
-                _.forEach(vm.movies, function (movie, index) {
-                    movie.order = index;
-                    vm.movies.$save(movie);
-                });
+                _(vm.movies)
+                    .sortBy('order')
+                    .forEach(function (movie, index) {
+                        movie.order = index;
+                        vm.movies.$save(movie);
+                    });
             });
         }
 
