@@ -12,5 +12,5 @@ env:
 
 after_success:
 - sudo apt-get -y -qq install sshpass
-- rsync -artz --delete --stats --rsh="sshpass -p $DEPLOY_PASSWORD ssh -l $DEPLOY_USER"
+- rsync -arz --delete --stats --rsh="sshpass -p $DEPLOY_PASSWORD ssh -l $DEPLOY_USER"
   dist/ cwking.com:$DEPLOY_PATH
