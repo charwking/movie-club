@@ -11,6 +11,7 @@ env:
   - secure: SrT1E6AcOGjf1JYWliyEnksBphLgt9AjbqrcARO8fCQy0t52Ld1ubMgd15lD7rH4c+niexCZorPDfiJ8MDPZ88Tf3LiXfTQsNhoaKLP2dcVUl/5W9/p8LqyVbXIKpfI89jHBsmhU8AWpDNUp38keAYJ5FXkYCC2aOFASlczH6Fc=
 
 after_success:
-- sudo apt-get -y -qq install sshpass
-- rsync -arz --delete --stats --rsh="sshpass -p $DEPLOY_PASSWORD ssh -l $DEPLOY_USER"
-  dist/ cwking.com:$DEPLOY_PATH
+    if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false"]; then
+        sudo apt-get -y -qq install sshpass
+        rsync -arz --delete --stats --rsh="sshpass -p $DEPLOY_PASSWORD ssh -l $DEPLOY_USER" dist/ cwking.com:$DEPLOY_PATH
+    fi
