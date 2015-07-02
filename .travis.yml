@@ -1,8 +1,16 @@
 language: node_js
 node_js:
 - '0.12'
-before_install:
-- openssl aes-256-cbc -K $encrypted_1da4cf02891e_key -iv $encrypted_1da4cf02891e_iv
-  -in rsync_password.txt.enc -out rsync_password.txt -d
+addons:
+  ssh_known_hosts:
+  - cwking.com
+env:
+  global:
+  - secure: XeQy8mXzv25qxeFTaTZ6E2OAsvgSeGy8dMC/274NgLXxGtzMl7q/FkkYIpzcYFkh5oEyNW8fdA0eOHRUgRKDVk6w5PMzeddvacmhGlibAq6PDyvSuMaKj6X3dlvY1y08Itzcbg+zluYy7CaOpVuzWkn8Cafa72QSItdATyV4zF8=
+  - secure: ROMtPoBqQRRXUgzpD7i3SHIzwpI7w5qiBeA7z2DHF/EsADcLN5UUu0E7fL/R1S5ecVtP1Jsv6IOS6pvIIfTWL8/86QfbdpHL0Utv7Ccj4IRY0iTItcswo7sL+qywQEPwa4/B0NhHtCHTaDIaXSJJH8sbphP5p7WoyiA3lt9cMjU=
+  - secure: SrT1E6AcOGjf1JYWliyEnksBphLgt9AjbqrcARO8fCQy0t52Ld1ubMgd15lD7rH4c+niexCZorPDfiJ8MDPZ88Tf3LiXfTQsNhoaKLP2dcVUl/5W9/p8LqyVbXIKpfI89jHBsmhU8AWpDNUp38keAYJ5FXkYCC2aOFASlczH6Fc=
+
 after_success:
-    "rsync -a --delete --password-file=rsync_password.txt dist/ movieclub@cwking.com:/home/cwk/webapps/dev_movieclub/"
+- sudo apt-get -y -qq install sshpass
+- rsync -artz --delete --stats --rsh="sshpass -p $DEPLOY_PASSWORD ssh -l $DEPLOY_USER"
+  dist/ cwking.com:$DEPLOY_PATH
