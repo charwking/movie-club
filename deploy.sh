@@ -1,8 +1,8 @@
 #!/bin/bash
 set -ev
 
-export TRAVIS_BRANCH=master
-export TRAVIS_PULL_REQUEST=false
+export TRAVIS_BRANCH="master"
+export TRAVIS_PULL_REQUEST="false"
 
 if ["${TRAVIS_BRANCH}" == "master"] && ["${TRAVIS_PULL_REQUEST}" == "false"]; then
     sudo apt-get -y -qq install sshpass;
