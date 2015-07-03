@@ -11,6 +11,7 @@ env:
   - secure: SrT1E6AcOGjf1JYWliyEnksBphLgt9AjbqrcARO8fCQy0t52Ld1ubMgd15lD7rH4c+niexCZorPDfiJ8MDPZ88Tf3LiXfTQsNhoaKLP2dcVUl/5W9/p8LqyVbXIKpfI89jHBsmhU8AWpDNUp38keAYJ5FXkYCC2aOFASlczH6Fc=
 
 before_script:
+    - npm test
     - sudo apt-get -y -qq install sshpass
 script:
     - bash deploy.sh
