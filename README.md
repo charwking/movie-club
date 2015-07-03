@@ -25,7 +25,7 @@ Assuming you're on a mac...
 * Clone the repo:
 
     ```
-    git clone git@github.com:charwking/movie-club.git
+    git clone https://github.com/charwking/movie-club.git 
     ```
 
 * cd into the movie-club directory:
