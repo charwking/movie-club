@@ -10,8 +10,8 @@ env:
   - secure: ROMtPoBqQRRXUgzpD7i3SHIzwpI7w5qiBeA7z2DHF/EsADcLN5UUu0E7fL/R1S5ecVtP1Jsv6IOS6pvIIfTWL8/86QfbdpHL0Utv7Ccj4IRY0iTItcswo7sL+qywQEPwa4/B0NhHtCHTaDIaXSJJH8sbphP5p7WoyiA3lt9cMjU=
   - secure: SrT1E6AcOGjf1JYWliyEnksBphLgt9AjbqrcARO8fCQy0t52Ld1ubMgd15lD7rH4c+niexCZorPDfiJ8MDPZ88Tf3LiXfTQsNhoaKLP2dcVUl/5W9/p8LqyVbXIKpfI89jHBsmhU8AWpDNUp38keAYJ5FXkYCC2aOFASlczH6Fc=
 
-after_success:
-    if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false"]; then
-        sudo apt-get -y -qq install sshpass
-        rsync -arz --delete --stats --rsh="sshpass -p $DEPLOY_PASSWORD ssh -l $DEPLOY_USER" dist/ cwking.com:$DEPLOY_PATH
-    fi
+before_script:
+    - npm test
+    - sudo apt-get -y -qq install sshpass
+script:
+    - bash deploy.sh
