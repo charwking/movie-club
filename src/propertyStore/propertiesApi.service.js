@@ -3,16 +3,16 @@
 
     angular
         .module('movieClub')
-        .factory('propertyStoreApi', propertyStoreApi);
+        .factory('propertiesApi', propertiesApi);
 
-    function propertyStoreApi($firebaseObject, firebaseRef) {
+    function propertiesApi($firebaseObject, firebaseRef) {
         var factory = {
             get: get
         };
         return factory;
 
         function get() {
-            return $firebaseObject(firebaseRef.child('propertyStore'));
+            return $firebaseObject(firebaseRef.child('propertyStore')).$loaded();
         }
     }
 
