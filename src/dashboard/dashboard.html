@@ -14,12 +14,12 @@
 
     <h2>About our Club</h2>
 
-    <h3 ng-if="dashboardVm.propertyStore.clubName">
+    <h3 ng-if="dashboardVm.properties.clubName">
         <i class="fa fa-video-camera"></i>
-        Welcome to {{dashboardVm.propertyStore.clubName}}
+        Welcome to {{dashboardVm.properties.clubName}}
     </h3>
 
-    <h3 ng-if="!dashboardVm.propertyStore.clubName">
+    <h3 ng-if="!dashboardVm.properties.clubName">
         Ack, catastrophic error!
     </h3>
 

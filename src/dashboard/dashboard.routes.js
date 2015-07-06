@@ -17,8 +17,8 @@
                     currentMovie: function (currentMovieApi) {
                         return currentMovieApi.get().$loaded();
                     },
-                    propertyStore: function (propertyStoreApi) {
-                        return propertyStoreApi.get().$loaded();
+                    properties: function (propertiesApi) {
+                        return propertiesApi.get();
                     },
                     users: function (usersApi) {
                         return usersApi.getAll().$loaded();
