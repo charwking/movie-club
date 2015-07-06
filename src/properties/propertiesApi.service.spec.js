@@ -25,7 +25,7 @@
             propertiesApi = _propertiesApi_;
         }));
 
-        describe('promiseProperties', function () {
+        describe('get', function () {
 
             it('should get a firebase reference to the propertyStore', function () {
                 spyOn(firebaseRef, 'child');
