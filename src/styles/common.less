@@ -158,3 +158,42 @@ section {
 .movie-width {
     width: 100%;
 }
+
+.add-movie {
+    text-align: left;
+    
+    input {
+        width: 100%;
+    }
+}
+
+.display-flex {
+    display: flex;
+}
+
+.fa-youtube, .fa-youtube-play, .fa-youtube-square {
+    color: #bb0000;
+    
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.movie-trailer {
+    .movie-trailer-overlay {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: 0.85;
+    }
+    
+    youtube {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

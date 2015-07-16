@@ -5,18 +5,24 @@
         .module('movieClub')
         .controller('MyMoviesController', MyMoviesController);
 
-    function MyMoviesController(movies) {
+    function MyMoviesController(movies, youtubeValidator) {
         var vm = this;
         vm.movies = movies;
         vm.isSubmitting = false;
         vm.addMovie = addMovie;
+        vm.watchTrailer = watchTrailer;
         vm.removeMovie = removeMovie;
         vm.moveDown = moveDown;
         vm.moveUp = moveUp;
+        vm.validateMovieData = validateMovieData;
 
         function addMovie() {
-            vm.movies.$add({name: vm.newMovieName, order: vm.movies.length});
+            vm.movies.$add({name: vm.newMovieName, trailerUrl: vm.newMovieTrailer, order: vm.movies.length});
             vm.newMovieName = '';
+            vm.newMovieTrailer = '';
+        }
+        function watchTrailer(movie) {
+            vm.selectedTrailer = movie.trailerUrl;
         }
 
         function removeMovie(movie) {
@@ -47,6 +53,14 @@
 
             vm.movies.$save(movieA);
             vm.movies.$save(movieB);
+        }
+
+        function validateMovieData() {
+            var url = vm.newMovieTrailer;
+            var name = vm.newMovieName;
+            if (name && name.length > 0 && (!url || url.length === 0 || youtubeValidator.validateYoutubeUrl(url))) {
+                return true;
+            }
         }
     }
 

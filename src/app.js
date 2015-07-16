@@ -12,6 +12,12 @@
         .module('movieClub', moduleDependencies)
         .config(setDefaultRoute)
         .config(configureAnalytics)
+        .config(function($sceDelegateProvider) {
+            $sceDelegateProvider.resourceUrlWhitelist([
+            'self',
+            '*://www.youtube.com/**'
+            ]);
+        })
         .run(injectAnalytics)
         .run(handleAuthStates);
 
