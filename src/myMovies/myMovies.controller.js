@@ -15,12 +15,15 @@
         vm.moveDown = moveDown;
         vm.moveUp = moveUp;
         vm.validateMovieData = validateMovieData;
+        vm.newMovieName = '';
+        vm.newMovieTrailer = '';
 
         function addMovie() {
             vm.movies.$add({name: vm.newMovieName, trailerUrl: vm.newMovieTrailer, order: vm.movies.length});
             vm.newMovieName = '';
             vm.newMovieTrailer = '';
         }
+
         function watchTrailer(movie) {
             vm.selectedTrailer = movie.trailerUrl;
         }
@@ -58,7 +61,7 @@
         function validateMovieData() {
             var url = vm.newMovieTrailer;
             var name = vm.newMovieName;
-            if (name && name.length > 0 && (!url || url.length === 0 || youtubeValidator.validateYoutubeUrl(url))) {
+            if (name && name.length > 0 && (!url || url.length === 0 || youtubeValidator.getYoutubeId(url))) {
                 return true;
             }
         }

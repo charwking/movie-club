@@ -15,11 +15,11 @@
             },
             controller: function($scope, youtubeValidator) {
                 $scope.getIframeSrc = getIframeSrc;
-                $scope.width = ($scope.width ? $scope.width : 560);
-                $scope.height = ($scope.height ? $scope.height : 315);
+                $scope.width = $scope.width || 560;
+                $scope.height = $scope.height || 315;
 
                 function getIframeSrc(videoUrl) {
-                    var embedUrl = 'https://www.youtube.com/embed/' + youtubeValidator.youtubeIdParser(videoUrl);
+                    var embedUrl = 'https://www.youtube.com/embed/' + youtubeValidator.getYoutubeId(videoUrl);
                     if ($scope.autoPlay) {
                         embedUrl += '?autoplay=1';
                     }

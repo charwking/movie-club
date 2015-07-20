@@ -7,27 +7,17 @@
 
     function youtubeValidator() {
         var factory = {
-            validateYoutubeUrl: validateYoutubeUrl,
-            youtubeIdParser: youtubeIdParser
+            getYoutubeId: getYoutubeId
         };
         return factory;
 
-        function validateYoutubeUrl(url) {
-            var regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/;
-            var match = url.match(regExp);
-            if (match && match[1].length === 11) {
-                return true;
-            }
-        }
-
-        function youtubeIdParser(url) {
-            var regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/;
-            var match = url.match(regExp);
-            if (match && match[1].length === 11) {
-                return match[1];
-            }
-            else {
-                return 'dQw4w9WgXcQ';
+        function getYoutubeId(url) {
+            if (url && url.length > 0) {
+                var regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/;
+                var match = url.match(regExp);
+                if (match && match[1].length === 11) {
+                    return match[1];
+                }
             }
         }
     }
