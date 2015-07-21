@@ -12,6 +12,7 @@
         .module('movieClub', moduleDependencies)
         .config(setDefaultRoute)
         .config(configureAnalytics)
+        .config(sceDelegateProvider)
         .run(injectAnalytics)
         .run(handleAuthStates);
 
@@ -24,6 +25,11 @@
         AnalyticsProvider.trackPages(true);
         AnalyticsProvider.trackUrlParams(true);
         AnalyticsProvider.trackPrefix('movie-club');
+    }
+
+    function sceDelegateProvider($sceDelegateProvider) {
+        var whiteList = ['*://www.youtube.com/**'];
+        $sceDelegateProvider.resourceUrlWhitelist(whiteList);
     }
 
     function injectAnalytics(Analytics) {

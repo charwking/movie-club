@@ -1,11 +1,20 @@
 <section class="container">
     <div class="columns">
         <h3>Add New Movie</h3>
-        <form ng-submit="myMoviesVm.addMovie()">
-            Movie Title:
-            <input type="text" ng-model="myMoviesVm.newMovieName" Movie/>
+        <form class="add-movie" ng-submit="myMoviesVm.addMovie()">
+            <label>Movie Title:</label>
+            <input type="text" ng-model="myMoviesVm.newMovieName" placeholder="Movie Title"/>
+            
+            <label>Movie Trailer:</label>
+            <a ng-href="https://www.youtube.com/results?search_query={{myMoviesVm.newMovieName}}" 
+               target="blank" 
+               ng-if="myMoviesVm.newMovieName.length > 0" 
+               title="Search YouTube">
+                <i class="fa fa-youtube"></i>
+            </a>
+            <input type="text" ng-model="myMoviesVm.newMovieTrailer" placeholder="YouTube Trailer URL"/>
         </br>
-            <button>
+            <button ng-disabled="!myMoviesVm.validateMovieData()">
                 <i ng-if="myMoviesVm.isSubmitting" class="fa fa-spin fa-spinner"></i>
                 Add Movie
             </button>
@@ -15,6 +24,7 @@
     <div class="columns">
         <h3>My Movie Queue</h3>
         <div ng-repeat="movie in myMoviesVm.movies | orderBy:'order'">
+            <i class="fa fa-youtube-play" ng-if="movie.trailerUrl" ng-click="myMoviesVm.watchTrailer(movie)"></i>
             {{movie.name}}
             <i ng-if="!$last" class="fa fa-arrow-down" ng-click="myMoviesVm.moveDown(movie)"></i>
             <i ng-if="!$first" class="fa fa-arrow-up" ng-click="myMoviesVm.moveUp(movie)"></i>
@@ -22,3 +32,8 @@
         </div>
     </div>
 </section>
+
+<div class="movie-trailer" ng-if="myMoviesVm.selectedTrailer">
+    <div class="movie-trailer-overlay" ng-click="myMoviesVm.selectedTrailer = null"></div>
+    <youtube video-url='myMoviesVm.selectedTrailer' auto-play="true"></youtube>
+</div>

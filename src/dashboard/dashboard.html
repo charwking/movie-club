@@ -2,10 +2,17 @@
 
 <section class="container now-showing-section">
     <h2>Now Showing</h2>
-    <p class="join-us-text">Join us for the next Movie Club discussion:</p>
-    <p class="now-showing-movie-title">{{dashboardVm.currentMovie.name}}</p>
-    <p><i class="fa fa-calendar"></i> Tuesday's at noon, Building 62, Broadway Room</p>
-    <p>Bring your lunch!</p>
+    <section ng-class="{'display-flex': dashboardVm.currentMovie.trailerUrl}">
+        <div ng-if="dashboardVm.currentMovie.trailerUrl" >
+            <youtube video-url='dashboardVm.currentMovie.trailerUrl' height="255" width="460"></youtube>
+        </div>
+        <div ng-class="{'columns': dashboardVm.currentMovie.trailerUrl}">
+            <p class="join-us-text">Join us for the next Movie Club discussion:</p>
+            <p class="now-showing-movie-title">{{dashboardVm.currentMovie.name}}</p>
+            <p><i class="fa fa-calendar"></i> Tuesday's at noon, Building 62, Broadway Room</p>
+            <p>Bring your lunch!</p>
+        </div>
+    </section>
 </section>
 
 <section class="about-club-section">
