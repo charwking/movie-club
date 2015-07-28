@@ -53,7 +53,7 @@
             var userIndex = _.random(usersWithMovies.length - 1);
             var user = usersWithMovies[userIndex];
             currentMovie.name = user.nextMovie.name;
-            currentMovie.trailerUrl = user.nextMovie.trailerUrl;
+            currentMovie.trailerUrl = user.nextMovie.trailerUrl || null;
             currentMovie.$save();
             currentMovieUser.userId = user.id;
             currentMovieUser.$save();
