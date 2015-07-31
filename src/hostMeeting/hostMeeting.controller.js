@@ -62,7 +62,15 @@
                 .$loaded()
                 .then(function (movies) {
                     var movie = _.find(movies, {order: user.nextMovie.order});
-                    return movies.$remove(movie);
+                    return movies.$remove(movie).then(function () {
+                        _(movies)
+                            .sortBy('order')
+                            .forEach(function (movie, index) {
+                                movie.order = index;
+                                movies.$save(movie);
+                            })
+                            .value();
+                    });
                 }).then(function () {
                     $state.go('dashboard');
                 });

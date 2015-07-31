@@ -35,7 +35,8 @@
                     .forEach(function (movie, index) {
                         movie.order = index;
                         vm.movies.$save(movie);
-                    });
+                    })
+                    .value();
             });
         }
 
