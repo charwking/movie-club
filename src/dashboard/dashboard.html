@@ -9,7 +9,7 @@
         <div ng-class="{'columns': dashboardVm.currentMovie.trailerUrl}">
             <p class="join-us-text">Join us for the next Movie Club discussion:</p>
             <p class="now-showing-movie-title">{{dashboardVm.currentMovie.name}}</p>
-            <p><i class="fa fa-calendar"></i> Tuesdays at noon, Building 62</p>
+            <p><i class="fa fa-calendar"></i> Tuesdays at noon, Building 62, Broadway Room</p>
             <p>Bring your lunch!</p>
         </div>
     </section>
@@ -19,17 +19,16 @@
 
     <h2>About our Club</h2>
 
-    <h3 ng-if="dashboardVm.properties.clubName">Welcome to {{dashboardVm.properties.clubName}}!</h3>
-    
-    <p>Movie Club began after a lengthy discussion between coworkers about movies we watched, loved, and hated. It was a surprise to learn that many had missed out on what some considered “ the classics”, others were not up to speed with new releases, and some people had hardly watched any decent movies in their whole life...
-
-We decided to give ourselves an excuse to watch these flicks and the official Movie Club was born! We started in the old-fashioned way – each submitting one movie on a paper ticket and pulling one ticket out of the box each meeting. The meetings are run like a book club; we acquire the movie with our own resources, watch the movie on our own time, discuss the movie together over lunch, and then draw another movie before we depart. Movie Club began as an every-other week event, but popular vote demanded we draw movies and meet once a week! The first round - "the original 11" movies are represented in the header.</p>
+    <h3 ng-if="dashboardVm.properties.clubName">
+        <i class="fa fa-video-camera"></i>
+        Welcome to {{dashboardVm.properties.clubName}}
+    </h3>
 
     <h3 ng-if="!dashboardVm.properties.clubName">
         Ack, catastrophic error!
     </h3>
 
-    <h3>Check us out on <a href="https://github.com/charwking/movie-club"><i class="fa fa-github"></i></a></h3>
+    <h4>Check us out on <a href="https://github.com/charwking/movie-club">github</a></h4>
 </section>
 
 <section class="recently-watched-section">
