@@ -5,7 +5,8 @@
         .module('movieClub')
         .controller('HostMeetingController', HostMeetingController);
 
-    function HostMeetingController($state, currentMovie, currentMovieUser, users, userMovies, userMoviesApi) {
+    function HostMeetingController($state, currentMovie, currentMovieUser, users, userMovies, userMoviesApi,
+        meetingApi) {
         var vm = this;
         vm.presentUsers = [];
         vm.absentUsers = getAbsentUsers();
@@ -66,12 +67,24 @@
                 }).then(function () {
                     $state.go('dashboard');
                 });
+
+            saveMeeting();
         }
 
         function getUsersWithMovies() {
             return _.filter(vm.presentUsers, function (user) {
                 return !!user.nextMovie;
             });
+        }
+
+        function saveMeeting() {
+            var presentUsers = _.map(vm.presentUsers, function (user) {
+                return {
+                    id: user.id,
+                    username: user.username
+                };
+            });
+            meetingApi.saveMeeting(new Date(), presentUsers, currentMovie.name, currentMovieUser.userId);
         }
     }
 
