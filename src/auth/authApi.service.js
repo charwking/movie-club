@@ -54,19 +54,15 @@
         }
 
         function addUsername(auth, username) {
-            var user = usersApi.getById(auth.uid);
-            user.username = username;
-            return user.$save();
+            return usersApi.update({id: auth.uid, username: username});
         }
 
         function getCurrentUser() {
-            return currentUserId ? usersApi.getById(currentUserId) : getUnauthorizedUser();
+            return currentUserId ? usersApi.get(currentUserId) : getUnauthorizedUser();
         }
 
         function getUnauthorizedUser() {
-            var user = {'$id': null};
-            user.$loaded = _.partial($q.when, user);
-            return user;
+            return $q.when({'id': null});
         }
 
         function isLoggedIn() {

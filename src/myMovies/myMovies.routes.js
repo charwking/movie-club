@@ -17,8 +17,8 @@
 
                 resolve: {
                     movies: function (authApi, userMoviesApi) {
-                        return authApi.getCurrentUser().$loaded().then(function (user) {
-                            return userMoviesApi.getAllByUserId(user.$id).$loaded();
+                        return authApi.getCurrentUser().then(function (user) {
+                            return userMoviesApi.getAllByUserId(user.id).$loaded();
                         });
                     }
                 }
