@@ -86,14 +86,14 @@
         }
 
         function saveMeeting() {
-            var presentUsers = _.map(vm.presentUsers, function (user) {
-                return {
-                    id: user.id,
-                    username: user.username
-                };
-            });
+            var presentUsers = _.reduce(vm.presentUsers, function (presentUsers, item) {
+                presentUsers[item.id] = true;
+                return presentUsers;
+            }, {});
+
             meetingApi.saveMeeting(new Date(), presentUsers, currentMovie.name, currentMovieUser.userId);
         }
+
     }
 
 }(window.angular));
