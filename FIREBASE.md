@@ -87,9 +87,10 @@ In general, my strategy is to keep permissions restrictive until a use-case appe
             }
           }
         }
-      },
+      }
+    },
 
-    "meeting": {
+    "meetings": {
 
       ".read": "true",
       ".write": "root.child('adminStore').child(auth.uid).val() === true",
@@ -99,14 +100,8 @@ In general, my strategy is to keep permissions restrictive until a use-case appe
         ".validate": "newData.hasChildren(['presentUsers', 'selectedMovieName', 'selectedMovieUserId'])",
 
         "presentUsers": {
-          ".validate": "newData.hasChildren(['id', 'username'])",
-
-          "id": {
-            ".validate": "root.child('users').hasChild(newData.val())"
-          },
-          
-          "username": {
-            ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 50"
+          "$userId": {
+            ".validate": "newData.isBoolean()"
           }
         },
 
