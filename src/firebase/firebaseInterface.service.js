@@ -5,37 +5,57 @@
         .module('movieClub')
         .factory('firebaseInterface', firebaseInterface);
 
-    function firebaseInterface(firebaseCleaner) {
+    function firebaseInterface($firebaseArray, $firebaseObject, firebaseConverter) {
 
         var factory = {
-            convertObjectToArray: convertObjectToArray,
-            removeObject: removeObject,
+            deleteObject: deleteObject,
+            getArray: getArray,
+            getObject: getObject,
+            getObjectAsArray: getObjectAsArray,
             updateObject: updateObject
         };
         return factory;
 
-        function convertObjectToArray(obj, keyAttrName, valAttrName) {
-            var arr = [];
-            _.forEach(obj, function (val, key) {
-                var elem = {};
-                elem[keyAttrName] = key;
-                elem[valAttrName] = val;
-                arr.push(elem);
-            });
-            return arr;
+        function getDeferredMethodInvocation(method) {
+            return function (obj) {
+                return obj[method]();
+            };
         }
 
-        function removeObject(obj) {
-            return obj.$remove()
+        function deleteObject(ref) {
+            return $firebaseObject(ref)
+                .$loaded()
+                .then(getDeferredMethodInvocation('$remove'))
                 .then(function () {
                     return null;
                 });
         }
 
-        function updateObject(obj, newData) {
-            return _.merge(obj, newData)
-                .$save()
-                .then(firebaseCleaner.cleanObject);
+        function getArray(ref) {
+            return $firebaseArray(ref)
+                .$loaded()
+                .then(firebaseConverter.convertFirebaseArrayToArray);
+        }
+
+        function getObject(ref) {
+            return $firebaseObject(ref)
+                .$loaded()
+                .then(firebaseConverter.convertFirebaseObjectToObject);
+        }
+
+        function getObjectAsArray(ref) {
+            return $firebaseObject(ref)
+                .$loaded()
+                .then(firebaseConverter.convertFirebaseObjectToArray);
+        }
+
+        // TODO: id?
+        function updateObject(ref, data) {
+            return $firebaseObject(ref)
+                .$loaded()
+                .then(_.partialRight(_.merge, data))
+                .then(getDeferredMethodInvocation('$save'))
+                .then(getObject);
         }
     }
 

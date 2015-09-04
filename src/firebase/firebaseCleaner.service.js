@@ -14,11 +14,9 @@
         return factory;
 
         function cleanArray(array) {
-            var cleanArr = [];
-            _.forEach(array, function (obj) {
-                cleanArr.push(cleanObject(obj));
+            return _.map(array, function (obj) {
+                return cleanObject(obj);
             });
-            return cleanArr;
         }
 
         function cleanObject(obj) {
