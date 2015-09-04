@@ -3,39 +3,16 @@
 
     angular
         .module('movieClub')
-        .factory('firebaseConverter', firebaseConverter);
+        .factory('firebaseInterface', firebaseInterface);
 
-    function firebaseConverter() {
+    function firebaseInterface(firebaseCleaner) {
 
         var factory = {
-            cleanArray: cleanArray,
-            cleanObject: cleanObject,
             convertObjectToArray: convertObjectToArray,
             removeObject: removeObject,
             updateObject: updateObject
         };
         return factory;
-
-        function cleanArray(array) {
-            var cleanArr = [];
-            _.forEach(array, function (obj) {
-                cleanArr.push(cleanObject(obj));
-            });
-            return cleanArr;
-        }
-
-        function cleanObject(obj) {
-            var cleanObj = {};
-            if (obj.$id) {
-                cleanObj.id = obj.$id;
-            }
-            _.forEach(obj, function (val, key) {
-                if (!_.startsWith(key, '$')) {
-                    cleanObj[key] = val;
-                }
-            });
-            return cleanObj;
-        }
 
         function convertObjectToArray(obj, keyAttrName, valAttrName) {
             var arr = [];
@@ -58,7 +35,7 @@
         function updateObject(obj, newData) {
             return _.merge(obj, newData)
                 .$save()
-                .then(factory.cleanObject);
+                .then(firebaseCleaner.cleanObject);
         }
     }
 

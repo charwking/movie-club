@@ -5,7 +5,7 @@
         .module('movieClub')
         .factory('usersApi', usersApi);
 
-    function usersApi($firebaseArray, $firebaseObject, firebaseConverter, firebaseRef) {
+    function usersApi($firebaseArray, $firebaseObject, firebaseCleaner, firebaseInterface, firebaseRef) {
         var factory = {
             'delete': del,
             get: get,
@@ -18,28 +18,28 @@
         function del(userId) {
             return $firebaseObject(firebaseRef.child('users').child(userId))
                 .$loaded()
-                .then(firebaseConverter.removeObject);
+                .then(firebaseInterface.removeObject);
         }
 
         // GET /api/users/:userId
         function get(userId) {
             return $firebaseObject(firebaseRef.child('users').child(userId))
                 .$loaded()
-                .then(firebaseConverter.cleanObject);
+                .then(firebaseCleaner.cleanObject);
         }
 
         // GET /api/users
         function list() {
             return $firebaseArray(firebaseRef.child('users'))
                 .$loaded()
-                .then(firebaseConverter.cleanArray);
+                .then(firebaseCleaner.cleanArray);
         }
 
         // PATCH /api/users/:userId
         function update(user) {
             $firebaseObject(firebaseRef.child('users').child(user.id))
                 .$loaded()
-                .then(firebaseConverter.updateObject);
+                .then(firebaseInterface.updateObject);
         }
     }
 
