@@ -5,60 +5,39 @@
         .module('movieClub')
         .factory('firebaseConverter', firebaseConverter);
 
-    function firebaseConverter() {
+    function firebaseConverter($firebaseObject) {
 
         var factory = {
-            cleanArray: cleanArray,
-            cleanObject: cleanObject,
-            convertObjectToArray: convertObjectToArray,
-            removeObject: removeObject,
-            updateObject: updateObject
+            convertFirebaseArrayToArray: convertFirebaseArrayToArray,
+            convertFirebaseObjectToArray: convertFirebaseObjectToArray,
+            convertFirebaseObjectToObject: convertFirebaseObjectToObject
         };
         return factory;
 
-        function cleanArray(array) {
-            var cleanArr = [];
-            _.forEach(array, function (obj) {
-                cleanArr.push(cleanObject(obj));
+        function convertFirebaseArrayToArray(firebaseArray) {
+            return _.map(firebaseArray, function (firebaseObj) {
+                return convertFirebaseObjectToObject(firebaseObj);
             });
-            return cleanArr;
         }
 
-        function cleanObject(obj) {
-            var cleanObj = {};
-            if (obj.$id) {
-                cleanObj.id = obj.$id;
+        function convertFirebaseObjectToArray(firebaseObj) {
+            var obj = convertFirebaseObjectToObject(firebaseObj);
+            return _.map(obj, function (val, key) {
+                return {id: key, value: val};
+            });
+        }
+
+        function convertFirebaseObjectToObject(firebaseObj) {
+            var obj = {};
+            if (firebaseObj.$id) {
+                obj.id = firebaseObj.$id;
             }
-            _.forEach(obj, function (val, key) {
+            _.forEach(firebaseObj, function (val, key) {
                 if (!_.startsWith(key, '$')) {
-                    cleanObj[key] = val;
+                    obj[key] = val;
                 }
             });
-            return cleanObj;
-        }
-
-        function convertObjectToArray(obj, keyAttrName, valAttrName) {
-            var arr = [];
-            _.forEach(obj, function (val, key) {
-                var elem = {};
-                elem[keyAttrName] = key;
-                elem[valAttrName] = val;
-                arr.push(elem);
-            });
-            return arr;
-        }
-
-        function removeObject(obj) {
-            return obj.$remove()
-                .then(function () {
-                    return null;
-                });
-        }
-
-        function updateObject(obj, newData) {
-            return _.merge(obj, newData)
-                .$save()
-                .then(factory.cleanObject);
+            return obj;
         }
     }
 

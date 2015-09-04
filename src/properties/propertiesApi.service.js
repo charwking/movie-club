@@ -5,7 +5,9 @@
         .module('movieClub')
         .factory('propertiesApi', propertiesApi);
 
-    function propertiesApi($firebaseObject, firebaseConverter, firebaseRef) {
+    function propertiesApi(firebaseInterface, firebaseRef) {
+
+        var propertiesRef = firebaseRef.child('propertyStore');
         var factory = {
             list: list
         };
@@ -13,10 +15,7 @@
 
         // GET /api/properties
         function list() {
-            return $firebaseObject(firebaseRef.child('propertyStore'))
-                .$loaded()
-                .then(firebaseConverter.cleanObject)
-                .then(_.partialRight(firebaseConverter.convertObjectToArray, 'id', 'value'));
+            return firebaseInterface.getObjectAsArray(propertiesRef);
         }
     }
 
