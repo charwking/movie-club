@@ -28,7 +28,7 @@
         }
 
         function getNextUserMovie(user) {
-            var userMovieObj = _.find(userMovies, {'$id': user.$id});
+            var userMovieObj = _.find(userMovies, {'$id': user.id});
             if (userMovieObj) {
                 return _(userMovieObj.movies).sortBy('order').first();
             }
@@ -38,7 +38,7 @@
         function getAbsentUsers() {
             return _.map(users, function (user) {
                 return {
-                    id: user.$id,
+                    id: user.id,
                     username: user.username,
                     nextMovie: getNextUserMovie(user)
                 };

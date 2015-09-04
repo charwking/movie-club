@@ -19,16 +19,21 @@
 
     <h2>About our Club</h2>
 
-    <h3 ng-if="dashboardVm.properties.clubName">
-        <i class="fa fa-video-camera"></i>
-        Welcome to {{dashboardVm.properties.clubName}}
+    <h3 ng-if="dashboardVm.clubNameProp">
+        Welcome to {{dashboardVm.clubNameProp.value}}
     </h3>
 
-    <h3 ng-if="!dashboardVm.properties.clubName">
+    <p>Movie Club began after a lengthy discussion between coworkers about movies we watched, loved, and hated. It was a surprise to learn that many had missed out on what some considered “ the classics”, others were not up to speed with newer releases, and some people had hardly watched any decent movies in their whole life...
+
+We decided to give ourselves an excuse to watch these flicks and the official Movie Club was born! We started in the old-fashioned way – each submitting one movie on a paper ticket and pulling one ticket out of the box each meeting. The meetings are run like a book club; we acquire the movie with our own resources, watch the movie on our own time, discuss the movie together over lunch, and then draw another movie before we depart. Movie Club began as an every-other week event, but popular vote demanded we draw movies and meet once a week! The first round "original 11" movies are represented in this websites header image.
+
+We now have a fully-functioning website and over 20 participants! New faces and new movies are always welcome! Please check out and contribute to our gitHub repo.</p>
+
+    <h3 ng-if="!dashboardVm.clubNameProp">
         Ack, catastrophic error!
     </h3>
 
-    <h4>Check us out on <a href="https://github.com/charwking/movie-club">github</a></h4>
+    <h4>Check us out on <a href="https://github.com/charwking/movie-club" target="_new"><i class="fa fa-github"></i></a></h4>
 </section>
 
 <section class="recently-watched-section">
@@ -57,6 +62,9 @@
             <li><img src="images/_0019_rabbit.jpg" alt="Who Framed Roger Rabbit?"></li>
             <li><img src="images/_0020_uncleboonmee.jpg" alt="Uncle Boonmee Who Can Recall His Past Lives"></li>
             <li><img src="images/_0021_memento.jpg" alt="Memento"></li>
+            <li><img src="images/_0022_citizen-kane.jpg" alt="Citizen Kane"></li>
+            <li><img src="images/_0023_hoop-dreams.jpg" alt="Hoop Dreams"></li>
+            <li><img src="images/_0024_unbreakable.jpg" alt="Unbreakable"></li>
         </ul>
     </div>
 </section>
