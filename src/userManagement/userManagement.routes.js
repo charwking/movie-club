@@ -17,7 +17,7 @@
 
                 resolve: {
                     users: function (usersApi) {
-                        return usersApi.getAll().$loaded();
+                        return usersApi.list();
                     }
                 }
             });

@@ -8,7 +8,7 @@
     function DashboardController(currentMovie, properties, users) {
         var vm = this;
         vm.currentMovie = currentMovie;
-        vm.properties = properties;
+        vm.clubNameProp = _.find(properties, {id: 'clubName'});
         vm.usernames = _.pluck(users, 'username');
     }
 

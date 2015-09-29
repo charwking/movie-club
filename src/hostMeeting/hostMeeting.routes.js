@@ -23,7 +23,7 @@
                         return currentMovieUserApi.get().$loaded();
                     },
                     users: function (usersApi) {
-                        return usersApi.getAll().$loaded();
+                        return usersApi.list();
                     },
                     userMovies: function (userMoviesApi) {
                         return userMoviesApi.getAll().$loaded();

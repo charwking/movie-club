@@ -5,17 +5,16 @@
         .module('movieClub')
         .controller('UserManagementController', UserManagementController);
 
-    function UserManagementController(users) {
+    function UserManagementController(users, usersApi) {
         var vm = this;
-
-        // vars
         vm.users = users;
-
-        // funcs
         vm.deleteUser = deleteUser;
 
         function deleteUser(user) {
-            vm.users.$remove(user);
+            usersApi.delete(user.id)
+                .then(function () {
+                    return _.remove(users, user);
+                });
         }
     }
 
