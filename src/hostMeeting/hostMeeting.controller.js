@@ -96,15 +96,12 @@
         }
 
         function selectWinner() {
-            var deferred = $q.defer();
-            meetingApi.getAll().$loaded().then(function (meetings) {
+            return meetingApi.getAll().$loaded().then(function (meetings) {
                 var chances = {};
                 getPossibleWinners(chances);
                 generateProbabilitiesFromMeetings(chances, meetings);
-                var winner = selectRandomWinner(chances);
-                deferred.resolve(winner);
+                return selectRandomWinner(chances);
             });
-            return deferred.promise;
         }
 
         function getPossibleWinners(chances) {
