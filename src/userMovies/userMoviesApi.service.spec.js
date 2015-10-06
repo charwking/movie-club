@@ -55,7 +55,6 @@
                 };
                 spyOn(firebaseRef, 'child').and.returnValue(firebaseRefChildResponse);
                 spyOn(firebaseRef.child('userMovies').child(user.id), 'child');
-
                 userMoviesApi.getAllByUserId(user.id);
 
                 expect(firebaseRef.child('userMovies').child(user.id).child).toHaveBeenCalledWith('movies');
