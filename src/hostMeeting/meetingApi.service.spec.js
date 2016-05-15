@@ -42,25 +42,6 @@
             });
 
         });
-
-        describe('getByDate', function () {
-
-            it('should get a firebase meeting object', function () {
-                var date = new Date();
-                var firebaseRefChildResponse = {
-                    child: function() {
-                        return null;
-                    }
-                };
-                spyOn(firebaseRef, 'child').and.returnValue(firebaseRefChildResponse);
-                spyOn(firebaseRef.child('meetings'), 'child');
-                meetingApi.getByDate(date);
-
-                expect(firebaseRef.child('meetings').child).toHaveBeenCalledWith(formatDate(date));
-            });
-
-        });
-
     });
 
     function formatDate(date) {
