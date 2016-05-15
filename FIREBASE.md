@@ -92,12 +92,16 @@ In general, my strategy is to keep permissions restrictive until a use-case appe
 
     "meetings": {
 
-      ".read": "true",
+      ".read": "root.child('adminStore').child(auth.uid).val() === true",
       ".write": "root.child('adminStore').child(auth.uid).val() === true",
 
-      "$date": {
+      "$meetingId": {
 
-        ".validate": "newData.hasChildren(['presentUsers', 'selectedMovieName', 'selectedMovieUserId'])",
+        ".validate": "newData.hasChildren(['date', 'presentUsers', 'selectedMovieName', 'selectedMovieUserId'])",
+
+        "date": {
+          ".validate": "newData.isString() && newData.val().matches(/^(19|20)[0-9][0-9][-\\/. ](0[1-9]|1[012])[-\\/. ](0[1-9]|[12][0-9]|3[01])$/)"
+        },
 
         "presentUsers": {
           "$userId": {

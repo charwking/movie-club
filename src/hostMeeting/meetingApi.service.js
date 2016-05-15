@@ -17,20 +17,24 @@
         }
 
         function saveMeeting(date, presentUsers, selectedMovieName, selectedMovieUserId) {
-            if (date) {
-                var data = {
-                    presentUsers: presentUsers,
-                    selectedMovieName: selectedMovieName,
-                    selectedMovieUserId: selectedMovieUserId
-                };
-                firebaseRef.child('meetings').child(formatDate(date)).set(data);
-            }
+            var data = {
+                date: formatDate(date),
+                presentUsers: presentUsers,
+                selectedMovieName: selectedMovieName,
+                selectedMovieUserId: selectedMovieUserId
+            };
+            firebaseRef.child('meetings').push(data);
         }
 
         function formatDate(date) {
-            return date.getFullYear() + '-' +
-                   (date.getMonth() + 1) + '-' +
-                   date.getDate();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+
+            month = ('0' + month).slice(-2);
+            day = ('0' + day).slice(-2);
+
+            return year + '-' + month + '-' + day;
         }
     }
 
