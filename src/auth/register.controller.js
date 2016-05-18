@@ -11,7 +11,7 @@
         // vars
         vm.isSubmitting = false;
         vm.hasRegistrationFailed = false;
-        vm.usernames = _.pluck(users, 'username');
+        vm.usernames = _.map(users, 'username');
 
         // funcs
         vm.register = register;

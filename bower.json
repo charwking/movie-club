@@ -13,6 +13,6 @@
     "angularfire": "1.1.1",
     "firebase": "2.2.4",
     "font-awesome": "4.3.0",
-    "lodash": "3.9.3"
+    "lodash": "4.12.0"
   }
 }

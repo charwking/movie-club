@@ -9,7 +9,7 @@
         var vm = this;
         vm.currentMovie = currentMovie;
         vm.clubNameProp = _.find(properties, {id: 'clubName'});
-        vm.usernames = _.pluck(users, 'username');
+        vm.usernames = _.map(users, 'username');
     }
 
 }(window.angular));
