@@ -2,8 +2,8 @@ var dirs = {
     output: 'dist/',
     source: 'src/',
     test: 'test/',
-    bower: 'bower_components/',
-    npm: 'node_modules/'
+    npm: 'node_modules/',
+    lib: 'lib/'
 };
 
 module.exports = {
@@ -24,7 +24,7 @@ module.exports = {
 
     in: {
         dir: dirs.source,
-        fontFiles: dirs.bower + 'font-awesome/fonts/**/*',
+        fontFiles: dirs.npm + 'font-awesome/fonts/**/*',
         htmlMainFile: dirs.source + 'index.html',
         htmlTemplateFiles: [
             dirs.source + '**/*.html',
@@ -38,12 +38,12 @@ module.exports = {
         ],
         jsAppTestFiles: dirs.source + '**/*.spec.js',
         jsThirdPartyClientFiles: [
-            dirs.bower + 'angular/angular.js',
-            dirs.bower + 'angular-ui-router/release/angular-ui-router.js',
-            dirs.bower + 'angular-google-analytics/dist/angular-google-analytics.js',
-            dirs.bower + 'firebase/firebase.js',
-            dirs.bower + 'angularfire/dist/angularfire.js',
-            dirs.bower + 'lodash/lodash.js'
+            dirs.npm + 'angular/angular.js',
+            dirs.npm + 'angular-ui-router/release/angular-ui-router.js',
+            dirs.npm + 'angular-google-analytics/dist/angular-google-analytics.js',
+            dirs.lib + 'firebase.js',
+            dirs.npm + 'angularfire/dist/angularfire.js',
+            dirs.npm + 'lodash/lodash.js'
         ],
         jsThirdPartyTestFiles: [
             dirs.npm + 'angular-mocks/angular-mocks.js'
