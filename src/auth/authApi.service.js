@@ -5,7 +5,7 @@
         .module('movieClub')
         .factory('authApi', authApi);
 
-    function authApi($firebaseAuth, $q, adminStoreApi, firebaseRef, usersApi) {
+    function authApi($firebaseAuth, $q, firebase, firebaseRef, usersApi) {
         var factory = {
                 login: login,
                 logout: logout,
@@ -28,7 +28,7 @@
         function recordUser(authData) {
             if (authData && authData.uid) {
                 currentUserId = authData.uid;
-                return adminStoreApi.get().$loaded().then(function (adminStore) {
+                return firebase.promiseObject('adminStore').then(function (adminStore) {
                     isAdminFlag = adminStore[currentUserId];
                     return authData;
                 });
