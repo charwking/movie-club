@@ -17,8 +17,8 @@
                     currentMovie: function (currentMovieApi) {
                         return currentMovieApi.get().$loaded();
                     },
-                    properties: function (propertiesApi) {
-                        return propertiesApi.list();
+                    propertyStore: function (firebase) {
+                        return firebase.promiseObject('propertyStore');
                     },
                     users: function (usersApi) {
                         return usersApi.list();

@@ -19,8 +19,8 @@
 
     <h2>About our Club</h2>
 
-    <h3 ng-if="dashboardVm.clubNameProp">
-        Welcome to {{dashboardVm.clubNameProp.value}}
+    <h3 ng-if="dashboardVm.propertyStore">
+        Welcome to {{dashboardVm.propertyStore.clubName}}
     </h3>
 
     <p>Movie Club began after a lengthy discussion between coworkers about movies we watched, loved, and hated. It was a surprise to learn that many had missed out on what some considered “ the classics”, others were not up to speed with newer releases, and some people had hardly watched any decent movies in their whole life...
@@ -29,7 +29,7 @@ We decided to give ourselves an excuse to watch these flicks and the official Mo
 
 We now have a fully-functioning website and over 20 participants! New faces and new movies are always welcome! Please check out and contribute to our gitHub repo.</p>
 
-    <h3 ng-if="!dashboardVm.clubNameProp">
+    <h3 ng-if="!dashboardVm.propertyStore">
         Ack, catastrophic error!
     </h3>
 

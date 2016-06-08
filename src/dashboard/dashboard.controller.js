@@ -5,10 +5,10 @@
         .module('movieClub')
         .controller('DashboardController', DashboardController);
 
-    function DashboardController(currentMovie, properties, users) {
+    function DashboardController(currentMovie, propertyStore, users) {
         var vm = this;
         vm.currentMovie = currentMovie;
-        vm.clubNameProp = _.find(properties, {id: 'clubName'});
+        vm.propertyStore = propertyStore;
         vm.usernames = _.map(users, 'username');
     }
 

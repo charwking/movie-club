@@ -10,7 +10,7 @@
             inject(function ($controller) {
                 subject = $controller('DashboardController', {
                     currentMovie: 'current movie value',
-                    properties: [{id: 'clubDesc'}, {id: 'clubName'}, {id: 'clubOwner'}],
+                    propertyStore: 'property store value',
                     users: [{username: 'Tom'}, {username: 'Dick'}, {username: 'Harry'}]
                 });
             });
@@ -22,8 +22,8 @@
                 expect(subject.currentMovie).toEqual('current movie value');
             });
 
-            it('should expose the clubName property', function () {
-                expect(subject.clubNameProp).toEqual({id: 'clubName'});
+            it('should expose the propertyStore', function () {
+                expect(subject.propertyStore).toEqual('property store value');
             });
 
             it('should expose the usernames', function () {
