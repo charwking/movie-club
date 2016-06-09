@@ -22,6 +22,9 @@
                     currentMovieUser: function (firebase) {
                         return firebase.promiseObject('currentMovieUser');
                     },
+                    meetings: function (firebase) {
+                        return firebase.promiseArray('meetings');
+                    },
                     users: function (firebase) {
                         return firebase.promiseArray('users');
                     },

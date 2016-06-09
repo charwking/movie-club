@@ -5,8 +5,9 @@
         .module('movieClub')
         .controller('HostMeetingController', HostMeetingController);
 
-    function HostMeetingController($state, currentMovie, currentMovieUser, firebase, users, userMovies,
-        meetingApi, $q) {
+    function HostMeetingController(
+        $q, $state, currentMovie, currentMovieUser, firebase, meetings, users, userMovies) {
+
         var vm = this;
         vm.presentUsers = [];
         vm.absentUsers = getAbsentUsers();
@@ -50,33 +51,32 @@
         }
 
         function selectMovie() {
-            selectWinner().then(function(userId) {
-                var usersWithMovies = getUsersWithMovies();
-                var user = _.find(usersWithMovies, {'$id': userId});
-                currentMovie.name = user.nextMovie.name;
-                currentMovie.trailerUrl = user.nextMovie.trailerUrl || null;
-                currentMovie.$save();
-                currentMovieUser.userId = user.$id;
-                currentMovieUser.$save();
+            var userId = selectWinner();
+            var usersWithMovies = getUsersWithMovies();
+            var user = _.find(usersWithMovies, {'$id': userId});
+            currentMovie.name = user.nextMovie.name;
+            currentMovie.trailerUrl = user.nextMovie.trailerUrl || null;
+            currentMovie.$save();
+            currentMovieUser.userId = user.$id;
+            currentMovieUser.$save();
 
-                firebase.promiseArray(['userMovies', user.$id, 'movies'])
-                    .then(function (movies) {
-                        var movie = _.find(movies, {order: user.nextMovie.order});
-                        return movies.$remove(movie).then(function () {
-                            _(movies)
-                                .sortBy('order')
-                                .forEach(function (movie, index) {
-                                    movie.order = index;
-                                    movies.$save(movie);
-                                })
-                                .value();
-                        });
-                    }).then(function () {
-                        $state.go('dashboard');
+            firebase.promiseArray(['userMovies', user.$id, 'movies'])
+                .then(function (movies) {
+                    var movie = _.find(movies, {order: user.nextMovie.order});
+                    return movies.$remove(movie).then(function () {
+                        _(movies)
+                            .sortBy('order')
+                            .forEach(function (movie, index) {
+                                movie.order = index;
+                                movies.$save(movie);
+                            })
+                            .value();
                     });
+                }).then(function () {
+                    $state.go('dashboard');
+                });
 
-                saveMeeting();
-            });
+            saveMeeting();
         }
 
         function getUsersWithMovies() {
@@ -86,21 +86,36 @@
         }
 
         function saveMeeting() {
+
+            function formatDate(date) {
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                var day = date.getDate();
+
+                month = ('0' + month).slice(-2);
+                day = ('0' + day).slice(-2);
+
+                return year + '-' + month + '-' + day;
+            }
+
             var presentUsers = _.reduce(vm.presentUsers, function (presentUsers, item) {
                 presentUsers[item.$id] = true;
                 return presentUsers;
             }, {});
 
-            meetingApi.saveMeeting(new Date(), presentUsers, currentMovie.name, currentMovieUser.userId);
+            meetings.$add({
+                date: formatDate(new Date()),
+                presentUsers: presentUsers,
+                selectedMovieName: currentMovie.name,
+                selectedMovieUserId: currentMovieUser.userId
+            });
         }
 
         function selectWinner() {
-            return meetingApi.getAll().$loaded().then(function (meetings) {
-                var chances = {};
-                getPossibleWinners(chances);
-                generateProbabilitiesFromMeetings(chances, meetings);
-                return selectRandomWinner(chances);
-            });
+            var chances = {};
+            getPossibleWinners(chances);
+            generateProbabilitiesFromMeetings(chances, meetings);
+            return selectRandomWinner(chances);
         }
 
         function getPossibleWinners(chances) {
