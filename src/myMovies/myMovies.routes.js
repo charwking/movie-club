@@ -16,9 +16,9 @@
                 authRequired: true,
 
                 resolve: {
-                    movies: function (authApi, userMoviesApi) {
+                    movies: function (authApi, firebase) {
                         return authApi.getCurrentUser().then(function (user) {
-                            return userMoviesApi.getAllByUserId(user.id).$loaded();
+                            return firebase.promiseArray(['userMovies', user.id, 'movies']);
                         });
                     }
                 }

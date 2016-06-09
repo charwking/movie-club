@@ -25,8 +25,8 @@
                     users: function (usersApi) {
                         return usersApi.list();
                     },
-                    userMovies: function (userMoviesApi) {
-                        return userMoviesApi.getAll().$loaded();
+                    userMovies: function (firebase) {
+                        return firebase.promiseArray('userMovies');
                     }
                 }
             });

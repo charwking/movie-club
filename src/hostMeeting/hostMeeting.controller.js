@@ -5,7 +5,7 @@
         .module('movieClub')
         .controller('HostMeetingController', HostMeetingController);
 
-    function HostMeetingController($state, currentMovie, currentMovieUser, users, userMovies, userMoviesApi,
+    function HostMeetingController($state, currentMovie, currentMovieUser, firebase, users, userMovies,
         meetingApi, $q) {
         var vm = this;
         vm.presentUsers = [];
@@ -59,8 +59,7 @@
                 currentMovieUser.userId = user.id;
                 currentMovieUser.$save();
 
-                userMoviesApi.getAllByUserId(user.id)
-                    .$loaded()
+                firebase.promiseArray(['userMovies', user.id, 'movies'])
                     .then(function (movies) {
                         var movie = _.find(movies, {order: user.nextMovie.order});
                         return movies.$remove(movie).then(function () {
