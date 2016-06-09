@@ -28,7 +28,7 @@
         }
 
         function getNextUserMovie(user) {
-            var userMovieObj = _.find(userMovies, {'$id': user.id});
+            var userMovieObj = _.find(userMovies, {'$id': user.$id});
             if (userMovieObj) {
                 return _(userMovieObj.movies).sortBy('order').first();
             }
@@ -38,7 +38,7 @@
         function getAbsentUsers() {
             return _.map(users, function (user) {
                 return {
-                    id: user.id,
+                    '$id': user.$id,
                     username: user.username,
                     nextMovie: getNextUserMovie(user)
                 };
@@ -52,14 +52,14 @@
         function selectMovie() {
             selectWinner().then(function(userId) {
                 var usersWithMovies = getUsersWithMovies();
-                var user = _.findWhere(usersWithMovies, {id: userId});
+                var user = _.find(usersWithMovies, {'$id': userId});
                 currentMovie.name = user.nextMovie.name;
                 currentMovie.trailerUrl = user.nextMovie.trailerUrl || null;
                 currentMovie.$save();
-                currentMovieUser.userId = user.id;
+                currentMovieUser.userId = user.$id;
                 currentMovieUser.$save();
 
-                firebase.promiseArray(['userMovies', user.id, 'movies'])
+                firebase.promiseArray(['userMovies', user.$id, 'movies'])
                     .then(function (movies) {
                         var movie = _.find(movies, {order: user.nextMovie.order});
                         return movies.$remove(movie).then(function () {
@@ -87,7 +87,7 @@
 
         function saveMeeting() {
             var presentUsers = _.reduce(vm.presentUsers, function (presentUsers, item) {
-                presentUsers[item.id] = true;
+                presentUsers[item.$id] = true;
                 return presentUsers;
             }, {});
 
@@ -108,7 +108,7 @@
             if (usersWithMovies) {
                 for (var i = 0; i < usersWithMovies.length; i++) {
                     var user = usersWithMovies[i];
-                    chances[user.id] = 1;
+                    chances[user.$id] = 1;
                 }
             }
         }

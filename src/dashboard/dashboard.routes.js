@@ -20,8 +20,8 @@
                     propertyStore: function (firebase) {
                         return firebase.promiseObject('propertyStore');
                     },
-                    users: function (usersApi) {
-                        return usersApi.list();
+                    users: function (firebase) {
+                        return firebase.promiseArray('users');
                     }
                 }
             });

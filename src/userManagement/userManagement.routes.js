@@ -16,8 +16,8 @@
                 authRequired: true,
 
                 resolve: {
-                    users: function (usersApi) {
-                        return usersApi.list();
+                    users: function (firebase) {
+                        return firebase.promiseArray('users');
                     }
                 }
             });

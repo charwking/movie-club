@@ -18,7 +18,7 @@
                 resolve: {
                     movies: function (authApi, firebase) {
                         return authApi.getCurrentUser().then(function (user) {
-                            return firebase.promiseArray(['userMovies', user.id, 'movies']);
+                            return firebase.promiseArray(['userMovies', user.$id, 'movies']);
                         });
                     }
                 }

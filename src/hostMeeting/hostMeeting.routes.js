@@ -22,8 +22,8 @@
                     currentMovieUser: function (firebase) {
                         return firebase.promiseObject('currentMovieUser');
                     },
-                    users: function (usersApi) {
-                        return usersApi.list();
+                    users: function (firebase) {
+                        return firebase.promiseArray('users');
                     },
                     userMovies: function (firebase) {
                         return firebase.promiseArray('userMovies');

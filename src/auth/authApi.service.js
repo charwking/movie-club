@@ -5,7 +5,7 @@
         .module('movieClub')
         .factory('authApi', authApi);
 
-    function authApi($firebaseAuth, $q, firebase, firebaseRef, usersApi) {
+    function authApi($firebaseAuth, $q, firebase, firebaseRef) {
         var factory = {
                 login: login,
                 logout: logout,
@@ -54,11 +54,17 @@
         }
 
         function addUsername(auth, username) {
-            return usersApi.update({id: auth.uid, username: username});
+            return firebase.promiseObject(['users', auth.uid])
+                .then(function (user) {
+                    user.username = username;
+                    return user.$save();
+                });
         }
 
         function getCurrentUser() {
-            return currentUserId ? usersApi.get(currentUserId) : getUnauthorizedUser();
+            return currentUserId ?
+                firebase.promiseObject(['users', currentUserId]) :
+                getUnauthorizedUser();
         }
 
         function getUnauthorizedUser() {
