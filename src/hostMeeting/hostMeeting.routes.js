@@ -16,11 +16,11 @@
                 adminRequired: true,
 
                 resolve: {
-                    currentMovie: function (currentMovieApi) {
-                        return currentMovieApi.get().$loaded();
+                    currentMovie: function (firebase) {
+                        return firebase.promiseObject('currentMovie');
                     },
-                    currentMovieUser: function (currentMovieUserApi) {
-                        return currentMovieUserApi.get().$loaded();
+                    currentMovieUser: function (firebase) {
+                        return firebase.promiseObject('currentMovieUser');
                     },
                     users: function (usersApi) {
                         return usersApi.list();

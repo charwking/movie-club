@@ -14,8 +14,8 @@
                 url: '/',
 
                 resolve: {
-                    currentMovie: function (currentMovieApi) {
-                        return currentMovieApi.get().$loaded();
+                    currentMovie: function (firebase) {
+                        return firebase.promiseObject('currentMovie');
                     },
                     propertyStore: function (firebase) {
                         return firebase.promiseObject('propertyStore');
