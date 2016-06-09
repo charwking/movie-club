@@ -5,7 +5,7 @@
         .module('movieClub')
         .config(appConfig);
 
-    function appConfig($stateProvider) {
+    function appConfig($stateProvider, firebaseProvider) {
 
         $stateProvider
             .state('userManagement', {
@@ -16,9 +16,7 @@
                 authRequired: true,
 
                 resolve: {
-                    users: function (firebase) {
-                        return firebase.promiseArray('users');
-                    }
+                    users: firebaseProvider.resolveArray('users')
                 }
             });
     }
