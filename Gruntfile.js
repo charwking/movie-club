@@ -17,13 +17,13 @@ module.exports = function (grunt) {
         },
 
         cacheBust: {
-            options: {
-                rename: false
-            },
             all: {
-                files: [{
-                    src: config.out.htmlMainFile
-                }]
+                options: {
+                    baseDir: config.out.dir,
+                    assets: ['js/**/*', 'css/**/*'],
+                    queryString: true
+                },
+                src: [config.out.htmlMainFile]
             }
         },
 
