@@ -9,7 +9,7 @@
         var vm = this;
         vm.currentMovie = currentMovie;
         vm.propertyStore = propertyStore;
-        vm.usernames = _.map(users, 'username');
+        vm.users = users;
     }
 
 }(window.angular));

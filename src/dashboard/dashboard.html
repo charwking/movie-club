@@ -76,11 +76,11 @@ We now have a fully-functioning website and over 20 participants! New faces and 
     </div>
 </section>
 
-<section ng-if="dashboardVm.usernames">
+<section>
     <h2>The Cast</h2>
     <ul class="no-bullets cast-section">
-        <li ng-repeat="username in dashboardVm.usernames | orderBy:'toString()'">
-            {{username}}
+        <li ng-repeat="user in dashboardVm.users | orderBy:'username'">
+            {{user.username}}
         </li>
     </ul>
 </section>

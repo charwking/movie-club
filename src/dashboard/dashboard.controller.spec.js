@@ -11,7 +11,7 @@
                 subject = $controller('DashboardController', {
                     currentMovie: 'current movie value',
                     propertyStore: 'property store value',
-                    users: [{username: 'Tom'}, {username: 'Dick'}, {username: 'Harry'}]
+                    users: 'users value'
                 });
             });
         });
@@ -26,10 +26,11 @@
                 expect(subject.propertyStore).toEqual('property store value');
             });
 
-            it('should expose the usernames', function () {
-                expect(subject.usernames).toEqual(['Tom', 'Dick', 'Harry']);
+            it('should expose the users', function () {
+                expect(subject.users).toEqual('users value');
             });
         });
     });
 
 }(window.angular));
+
