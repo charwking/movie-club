@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    describe('firebase', function () {
+    describe('firebaseUtils', function () {
 
         var $firebaseArrayMock;
         var $firebaseObjectMock;
@@ -20,8 +20,8 @@
                 $provide.value('$firebaseObject', $firebaseObjectMock);
             });
 
-            inject(function (firebase, _firebaseRef_) {
-                subject = firebase;
+            inject(function (firebaseUtils, _firebaseRef_) {
+                subject = firebaseUtils;
                 firebaseRef = _firebaseRef_;
                 spyOn(firebaseRef, 'child');
             });

@@ -5,7 +5,7 @@
         .module('movieClub')
         .config(appConfig);
 
-    function appConfig($stateProvider, firebaseProvider) {
+    function appConfig($stateProvider, firebaseUtilsProvider) {
 
         $stateProvider
             .state('dashboard', {
@@ -14,9 +14,9 @@
                 url: '/',
 
                 resolve: {
-                    currentMovie:   firebaseProvider.resolveObject('currentMovie'),
-                    propertyStore:  firebaseProvider.resolveObject('propertyStore'),
-                    users:          firebaseProvider.resolveArray('users')
+                    currentMovie:   firebaseUtilsProvider.resolveObject('currentMovie'),
+                    propertyStore:  firebaseUtilsProvider.resolveObject('propertyStore'),
+                    users:          firebaseUtilsProvider.resolveArray('users')
                 }
             });
     }

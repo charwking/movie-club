@@ -5,7 +5,7 @@
         .module('movieClub')
         .factory('authApi', authApi);
 
-    function authApi($firebaseAuth, $q, firebase, firebaseRef) {
+    function authApi($firebaseAuth, $q, firebaseUtils, firebaseRef) {
         var factory = {
                 login: login,
                 logout: logout,
@@ -28,7 +28,7 @@
         function recordUser(authData) {
             if (authData && authData.uid) {
                 currentUserId = authData.uid;
-                return firebase.promiseObject('adminStore').then(function (adminStore) {
+                return firebaseUtils.promiseObject('adminStore').then(function (adminStore) {
                     isAdminFlag = adminStore[currentUserId];
                     return authData;
                 });
@@ -54,7 +54,7 @@
         }
 
         function addUsername(auth, username) {
-            return firebase.promiseObject(['users', auth.uid])
+            return firebaseUtils.promiseObject(['users', auth.uid])
                 .then(function (user) {
                     user.username = username;
                     return user.$save();
@@ -63,7 +63,7 @@
 
         function getCurrentUser() {
             return currentUserId ?
-                firebase.promiseObject(['users', currentUserId]) :
+                firebaseUtils.promiseObject(['users', currentUserId]) :
                 getUnauthorizedUser();
         }
 

@@ -6,7 +6,7 @@
         .controller('HostMeetingController', HostMeetingController);
 
     function HostMeetingController(
-        $q, $state, currentMovie, currentMovieUser, firebase, meetings, users, userMovies) {
+        $q, $state, currentMovie, currentMovieUser, firebaseUtils, meetings, users, userMovies) {
 
         var vm = this;
         vm.presentUsers = [];
@@ -60,7 +60,7 @@
             currentMovieUser.userId = user.$id;
             currentMovieUser.$save();
 
-            firebase.promiseArray(['userMovies', user.$id, 'movies'])
+            firebaseUtils.promiseArray(['userMovies', user.$id, 'movies'])
                 .then(function (movies) {
                     var movie = _.find(movies, {order: user.nextMovie.order});
                     return movies.$remove(movie).then(function () {

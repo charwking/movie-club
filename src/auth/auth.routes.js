@@ -5,7 +5,7 @@
         .module('movieClub')
         .config(appConfig);
 
-    function appConfig($stateProvider, firebaseProvider) {
+    function appConfig($stateProvider, firebaseUtilsProvider) {
 
         $stateProvider
             .state('login', {
@@ -18,7 +18,7 @@
                 templateUrl: 'auth/register.html',
                 url: '/auth/register',
                 resolve: {
-                    users: firebaseProvider.resolveArray('users')
+                    users: firebaseUtilsProvider.resolveArray('users')
                 }
             })
             .state('logout', {

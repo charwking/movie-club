@@ -3,33 +3,33 @@
 
     angular
         .module('movieClub')
-        .provider('firebase', firebaseProvider);
+        .provider('firebaseUtils', firebaseUtilsProvider);
 
-    function firebaseProvider() {
+    function firebaseUtilsProvider() {
 
         /* jshint validthis: true */
         var that = this;
         that.resolveArray = resolveArray;
         that.resolveObject = resolveObject;
-        that.$get = firebase;
+        that.$get = firebaseUtils;
 
         function resolveArray(path) {
-            var func = function (firebase) {
-                return firebase.promiseArray(path);
+            var func = function (firebaseUtils) {
+                return firebaseUtils.promiseArray(path);
             };
-            func.$inject = ['firebase'];
+            func.$inject = ['firebaseUtils'];
             return func;
         }
 
         function resolveObject(path) {
-            var func = function (firebase) {
-                return firebase.promiseObject(path);
+            var func = function (firebaseUtils) {
+                return firebaseUtils.promiseObject(path);
             };
-            func.$inject = ['firebase'];
+            func.$inject = ['firebaseUtils'];
             return func;
         }
 
-        function firebase($firebaseArray, $firebaseObject, firebaseRef) {
+        function firebaseUtils($firebaseArray, $firebaseObject, firebaseRef) {
 
             return {
                 promiseArray: promiseArray,

@@ -5,7 +5,7 @@
         .module('movieClub')
         .config(appConfig);
 
-    function appConfig($stateProvider, firebaseProvider) {
+    function appConfig($stateProvider, firebaseUtilsProvider) {
 
         $stateProvider
             .state('hostMeeting', {
@@ -16,11 +16,11 @@
                 adminRequired: true,
 
                 resolve: {
-                    currentMovie:       firebaseProvider.resolveObject('currentMovie'),
-                    currentMovieUser:   firebaseProvider.resolveObject('currentMovieUser'),
-                    meetings:           firebaseProvider.resolveArray('meetings'),
-                    users:              firebaseProvider.resolveArray('users'),
-                    userMovies:         firebaseProvider.resolveArray('userMovies')
+                    currentMovie:       firebaseUtilsProvider.resolveObject('currentMovie'),
+                    currentMovieUser:   firebaseUtilsProvider.resolveObject('currentMovieUser'),
+                    meetings:           firebaseUtilsProvider.resolveArray('meetings'),
+                    users:              firebaseUtilsProvider.resolveArray('users'),
+                    userMovies:         firebaseUtilsProvider.resolveArray('userMovies')
                 }
             });
     }
