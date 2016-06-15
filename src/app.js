@@ -13,6 +13,7 @@
         .config(setDefaultRoute)
         .config(configureAnalytics)
         .config(whitelistTemplateSources)
+        .config(configureFirebase)
         .run(injectAnalytics)
         .run(handleAuthStates);
 
@@ -32,6 +33,18 @@
             'self',
             '*://www.youtube.com/**'
         ]);
+    }
+
+    function configureFirebase($firebaseRefProvider) {
+        var location = window.location.href;
+        var url = 'https://movie-club.firebaseio.com/';
+
+        if (location.match(/^http(s)?:\/\/localhost/) ||
+            location.match(/^http(s)?:\/\/dev\./)) {
+            url = 'https://glowing-inferno-1828.firebaseio.com/';
+        }
+
+        $firebaseRefProvider.registerUrl(url);
     }
 
     function injectAnalytics(Analytics) {

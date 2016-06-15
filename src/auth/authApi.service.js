@@ -5,7 +5,7 @@
         .module('movieClub')
         .factory('authApi', authApi);
 
-    function authApi($firebaseAuth, $q, firebaseUtils, firebaseRef) {
+    function authApi($firebaseAuthService, $q, firebaseUtils) {
         var factory = {
                 login: login,
                 logout: logout,
@@ -16,7 +16,7 @@
             },
             currentUserId,
             isAdminFlag,
-            authRef = $firebaseAuth(firebaseRef);
+            authRef = $firebaseAuthService;
 
         init();
         return factory;

@@ -6,7 +6,7 @@
         var $firebaseArrayMock;
         var $firebaseObjectMock;
         var firebasePromiseMock;
-        var firebaseRef;
+        var $firebaseRef;
         var subject;
 
         beforeEach(function () {
@@ -20,23 +20,23 @@
                 $provide.value('$firebaseObject', $firebaseObjectMock);
             });
 
-            inject(function (firebaseUtils, _firebaseRef_) {
+            inject(function (firebaseUtils, _$firebaseRef_) {
                 subject = firebaseUtils;
-                firebaseRef = _firebaseRef_;
-                spyOn(firebaseRef, 'child');
+                $firebaseRef = _$firebaseRef_;
+                spyOn($firebaseRef.default, 'child');
             });
         });
 
         describe('promiseArray', function () {
 
             it('gets a promise from a $firebaseArray for a string input', function () {
-                firebaseRef.child.and.returnValue('childRef');
+                $firebaseRef.default.child.and.returnValue('childRef');
                 $firebaseArrayMock.and.returnValue(firebasePromiseMock);
                 firebasePromiseMock.$loaded.and.returnValue('promise');
 
                 var result = subject.promiseArray('child');
 
-                expect(firebaseRef.child).toHaveBeenCalledWith('child');
+                expect($firebaseRef.default.child).toHaveBeenCalledWith('child');
                 expect($firebaseArrayMock).toHaveBeenCalledWith('childRef');
                 expect(firebasePromiseMock.$loaded).toHaveBeenCalled();
                 expect(result).toEqual('promise');
@@ -45,7 +45,7 @@
             it('gets a promise from a $firebaseArray for an array input', function () {
                 var childRef1 = {'child': jasmine.createSpy('childRef1')};
                 var childRef2 = {'child': jasmine.createSpy('childRef2')};
-                firebaseRef.child.and.returnValue(childRef1);
+                $firebaseRef.default.child.and.returnValue(childRef1);
                 childRef1.child.and.returnValue(childRef2);
                 childRef2.child.and.returnValue('child4');
                 $firebaseArrayMock.and.returnValue(firebasePromiseMock);
@@ -53,7 +53,7 @@
 
                 var result = subject.promiseArray(['child1', 'child2', 'child3']);
 
-                expect(firebaseRef.child).toHaveBeenCalledWith('child1');
+                expect($firebaseRef.default.child).toHaveBeenCalledWith('child1');
                 expect(childRef1.child).toHaveBeenCalledWith('child2');
                 expect(childRef2.child).toHaveBeenCalledWith('child3');
                 expect($firebaseArrayMock).toHaveBeenCalledWith('child4');
@@ -65,13 +65,13 @@
         describe('promiseObject', function () {
 
             it('gets a promise from a $firebaseObject for a string input', function () {
-                firebaseRef.child.and.returnValue('childRef');
+                $firebaseRef.default.child.and.returnValue('childRef');
                 $firebaseObjectMock.and.returnValue(firebasePromiseMock);
                 firebasePromiseMock.$loaded.and.returnValue('promise');
 
                 var result = subject.promiseObject('child');
 
-                expect(firebaseRef.child).toHaveBeenCalledWith('child');
+                expect($firebaseRef.default.child).toHaveBeenCalledWith('child');
                 expect($firebaseObjectMock).toHaveBeenCalledWith('childRef');
                 expect(firebasePromiseMock.$loaded).toHaveBeenCalled();
                 expect(result).toEqual('promise');
@@ -80,7 +80,7 @@
             it('gets a promise from a $firebaseObject for an array input', function () {
                 var childRef1 = {'child': jasmine.createSpy('childRef1')};
                 var childRef2 = {'child': jasmine.createSpy('childRef2')};
-                firebaseRef.child.and.returnValue(childRef1);
+                $firebaseRef.default.child.and.returnValue(childRef1);
                 childRef1.child.and.returnValue(childRef2);
                 childRef2.child.and.returnValue('child4');
                 $firebaseObjectMock.and.returnValue(firebasePromiseMock);
@@ -88,7 +88,7 @@
 
                 var result = subject.promiseObject(['child1', 'child2', 'child3']);
 
-                expect(firebaseRef.child).toHaveBeenCalledWith('child1');
+                expect($firebaseRef.default.child).toHaveBeenCalledWith('child1');
                 expect(childRef1.child).toHaveBeenCalledWith('child2');
                 expect(childRef2.child).toHaveBeenCalledWith('child3');
                 expect($firebaseObjectMock).toHaveBeenCalledWith('child4');

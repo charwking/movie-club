@@ -29,7 +29,7 @@
             return func;
         }
 
-        function firebaseUtils($firebaseArray, $firebaseObject, firebaseRef) {
+        function firebaseUtils($firebaseArray, $firebaseObject, $firebaseRef) {
 
             return {
                 promiseArray: promiseArray,
@@ -40,7 +40,7 @@
                 path = Array.isArray(path) ? path : [path];
                 return _.reduce(path, function (ref, child) {
                     return ref.child(child);
-                }, firebaseRef);
+                }, $firebaseRef.default);
             }
 
             function promiseArray(path) {
