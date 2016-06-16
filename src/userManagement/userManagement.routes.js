@@ -13,9 +13,10 @@
                 templateUrl: 'userManagement/userManagement.html',
                 url: '/admin/user-management',
 
-                authRequired: true,
-
                 resolve: {
+                    currentAuth: function ($firebaseAuthService) {
+                        return $firebaseAuthService.requireAuthAsAdmin();
+                    },
                     users: firebaseUtilsProvider.resolveArray('users')
                 }
             });

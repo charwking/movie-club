@@ -52,12 +52,10 @@
     }
 
     function handleAuthStates($rootScope, $state, authApi) {
-        $rootScope.$on('$stateChangeStart',
-            function (event, toState, toParams, fromState, fromParams) {
-                if ((toState.authRequired && !authApi.isLoggedIn()) ||
-                    (toState.adminRequired && !authApi.isAdmin())) {
-                    $state.transitionTo('login');
-                    event.preventDefault();
+        $rootScope.$on('$stateChangeError',
+            function (event, toState, toParams, fromState, fromParams, error) {
+                if (error === 'AUTH_REQUIRED') {
+                    $state.go('login');
                 }
             }
         );

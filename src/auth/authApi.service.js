@@ -10,7 +10,6 @@
                 login: login,
                 logout: logout,
                 register: register,
-                getCurrentUser: getCurrentUser,
                 isLoggedIn: isLoggedIn,
                 isAdmin: isAdmin
             },
@@ -59,16 +58,6 @@
                     user.username = username;
                     return user.$save();
                 });
-        }
-
-        function getCurrentUser() {
-            return currentUserId ?
-                firebaseUtils.promiseObject(['users', currentUserId]) :
-                getUnauthorizedUser();
-        }
-
-        function getUnauthorizedUser() {
-            return $q.when({'id': null});
         }
 
         function isLoggedIn() {

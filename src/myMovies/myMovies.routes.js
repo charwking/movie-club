@@ -13,12 +13,10 @@
                 templateUrl: 'myMovies/myMovies.html',
                 url: '/my-movies',
 
-                authRequired: true,
-
                 resolve: {
-                    movies: function (authApi, firebaseUtils) {
-                        return authApi.getCurrentUser().then(function (user) {
-                            return firebaseUtils.promiseArray(['userMovies', user.$id, 'movies']);
+                    movies: function ($firebaseAuthService, firebaseUtils) {
+                        return $firebaseAuthService.$requireAuth().then(function (auth) {
+                            return firebaseUtils.promiseArray(['userMovies', auth.uid, 'movies']);
                         });
                     }
                 }
@@ -26,3 +24,4 @@
     }
 
 }(window.angular));
+

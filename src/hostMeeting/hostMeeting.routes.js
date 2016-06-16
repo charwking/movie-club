@@ -13,9 +13,10 @@
                 templateUrl: 'hostMeeting/hostMeeting.html',
                 url: '/admin/host-meeting',
 
-                adminRequired: true,
-
                 resolve: {
+                    currentAuth: function ($firebaseAuthService) {
+                        return $firebaseAuthService.requireAuthAsAdmin();
+                    },
                     currentMovie:       firebaseUtilsProvider.resolveObject('currentMovie'),
                     currentMovieUser:   firebaseUtilsProvider.resolveObject('currentMovieUser'),
                     meetings:           firebaseUtilsProvider.resolveArray('meetings'),
