@@ -8,15 +8,12 @@
     function appConfig($stateProvider, firebaseUtilsProvider) {
 
         $stateProvider
-            .state('hostMeeting', {
+            .state('admin.hostMeeting', {
                 controller: 'HostMeetingController as hostMeetingVm',
-                templateUrl: 'hostMeeting/hostMeeting.html',
+                templateUrl: 'admin/hostMeeting/hostMeeting.html',
                 url: '/admin/host-meeting',
 
                 resolve: {
-                    currentAuth: function ($firebaseAuthService) {
-                        return $firebaseAuthService.requireAuthAsAdmin();
-                    },
                     currentMovie:       firebaseUtilsProvider.resolveObject('currentMovie'),
                     currentMovieUser:   firebaseUtilsProvider.resolveObject('currentMovieUser'),
                     meetings:           firebaseUtilsProvider.resolveArray('meetings'),
