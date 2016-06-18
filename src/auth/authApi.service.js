@@ -36,18 +36,18 @@
 
         function login(email, password) {
             return authRef
-                .$authWithPassword({email: email, password: password})
+                .$signInWithEmailAndPassword(email, password)
                 .then(recordUser);
         }
 
         function logout() {
             currentUserId = null;
             isAdminFlag = false;
-            authRef.$unauth();
+            authRef.$signOut();
         }
 
         function register(username, email, password) {
-            return authRef.$createUser({email: email, password: password})
+            return authRef.$createUserWithEmailAndPassword(email, password)
                 .then(_.partial(login, email, password))
                 .then(_.partialRight(addUsername, username));
         }

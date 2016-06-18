@@ -41,7 +41,7 @@ module.exports = {
             dirs.npm + 'angular/angular.js',
             dirs.npm + 'angular-ui-router/release/angular-ui-router.js',
             dirs.npm + 'angular-google-analytics/dist/angular-google-analytics.js',
-            dirs.lib + 'firebase.js',
+            dirs.npm + 'firebase/firebase.js',
             dirs.npm + 'angularfire/dist/angularfire.js',
             dirs.npm + 'lodash/lodash.js'
         ],

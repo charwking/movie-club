@@ -15,7 +15,7 @@
 
                 resolve: {
                     movies: function ($firebaseAuthService, firebaseUtils) {
-                        return $firebaseAuthService.$requireAuth().then(function (auth) {
+                        return $firebaseAuthService.$requireSignIn().then(function (auth) {
                             return firebaseUtils.promiseArray(['userMovies', auth.uid, 'movies']);
                         });
                     }

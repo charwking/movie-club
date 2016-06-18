@@ -11,12 +11,12 @@
 
     function decorateFirebaseAuthService($delegate, $q, firebaseUtils) {
 
-        $delegate.requireAuthAsAdmin = requireAuthAsAdmin;
+        $delegate.requireSignInAsAdmin = requireSignInAsAdmin;
         return $delegate;
 
-        function requireAuthAsAdmin() {
+        function requireSignInAsAdmin() {
             return $q.all([
-                    $delegate.$requireAuth(),
+                    $delegate.$requireSignIn(),
                     firebaseUtils.promiseObject('adminStore')
                 ])
                 .then(assertUserIsAdmin);

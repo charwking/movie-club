@@ -1,4 +1,4 @@
-(function (angular) {
+(function (angular, firebase) {
     'use strict';
 
     var moduleDependencies = [
@@ -36,15 +36,24 @@
     }
 
     function configureFirebase($firebaseRefProvider) {
+
         var location = window.location.href;
-        var url = 'https://movie-club.firebaseio.com/';
+        var isDev =
+            location.match(/^http(s)?:\/\/localhost/) ||
+            location.match(/^http(s)?:\/\/dev\./);
+        var config = isDev ? getDevFirebaseConfig() : getProdFirebaseConfig();
 
-        if (location.match(/^http(s)?:\/\/localhost/) ||
-            location.match(/^http(s)?:\/\/dev\./)) {
-            url = 'https://glowing-inferno-1828.firebaseio.com/';
+        // HACK -- Calling initializeApp twice for the same app results in an exception,
+        // and this happens during testing since the firebase library isn't completely
+        // reloaded for each test. To circumvent that, we're only initalizing the app
+        // if one doesn't exist -- which we know because app throws an error when no app
+        // exists.
+        try {
+            firebase.app();
+        } catch (e) {
+            firebase.initializeApp(config);
         }
-
-        $firebaseRefProvider.registerUrl(url);
+        $firebaseRefProvider.registerUrl(config.databaseURL);
     }
 
     function injectAnalytics(Analytics) {
@@ -61,4 +70,23 @@
         );
     }
 
-}(window.angular));
+    function getDevFirebaseConfig() {
+        return {
+            apiKey: 'AIzaSyB12FILGlMqlxgvLtZ29VaP0x5WEOLZT8M',
+            authDomain: 'glowing-inferno-1828.firebaseapp.com',
+            databaseURL: 'https://glowing-inferno-1828.firebaseio.com',
+            storageBucket: 'glowing-inferno-1828.appspot.com'
+        };
+    }
+
+    function getProdFirebaseConfig() {
+        return {
+            apiKey: 'AIzaSyAKfG5L2MyJ_iJu_DN7WQL30M6v7Or6-2E',
+            authDomain: 'movie-club.firebaseapp.com',
+            databaseURL: 'https://movie-club.firebaseio.com',
+            storageBucket: ''
+        };
+    }
+
+}(window.angular, window.firebase));
+

@@ -13,7 +13,7 @@
                 template: '<ui-view/>',
                 resolve: {
                     currentAuth: function ($firebaseAuthService) {
-                        return $firebaseAuthService.requireAuthAsAdmin();
+                        return $firebaseAuthService.requireSignInAsAdmin();
                     }
                 }
             });
