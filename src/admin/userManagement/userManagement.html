@@ -9,6 +9,7 @@
     </br>
 
     <div ng-repeat="user in userManagementVm.users | orderBy:'username'">
-        {{user.username}} (<a ng-click="userManagementVm.deleteUser(user)" href="#">delete</a>)
+        {{user.username}} (<a ng-click="userManagementVm.users.$remove(user)">delete</a>)
     </div>
 </section>
+
