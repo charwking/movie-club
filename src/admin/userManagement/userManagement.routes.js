@@ -8,18 +8,16 @@
     function appConfig($stateProvider, firebaseUtilsProvider) {
 
         $stateProvider
-            .state('userManagement', {
+            .state('admin.userManagement', {
                 controller: 'UserManagementController as userManagementVm',
-                templateUrl: 'userManagement/userManagement.html',
+                templateUrl: 'admin/userManagement/userManagement.html',
                 url: '/admin/user-management',
 
                 resolve: {
-                    currentAuth: function ($firebaseAuthService) {
-                        return $firebaseAuthService.requireAuthAsAdmin();
-                    },
                     users: firebaseUtilsProvider.resolveArray('users')
                 }
             });
     }
 
 }(window.angular));
+
