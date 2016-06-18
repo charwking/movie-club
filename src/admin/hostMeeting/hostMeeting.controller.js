@@ -69,8 +69,7 @@
                             .forEach(function (movie, index) {
                                 movie.order = index;
                                 movies.$save(movie);
-                            })
-                            .value();
+                            });
                     });
                 }).then(function () {
                     $state.go('dashboard');
