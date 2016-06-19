@@ -6,7 +6,7 @@
         .controller('HostMeetingController', HostMeetingController);
 
     function HostMeetingController(
-        $q, $state, currentMovie, currentMovieUser, firebaseUtils, meetings, users, userMovies) {
+        $state, currentMovie, currentMovieUser, firebaseUtils, meetings, users, userMovies) {
 
         var vm = this;
         vm.presentUsers = [];
