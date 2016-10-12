@@ -1,11 +1,16 @@
 (function (angular) {
     'use strict';
 
+    var navComponent = {
+        templateUrl: 'nav/nav.html',
+        controller: NavController
+    };
+
     angular
         .module('movieClub')
-        .controller('NavController', NavController);
+        .component('mcNav', navComponent);
 
-    function NavController($state, authApi) {
+    function NavController(authApi) {
         var vm = this;
         vm.isAdmin = authApi.isAdmin;
         vm.isLoggedIn = authApi.isLoggedIn;
