@@ -11,6 +11,7 @@
         .component('mcNav', navComponent);
 
     function NavController(authApi) {
+        'ngInject';
         var vm = this;
         vm.isAdmin = authApi.isAdmin;
         vm.isLoggedIn = authApi.isLoggedIn;
