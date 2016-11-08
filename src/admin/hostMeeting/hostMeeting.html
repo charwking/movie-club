@@ -7,10 +7,11 @@
         <ul class="no-bullets">
             <li
                 class="clickable"
-                ng-repeat="user in hostMeetingVm.absentUsers | orderBy:'username'"
-                ng-click="hostMeetingVm.moveUserToPresent(user)"
+                ng-repeat="user in hostMeetingVm.allUsers | orderBy:'username'"
+                ng-click="hostMeetingVm.makeUserPresent(user)"
+                ng-if="!hostMeetingVm.userIsPresent(user)"
             >
-                {{user.username}} <i ng-if="user.nextMovie" class="fa fa-video-camera"></i>
+                {{user.username}} <i ng-if="hostMeetingVm.userHasMovies(user)" class="fa fa-video-camera"></i>
             </li>
         </ul>
     </div>
@@ -19,14 +20,15 @@
         <h2>Present Users</h2>
         <div
             class="clickable"
-            ng-repeat="user in hostMeetingVm.presentUsers | orderBy:'username'"
-            ng-click="hostMeetingVm.moveUserToAbsent(user)"
+            ng-repeat="user in hostMeetingVm.allUsers | orderBy:'username'"
+            ng-click="hostMeetingVm.makeUserAbsent(user)"
+            ng-if="hostMeetingVm.userIsPresent(user)"
         >
-            {{user.username}} <i ng-if="user.nextMovie" class="fa fa-video-camera"></i>
+        {{user.username}} <i ng-if="hostMeetingVm.userHasMovies(user)" class="fa fa-video-camera"></i> ({{hostMeetingVm.getUserOdds(user) | number: 2}}%)
         </div>
 
         <button
-            ng-disabled="!hostMeetingVm.isMovieAvailable()"
+            ng-disabled="!hostMeetingVm.anyUserHasMovies()"
             ng-click="hostMeetingVm.selectMovie()"
         >
             Select Movie
