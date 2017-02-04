@@ -4,12 +4,6 @@ node_js:
 addons:
   ssh_known_hosts:
   - cwking.com
-env:
-  global:
-  - secure: Lw6j1YGaCPhF8/8W0BGQVgQ/1IFTy+ybzbcyytpcJiaZsZWI715IDE5mSC8ClwHUj3e7KU4qLZs1zMcr3VFpl8QZxoZYU3ad6taoIUtQ5qXUo243A62vmoeDNpaYQWTystBJ9mFRD+fnSJzu6JwIXCcKXjzHUqozlszatM+0IKk=
-  - secure: MuJWkS7pnoRi9l4a5Mxp8dy0F0+yA+lBQUXkcin6cP7Jm2ZAFIu51+qMEtSnjj1GgR+gnj/GuwAxFowGcAAStAVr+r5oCF9Tla18m+VXsIAejO7ZEv95HeKDnzqThNsNAiwDq/7uIImCuRiJDUC16aNpyRdgIChXMBm64nG0XPw=
-  - secure: N5HK7aH0hsD8zIqRdIl38ygVQMOflu252qRmAwB5vrRcciRg/LT6GPmQcS61jvEY39748s9pebamqnloBl48ZF+0ducK9pMYZ/n0p4qx9/VQWkhAjYCeTM4cYO5hcxx8/komPFiXeWAN75tuobUp+Rao2kxfQ1YKOsXydIYuzoQ=
-
 before_script:
     - npm test
     - sudo apt-get -y -qq install sshpass
