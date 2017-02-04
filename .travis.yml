@@ -6,9 +6,9 @@ addons:
   - cwking.com
 env:
   global:
-  - secure: XeQy8mXzv25qxeFTaTZ6E2OAsvgSeGy8dMC/274NgLXxGtzMl7q/FkkYIpzcYFkh5oEyNW8fdA0eOHRUgRKDVk6w5PMzeddvacmhGlibAq6PDyvSuMaKj6X3dlvY1y08Itzcbg+zluYy7CaOpVuzWkn8Cafa72QSItdATyV4zF8=
-  - secure: ROMtPoBqQRRXUgzpD7i3SHIzwpI7w5qiBeA7z2DHF/EsADcLN5UUu0E7fL/R1S5ecVtP1Jsv6IOS6pvIIfTWL8/86QfbdpHL0Utv7Ccj4IRY0iTItcswo7sL+qywQEPwa4/B0NhHtCHTaDIaXSJJH8sbphP5p7WoyiA3lt9cMjU=
-  - secure: SrT1E6AcOGjf1JYWliyEnksBphLgt9AjbqrcARO8fCQy0t52Ld1ubMgd15lD7rH4c+niexCZorPDfiJ8MDPZ88Tf3LiXfTQsNhoaKLP2dcVUl/5W9/p8LqyVbXIKpfI89jHBsmhU8AWpDNUp38keAYJ5FXkYCC2aOFASlczH6Fc=
+  - secure: Lw6j1YGaCPhF8/8W0BGQVgQ/1IFTy+ybzbcyytpcJiaZsZWI715IDE5mSC8ClwHUj3e7KU4qLZs1zMcr3VFpl8QZxoZYU3ad6taoIUtQ5qXUo243A62vmoeDNpaYQWTystBJ9mFRD+fnSJzu6JwIXCcKXjzHUqozlszatM+0IKk=
+  - secure: MuJWkS7pnoRi9l4a5Mxp8dy0F0+yA+lBQUXkcin6cP7Jm2ZAFIu51+qMEtSnjj1GgR+gnj/GuwAxFowGcAAStAVr+r5oCF9Tla18m+VXsIAejO7ZEv95HeKDnzqThNsNAiwDq/7uIImCuRiJDUC16aNpyRdgIChXMBm64nG0XPw=
+  - secure: N5HK7aH0hsD8zIqRdIl38ygVQMOflu252qRmAwB5vrRcciRg/LT6GPmQcS61jvEY39748s9pebamqnloBl48ZF+0ducK9pMYZ/n0p4qx9/VQWkhAjYCeTM4cYO5hcxx8/komPFiXeWAN75tuobUp+Rao2kxfQ1YKOsXydIYuzoQ=
 
 before_script:
     - npm test
