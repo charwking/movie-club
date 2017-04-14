@@ -44,7 +44,7 @@
     "angular-google-analytics": "1.1.8",
     "angular-ui-router": "0.4.2",
     "angularfire": "2.3.0",
-    "firebase": "3.7.6",
+    "firebase": "3.4.1",
     "font-awesome": "4.7.0",
     "lodash": "4.17.4"
   }
