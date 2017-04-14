@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/charwking/movie-club",
   "devDependencies": {
-    "angular-mocks": "1.5.6",
+    "angular-mocks": "1.6.4",
     "grunt": "1.0.1",
     "grunt-autoprefixer": "3.0.4",
     "grunt-cache-bust": "1.5.1",
@@ -40,12 +40,12 @@
     "phantomjs-prebuilt": "2.1.14"
   },
   "dependencies": {
-    "angular": "1.5.8",
-    "angular-google-analytics": "1.1.7",
-    "angular-ui-router": "0.3.1",
-    "angularfire": "2.0.2",
-    "firebase": "3.4.1",
-    "font-awesome": "4.6.3",
-    "lodash": "4.16.4"
+    "angular": "1.6.4",
+    "angular-google-analytics": "1.1.8",
+    "angular-ui-router": "0.4.2",
+    "angularfire": "2.3.0",
+    "firebase": "3.7.6",
+    "font-awesome": "4.7.0",
+    "lodash": "4.17.4"
   }
 }
