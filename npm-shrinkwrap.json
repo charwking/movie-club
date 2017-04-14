@@ -936,9 +936,9 @@
       "dev": true
     },
     "firebase": {
-      "version": "3.4.1",
-      "from": "firebase@3.4.1",
-      "resolved": "https://registry.npmjs.org/firebase/-/firebase-3.4.1.tgz",
+      "version": "3.5.0",
+      "from": "firebase@3.5.0",
+      "resolved": "https://registry.npmjs.org/firebase/-/firebase-3.5.0.tgz",
       "dependencies": {
         "dom-storage": {
           "version": "2.0.2",
