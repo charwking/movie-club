@@ -12,7 +12,7 @@
     "url": "https://github.com/charwking/movie-club/issues"
   },
   "scripts": {
-    "test": "node -e \"require('grunt').tasks(['package']);\""
+    "test": "grunt package"
   },
   "homepage": "https://github.com/charwking/movie-club",
   "devDependencies": {

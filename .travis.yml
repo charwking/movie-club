@@ -5,6 +5,7 @@ addons:
   ssh_known_hosts:
   - cwking.com
 before_script:
+    - npm install -g grunt-cli
     - npm test
     - sudo apt-get -y -qq install sshpass
 script:
