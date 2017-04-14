@@ -217,5 +217,6 @@ module.exports = function (grunt) {
     grunt.registerTask('compile', ['clean', 'copy', 'concat', 'css', 'html2js', 'analyze']);
     grunt.registerTask('optimize', ['ngAnnotate', 'uglify']);
     grunt.registerTask('package', ['compile', 'optimize']);
+    grunt.registerTask('prod-serve', ['package', 'cacheBust', 'connect', 'watch']);
     grunt.registerTask('serve', ['compile', 'cacheBust', 'connect', 'watch']);
 };

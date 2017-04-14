@@ -1,20 +1,18 @@
-(function (angular) {
+(function () {
     'use strict';
-
-    var navComponent = {
-        templateUrl: 'nav/nav.html',
-        controller: NavController
-    };
 
     angular
         .module('movieClub')
-        .component('mcNav', navComponent);
+        .component('mcNav', {
+            templateUrl: 'nav/nav.html',
+            controller: NavController
+        });
 
+    /* @ngInject */
     function NavController(authApi) {
-        'ngInject';
+
         var vm = this;
         vm.isAdmin = authApi.isAdmin;
         vm.isLoggedIn = authApi.isLoggedIn;
     }
-
-}(window.angular));
+}());
