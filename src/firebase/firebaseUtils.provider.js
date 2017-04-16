@@ -1,4 +1,4 @@
-(function (angular) {
+(function () {
     'use strict';
 
     angular
@@ -29,31 +29,23 @@
             return func;
         }
 
-        function firebaseUtils($firebaseArray, $firebaseObject, $firebaseRef) {
+        function firebaseUtils($firebaseArray, $firebaseObject, firebaseRefFactory) {
 
             return {
                 promiseArray: promiseArray,
                 promiseObject: promiseObject
             };
 
-            function getReference(path) {
-                path = Array.isArray(path) ? path : [path];
-                return _.reduce(path, function (ref, child) {
-                    return ref.child(child);
-                }, $firebaseRef.default);
-            }
-
             function promiseArray(path) {
-                var ref = getReference(path);
+                var ref = firebaseRefFactory.getRef(path);
                 return $firebaseArray(ref).$loaded();
             }
 
             function promiseObject(path) {
-                var ref = getReference(path);
+                var ref = firebaseRefFactory.getRef(path);
                 return $firebaseObject(ref).$loaded();
             }
         }
     }
 
-}(window.angular));
-
+}());

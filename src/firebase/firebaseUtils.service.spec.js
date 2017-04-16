@@ -1,4 +1,4 @@
-(function (angular) {
+(function () {
     'use strict';
 
     describe('firebaseUtils', function () {
@@ -6,7 +6,7 @@
         var $firebaseArrayMock;
         var $firebaseObjectMock;
         var firebasePromiseMock;
-        var $firebaseRef;
+        var firebaseRefFactory;
         var subject;
 
         beforeEach(function () {
@@ -20,43 +20,24 @@
                 $provide.value('$firebaseObject', $firebaseObjectMock);
             });
 
-            inject(function (firebaseUtils, _$firebaseRef_) {
+            inject(function (firebaseUtils, _firebaseRefFactory_) {
                 subject = firebaseUtils;
-                $firebaseRef = _$firebaseRef_;
-                spyOn($firebaseRef.default, 'child');
+                firebaseRefFactory = _firebaseRefFactory_;
+                spyOn(firebaseRefFactory, 'getRef');
             });
         });
 
         describe('promiseArray', function () {
 
-            it('gets a promise from a $firebaseArray for a string input', function () {
-                $firebaseRef.default.child.and.returnValue('childRef');
+            it('gets a promise from a $firebaseArray', function () {
+                firebaseRefFactory.getRef.and.returnValue('firebase ref');
                 $firebaseArrayMock.and.returnValue(firebasePromiseMock);
                 firebasePromiseMock.$loaded.and.returnValue('promise');
 
-                var result = subject.promiseArray('child');
+                var result = subject.promiseArray('firebase path');
 
-                expect($firebaseRef.default.child).toHaveBeenCalledWith('child');
-                expect($firebaseArrayMock).toHaveBeenCalledWith('childRef');
-                expect(firebasePromiseMock.$loaded).toHaveBeenCalled();
-                expect(result).toEqual('promise');
-            });
-
-            it('gets a promise from a $firebaseArray for an array input', function () {
-                var childRef1 = {'child': jasmine.createSpy('childRef1')};
-                var childRef2 = {'child': jasmine.createSpy('childRef2')};
-                $firebaseRef.default.child.and.returnValue(childRef1);
-                childRef1.child.and.returnValue(childRef2);
-                childRef2.child.and.returnValue('child4');
-                $firebaseArrayMock.and.returnValue(firebasePromiseMock);
-                firebasePromiseMock.$loaded.and.returnValue('promise');
-
-                var result = subject.promiseArray(['child1', 'child2', 'child3']);
-
-                expect($firebaseRef.default.child).toHaveBeenCalledWith('child1');
-                expect(childRef1.child).toHaveBeenCalledWith('child2');
-                expect(childRef2.child).toHaveBeenCalledWith('child3');
-                expect($firebaseArrayMock).toHaveBeenCalledWith('child4');
+                expect(firebaseRefFactory.getRef).toHaveBeenCalledWith('firebase path');
+                expect($firebaseArrayMock).toHaveBeenCalledWith('firebase ref');
                 expect(firebasePromiseMock.$loaded).toHaveBeenCalled();
                 expect(result).toEqual('promise');
             });
@@ -65,38 +46,17 @@
         describe('promiseObject', function () {
 
             it('gets a promise from a $firebaseObject for a string input', function () {
-                $firebaseRef.default.child.and.returnValue('childRef');
+                firebaseRefFactory.getRef.and.returnValue('firebase ref');
                 $firebaseObjectMock.and.returnValue(firebasePromiseMock);
                 firebasePromiseMock.$loaded.and.returnValue('promise');
 
-                var result = subject.promiseObject('child');
+                var result = subject.promiseObject('firebase path');
 
-                expect($firebaseRef.default.child).toHaveBeenCalledWith('child');
-                expect($firebaseObjectMock).toHaveBeenCalledWith('childRef');
-                expect(firebasePromiseMock.$loaded).toHaveBeenCalled();
-                expect(result).toEqual('promise');
-            });
-
-            it('gets a promise from a $firebaseObject for an array input', function () {
-                var childRef1 = {'child': jasmine.createSpy('childRef1')};
-                var childRef2 = {'child': jasmine.createSpy('childRef2')};
-                $firebaseRef.default.child.and.returnValue(childRef1);
-                childRef1.child.and.returnValue(childRef2);
-                childRef2.child.and.returnValue('child4');
-                $firebaseObjectMock.and.returnValue(firebasePromiseMock);
-                firebasePromiseMock.$loaded.and.returnValue('promise');
-
-                var result = subject.promiseObject(['child1', 'child2', 'child3']);
-
-                expect($firebaseRef.default.child).toHaveBeenCalledWith('child1');
-                expect(childRef1.child).toHaveBeenCalledWith('child2');
-                expect(childRef2.child).toHaveBeenCalledWith('child3');
-                expect($firebaseObjectMock).toHaveBeenCalledWith('child4');
+                expect(firebaseRefFactory.getRef).toHaveBeenCalledWith('firebase path');
+                expect($firebaseObjectMock).toHaveBeenCalledWith('firebase ref');
                 expect(firebasePromiseMock.$loaded).toHaveBeenCalled();
                 expect(result).toEqual('promise');
             });
         });
     });
-
-}(window.angular));
-
+}());
