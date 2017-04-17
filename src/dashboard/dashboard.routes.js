@@ -1,24 +1,17 @@
-(function (angular) {
+(function () {
     'use strict';
 
     angular
         .module('movieClub')
         .config(appConfig);
 
-    function appConfig($stateProvider, firebaseUtilsProvider) {
+    function appConfig($stateProvider) {
 
         $stateProvider
             .state('dashboard', {
                 controller: 'DashboardController as dashboardVm',
                 templateUrl: 'dashboard/dashboard.html',
-                url: '/',
-
-                resolve: {
-                    currentMovie:   firebaseUtilsProvider.resolveObject('currentMovie'),
-                    propertyStore:  firebaseUtilsProvider.resolveObject('propertyStore'),
-                    users:          firebaseUtilsProvider.resolveArray('users')
-                }
+                url: '/'
             });
     }
-
-}(window.angular));
+}());

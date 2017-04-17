@@ -1,11 +1,11 @@
-(function (angular) {
+(function () {
     'use strict';
 
     angular
         .module('movieClub')
         .config(appConfig);
 
-    function appConfig($stateProvider, firebaseUtilsProvider) {
+    function appConfig($stateProvider) {
 
         $stateProvider
             .state('login', {
@@ -16,10 +16,7 @@
             .state('register', {
                 controller: 'RegisterController as registerVm',
                 templateUrl: 'auth/register.html',
-                url: '/auth/register',
-                resolve: {
-                    users: firebaseUtilsProvider.resolveArray('users')
-                }
+                url: '/auth/register'
             })
             .state('logout', {
                 controller: 'LogoutController as logoutVm',
@@ -28,4 +25,4 @@
             });
     }
 
-}(window.angular));
+}());
