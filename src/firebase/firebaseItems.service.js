@@ -17,14 +17,20 @@
     ];
 
     arrayNames.forEach(function (name) {
-        module.factory(name, function (firebaseUtils) {
-            return firebaseUtils.getArray(name);
-        });
+        var factoryFunc = getFactoryFunc('getArray', name);
+        module.factory(name, factoryFunc);
     });
 
     objectNames.forEach(function (name) {
-        module.factory(name, function (firebaseUtils) {
-            return firebaseUtils.getObject(name);
-        });
+        var factoryFunc = getFactoryFunc('getObject', name);
+        module.factory(name, factoryFunc);
     });
+
+    function getFactoryFunc(nameOfUtilsGetMethod, firebaseItemName) {
+        var func = function (firebaseUtils) {
+            return firebaseUtils[nameOfUtilsGetMethod](firebaseItemName);
+        };
+        func.$inject = ['firebaseUtils'];
+        return func;
+    }
 }());
