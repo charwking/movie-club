@@ -9,10 +9,10 @@
         });
 
     /* @ngInject */
-    function NavController(authApi) {
+    function NavController(authState) {
 
         var vm = this;
-        vm.isAdmin = authApi.isAdmin;
-        vm.isLoggedIn = authApi.isLoggedIn;
+        vm.isAdmin = authState.isAdmin;
+        vm.isLoggedIn = authState.isLoggedIn;
     }
 }());

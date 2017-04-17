@@ -2,22 +2,22 @@
 
 describe('navComponent', function () {
 
-    var authApi;
+    var authState;
     var subject;
 
     beforeEach(module('movieClub'));
-    beforeEach(inject(function ($componentController, _authApi_) {
-        authApi = _authApi_;
+    beforeEach(inject(function ($componentController, _authState_) {
+        authState = _authState_;
         subject = $componentController('mcNav', {
-            authApi: authApi
+            authState: authState
         });
     }));
 
-    it('exposes the authApi.isAdmin function', function () {
-        expect(subject.isAdmin).toBe(authApi.isAdmin);
+    it('exposes the authState.isAdmin function', function () {
+        expect(subject.isAdmin).toBe(authState.isAdmin);
     });
 
-    it('exposes the authApi.isLoggedIn function', function () {
-        expect(subject.isLoggedIn).toBe(authApi.isLoggedIn);
+    it('exposes the authState.isLoggedIn function', function () {
+        expect(subject.isLoggedIn).toBe(authState.isLoggedIn);
     });
 });
