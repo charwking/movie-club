@@ -19,6 +19,7 @@
 
     function setDefaultRoute($urlRouterProvider) {
         $urlRouterProvider.when('', '/');
+        $urlRouterProvider.otherwise('/');
     }
 
     function configureAnalytics(AnalyticsProvider) {
