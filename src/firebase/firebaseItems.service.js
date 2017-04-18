@@ -33,4 +33,14 @@
         func.$inject = ['firebaseUtils'];
         return func;
     }
+
+    /* @ngInject */
+    module.factory('myMoviesFactory', function ($firebaseAuthService, firebaseUtils) {
+        return {
+            get: function () {
+                var uid = $firebaseAuthService.$getAuth().uid;
+                return firebaseUtils.getArray(['userMovies', uid, 'movies']);
+            }
+        };
+    });
 }());

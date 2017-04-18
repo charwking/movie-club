@@ -61,6 +61,7 @@
         "describe": false,
         "expect": false,
         "fdescribe": false,
+        "firebase": false,
         "fit": false,
         "jasmine": false,
         "inject": false,

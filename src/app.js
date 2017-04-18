@@ -1,4 +1,4 @@
-(function (angular, firebase) {
+(function () {
     'use strict';
 
     var moduleDependencies = [
@@ -89,5 +89,4 @@
         };
     }
 
-}(window.angular, window.firebase));
-
+}());
