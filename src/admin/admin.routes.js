@@ -1,10 +1,11 @@
-(function (angular) {
+(function () {
     'use strict';
 
     angular
         .module('movieClub')
         .config(appConfig);
 
+    /* @ngInject */
     function appConfig($stateProvider) {
 
         $stateProvider
@@ -19,5 +20,4 @@
             });
     }
 
-}(window.angular));
-
+}());

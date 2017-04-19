@@ -192,7 +192,7 @@ module.exports = function (grunt) {
             jsInternal: {
                 files: config.in.jsAppClientFiles
                     .concat(config.in.jsAppTestFiles),
-                tasks: ['analyze', 'concat:internal']
+                tasks: ['analyze', 'concat:internal', 'ngAnnotate']
             },
 
             jsExternal: {
@@ -214,9 +214,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('analyze', ['jshint', 'jscs', 'karma:unit']);
     grunt.registerTask('css', ['less', 'autoprefixer']);
-    grunt.registerTask('compile', ['clean', 'copy', 'concat', 'css', 'html2js', 'analyze']);
-    grunt.registerTask('optimize', ['ngAnnotate', 'uglify']);
-    grunt.registerTask('package', ['compile', 'optimize']);
-    grunt.registerTask('prod-serve', ['package', 'cacheBust', 'connect', 'watch']);
+    grunt.registerTask('compile', ['clean', 'copy', 'concat', 'css', 'html2js', 'analyze', 'ngAnnotate']);
+    grunt.registerTask('package', ['compile', 'uglify']);
     grunt.registerTask('serve', ['compile', 'cacheBust', 'connect', 'watch']);
 };
