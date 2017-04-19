@@ -17,25 +17,29 @@
     ];
 
     arrayNames.forEach(function (name) {
-        var factoryFunc = getFactoryFunc('getArray', name);
+        var factoryFunc = getFactoryFunc('$firebaseArray', name);
         module.factory(name, factoryFunc);
     });
 
     objectNames.forEach(function (name) {
-        var factoryFunc = getFactoryFunc('getObject', name);
+        var factoryFunc = getFactoryFunc('$firebaseObject', name);
         module.factory(name, factoryFunc);
     });
 
-    function getFactoryFunc(nameOfUtilsGetMethod, firebaseItemName) {
-        var func = function (firebaseUtils) {
-            return firebaseUtils[nameOfUtilsGetMethod](firebaseItemName);
+    module.factory('movieQueuesFactory', movieQueuesFactory);
+    module.factory('userFactory', userFactory);
+
+    function getFactoryFunc(firebaseServiceName, firebaseItemName) {
+        var func = function (firebaseService, firebaseRefFactory) {
+            var ref = firebaseRefFactory.getRef(firebaseItemName);
+            return firebaseService(ref);
         };
-        func.$inject = ['firebaseUtils'];
+        func.$inject = [firebaseServiceName, 'firebaseRefFactory'];
         return func;
     }
 
     /* @ngInject */
-    module.factory('movieQueuesFactory', function ($firebaseAuthService, firebaseUtils) {
+    function movieQueuesFactory($firebaseArray, $firebaseAuthService, firebaseRefFactory) {
         return {
             getForCurrentUser: getForCurrentUser,
             getForUserId: getForUserId
@@ -47,17 +51,19 @@
         }
 
         function getForUserId(uid) {
-            return firebaseUtils.getArray(['userMovies', uid, 'movies']);
+            var ref = firebaseRefFactory.getRef(['userMovies', uid, 'movies']);
+            return $firebaseArray(ref);
         }
-    });
+    }
 
     /* @ngInject */
-    module.factory('userFactory', function ($firebaseAuthService, firebaseUtils) {
+    function userFactory($firebaseArray, $firebaseAuthService, firebaseRefFactory) {
         return {
             get: function () {
                 var uid = $firebaseAuthService.$getAuth().uid;
-                return firebaseUtils.getArray(['users', uid]);
+                var ref = firebaseRefFactory.getRef(['users', uid]);
+                return $firebaseArray(ref);
             }
         };
-    });
+    }
 }());
