@@ -35,13 +35,20 @@
     }
 
     /* @ngInject */
-    module.factory('myMoviesFactory', function ($firebaseAuthService, firebaseUtils) {
+    module.factory('movieQueuesFactory', function ($firebaseAuthService, firebaseUtils) {
         return {
-            get: function () {
-                var uid = $firebaseAuthService.$getAuth().uid;
-                return firebaseUtils.getArray(['userMovies', uid, 'movies']);
-            }
+            getForCurrentUser: getForCurrentUser,
+            getForUserId: getForUserId
         };
+
+        function getForCurrentUser() {
+            var uid = $firebaseAuthService.$getAuth().uid;
+            return getForUserId(uid);
+        }
+
+        function getForUserId(uid) {
+            return firebaseUtils.getArray(['userMovies', uid, 'movies']);
+        }
     });
 
     /* @ngInject */

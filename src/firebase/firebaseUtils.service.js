@@ -9,8 +9,7 @@
 
         return {
             getArray: getArray,
-            getObject: getObject,
-            promiseArray: promiseArray
+            getObject: getObject
         };
 
         function getArray(path) {
@@ -21,10 +20,6 @@
         function getObject(path) {
             var ref = firebaseRefFactory.getRef(path);
             return $firebaseObject(ref);
-        }
-
-        function promiseArray(path) {
-            return getArray(path).$loaded();
         }
     }
 }());
