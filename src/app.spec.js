@@ -1,4 +1,4 @@
-(function (angular) {
+(function () {
     'use strict';
 
     describe('app', function () {
@@ -11,14 +11,18 @@
                 module('ui.router', function (_$urlRouterProvider_) {
                     $urlRouterProvider = _$urlRouterProvider_;
                     spyOn($urlRouterProvider, 'when').and.callThrough();
+                    spyOn($urlRouterProvider, 'otherwise').and.callThrough();
                 });
                 module('movieClub');
+                inject();
             });
-
-            beforeEach(inject);
 
             it('should be configured to use the default route when there is none', function () {
                 expect($urlRouterProvider.when).toHaveBeenCalledWith('', '/');
+            });
+
+            it('should be configured to send all non-matched routes to the default route', function () {
+                expect($urlRouterProvider.otherwise).toHaveBeenCalledWith('/');
             });
         });
 
@@ -35,9 +39,8 @@
                     spyOn(analyticsProvider, 'trackPrefix').and.callThrough();
                 });
                 module('movieClub');
+                inject();
             });
-
-            beforeEach(inject);
 
             it('should be configured with the correct analytics account', function () {
                 expect(analyticsProvider.setAccount).toHaveBeenCalledWith('UA-52798669-1');
@@ -66,9 +69,8 @@
                     spyOn($sceDelegateProvider, 'resourceUrlWhitelist').and.callThrough();
                 });
                 module('movieClub');
+                inject();
             });
-
-            beforeEach(inject);
 
             it('should be configured to whitelist calls from the current domain', function () {
                 var lastCall = $sceDelegateProvider.resourceUrlWhitelist.calls.mostRecent();
@@ -81,5 +83,4 @@
             });
         });
     });
-
-}(window.angular));
+}());
