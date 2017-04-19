@@ -43,4 +43,14 @@
             }
         };
     });
+
+    /* @ngInject */
+    module.factory('userFactory', function ($firebaseAuthService, firebaseUtils) {
+        return {
+            get: function () {
+                var uid = $firebaseAuthService.$getAuth().uid;
+                return firebaseUtils.getArray(['users', uid]);
+            }
+        };
+    });
 }());

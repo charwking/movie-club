@@ -10,8 +10,7 @@
         return {
             getArray: getArray,
             getObject: getObject,
-            promiseArray: promiseArray,
-            promiseObject: promiseObject
+            promiseArray: promiseArray
         };
 
         function getArray(path) {
@@ -26,10 +25,6 @@
 
         function promiseArray(path) {
             return getArray(path).$loaded();
-        }
-
-        function promiseObject(path) {
-            return getObject(path).$loaded();
         }
     }
 }());

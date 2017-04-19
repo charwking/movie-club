@@ -70,21 +70,5 @@
                 expect(result).toEqual('promise');
             });
         });
-
-        describe('promiseObject', function () {
-
-            it('gets a promise from a $firebaseObject for a string input', function () {
-                firebaseRefFactory.getRef.and.returnValue('firebase ref');
-                $firebaseObjectMock.and.returnValue(firebasePromiseMock);
-                firebasePromiseMock.$loaded.and.returnValue('promise');
-
-                var result = subject.promiseObject('firebase path');
-
-                expect(firebaseRefFactory.getRef).toHaveBeenCalledWith('firebase path');
-                expect($firebaseObjectMock).toHaveBeenCalledWith('firebase ref');
-                expect(firebasePromiseMock.$loaded).toHaveBeenCalled();
-                expect(result).toEqual('promise');
-            });
-        });
     });
 }());

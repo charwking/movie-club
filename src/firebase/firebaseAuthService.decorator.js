@@ -1,15 +1,17 @@
-(function (angular) {
+(function () {
     'use strict';
 
     angular
         .module('movieClub')
         .config(configureFirebaseAuthService);
 
+    /* @ngInject */
     function configureFirebaseAuthService($provide) {
         $provide.decorator('$firebaseAuthService', decorateFirebaseAuthService);
     }
 
-    function decorateFirebaseAuthService($delegate, $q, firebaseUtils) {
+    /* @ngInject */
+    function decorateFirebaseAuthService($delegate, $injector, $q) {
 
         $delegate.requireSignInAsAdmin = requireSignInAsAdmin;
         return $delegate;
@@ -17,7 +19,7 @@
         function requireSignInAsAdmin() {
             return $q.all([
                     $delegate.$requireSignIn(),
-                    firebaseUtils.promiseObject('adminStore')
+                    $injector.get('adminStore').$loaded()
                 ])
                 .then(assertUserIsAdmin);
         }
@@ -33,5 +35,4 @@
             return auth;
         }
     }
-}(window.angular));
-
+}());
