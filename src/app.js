@@ -17,11 +17,13 @@
         .run(injectAnalytics)
         .run(handleAuthStates);
 
+    /* @ngInject */
     function setDefaultRoute($urlRouterProvider) {
         $urlRouterProvider.when('', '/');
         $urlRouterProvider.otherwise('/');
     }
 
+    /* @ngInject */
     function configureAnalytics(AnalyticsProvider) {
         AnalyticsProvider.setAccount('UA-52798669-1');
         AnalyticsProvider.trackPages(true);
@@ -29,6 +31,7 @@
         AnalyticsProvider.trackPrefix('movie-club');
     }
 
+    /* @ngInject */
     function whitelistTemplateSources($sceDelegateProvider) {
         $sceDelegateProvider.resourceUrlWhitelist([
             'self',
@@ -36,6 +39,7 @@
         ]);
     }
 
+    /* @ngInject */
     function configureFirebase($firebaseRefProvider) {
 
         var location = window.location.href;
@@ -57,10 +61,12 @@
         $firebaseRefProvider.registerUrl(config.databaseURL);
     }
 
+    /* @ngInject */
     function injectAnalytics(Analytics) {
         // Analytics injected to enable automatic page tracking
     }
 
+    /* @ngInject */
     function handleAuthStates($rootScope, $state, authApi) {
         $rootScope.$on('$stateChangeError',
             function (event, toState, toParams, fromState, fromParams, error) {
