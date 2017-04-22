@@ -1,14 +1,11 @@
-(function (angular) {
-    'use strict';
+(function(angular) {
+  "use strict";
+  angular
+    .module("movieClub")
+    .controller("UserManagementController", UserManagementController);
 
-    angular
-        .module('movieClub')
-        .controller('UserManagementController', UserManagementController);
-
-    function UserManagementController(users) {
-        var vm = this;
-        vm.users = users;
-    }
-
-}(window.angular));
-
+  function UserManagementController(users) {
+    var vm = this;
+    vm.users = users;
+  }
+})(window.angular);

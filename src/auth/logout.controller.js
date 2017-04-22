@@ -1,12 +1,8 @@
-(function (angular) {
-    'use strict';
+(function(angular) {
+  "use strict";
+  angular.module("movieClub").controller("LogoutController", LogoutController);
 
-    angular
-        .module('movieClub')
-        .controller('LogoutController', LogoutController);
-
-    function LogoutController(authApi) {
-        authApi.logout();
-    }
-
-}(window.angular));
+  function LogoutController(authApi) {
+    authApi.logout();
+  }
+})(window.angular);
