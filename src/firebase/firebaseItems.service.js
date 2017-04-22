@@ -27,7 +27,6 @@
     });
 
     module.factory('movieQueueFactory', movieQueueFactory);
-    module.factory('userFactory', userFactory);
 
     function getFactoryFunc(firebaseServiceName, firebaseItemName) {
         var func = function (firebaseService, firebaseRefFactory) {
@@ -54,16 +53,5 @@
             var ref = firebaseRefFactory.getRef(['userMovies', uid, 'movies']);
             return $firebaseArray(ref);
         }
-    }
-
-    /* @ngInject */
-    function userFactory($firebaseArray, $firebaseAuthService, firebaseRefFactory) {
-        return {
-            get: function () {
-                var uid = $firebaseAuthService.$getAuth().uid;
-                var ref = firebaseRefFactory.getRef(['users', uid]);
-                return $firebaseArray(ref);
-            }
-        };
     }
 }());
