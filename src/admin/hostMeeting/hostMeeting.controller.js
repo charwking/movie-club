@@ -6,7 +6,7 @@
         .controller('HostMeetingController', HostMeetingController);
 
     function HostMeetingController(
-        $state, currentMovie, currentMovieUser, meetings, movieSelector, movieQueuesFactory, users, userMovies) {
+        $state, currentMovie, currentMovieUser, meetings, movieSelector, movieQueueFactory, users, userMovies) {
 
         var presentUsers = {};
         var userCredits = {};
@@ -92,7 +92,7 @@
             currentMovieUser.userId = userId;
             currentMovieUser.$save();
 
-            movieQueuesFactory
+            movieQueueFactory
                 .getForUserId(userId)
                 .$loaded()
                 .then(function (movies) {

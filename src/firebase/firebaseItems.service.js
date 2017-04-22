@@ -26,7 +26,7 @@
         module.factory(name, factoryFunc);
     });
 
-    module.factory('movieQueuesFactory', movieQueuesFactory);
+    module.factory('movieQueueFactory', movieQueueFactory);
     module.factory('userFactory', userFactory);
 
     function getFactoryFunc(firebaseServiceName, firebaseItemName) {
@@ -39,7 +39,7 @@
     }
 
     /* @ngInject */
-    function movieQueuesFactory($firebaseArray, $firebaseAuthService, firebaseRefFactory) {
+    function movieQueueFactory($firebaseArray, $firebaseAuthService, firebaseRefFactory) {
         return {
             getForCurrentUser: getForCurrentUser,
             getForUserId: getForUserId

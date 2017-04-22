@@ -5,9 +5,9 @@
         .module('movieClub')
         .controller('MyMoviesController', MyMoviesController);
 
-    function MyMoviesController(movieQueuesFactory, youtubeValidator) {
+    function MyMoviesController(movieQueueFactory, youtubeValidator) {
         var vm = this;
-        vm.movies = movieQueuesFactory.getForCurrentUser();
+        vm.movies = movieQueueFactory.getForCurrentUser();
         vm.isSubmitting = false;
         vm.addMovie = addMovie;
         vm.watchTrailer = watchTrailer;
