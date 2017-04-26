@@ -1,17 +1,17 @@
 (function() {
   "use strict";
   describe("movieQueueFactory", function() {
-    var $firebaseArrayMock;
     var $firebaseAuthService;
     var firebaseRefFactory;
+    var MovieQueueMock;
     var subject;
 
     beforeEach(function() {
-      $firebaseArrayMock = jasmine.createSpy("$firebaseArrayMock");
+      MovieQueueMock = jasmine.createSpy("MovieQueueMock");
 
       module("movieClub");
       module(function($provide) {
-        $provide.value("$firebaseArray", $firebaseArrayMock);
+        $provide.value("MovieQueue", MovieQueueMock);
       });
 
       inject(function(
@@ -30,10 +30,10 @@
     });
 
     describe("getForUserId", function() {
-      it("returns a firebase array for the movies of the user specified", function() {
+      it("returns a MovieQueue for the movies of the user specified", function() {
         // given
         firebaseRefFactory.getRef.and.returnValue("fake reference");
-        $firebaseArrayMock.and.returnValue("fake firebase array");
+        MovieQueueMock.and.returnValue("fake movie queue instance");
 
         // when
         var result = subject.getForUserId("fake user id");
@@ -44,17 +44,17 @@
           "fake user id",
           "movies"
         ]);
-        expect($firebaseArrayMock).toHaveBeenCalledWith("fake reference");
-        expect(result).toEqual("fake firebase array");
+        expect(MovieQueueMock).toHaveBeenCalledWith("fake reference");
+        expect(result).toEqual("fake movie queue instance");
       });
     });
 
     describe("getForCurrentUser", function() {
-      it("returns a firebase array for the movies for the current user", function() {
+      it("returns a MovieQueue for the movies for the current user", function() {
         // given
         $firebaseAuthService.$getAuth.and.returnValue({ uid: "fake uid" });
         firebaseRefFactory.getRef.and.returnValue("fake reference");
-        $firebaseArrayMock.and.returnValue("fake firebase array");
+        MovieQueueMock.and.returnValue("fake movie queue instance");
 
         // when
         var result = subject.getForCurrentUser();
@@ -66,8 +66,8 @@
           "fake uid",
           "movies"
         ]);
-        expect($firebaseArrayMock).toHaveBeenCalledWith("fake reference");
-        expect(result).toEqual("fake firebase array");
+        expect(MovieQueueMock).toHaveBeenCalledWith("fake reference");
+        expect(result).toEqual("fake movie queue instance");
       });
     });
   });

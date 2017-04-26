@@ -4,7 +4,7 @@
 
   /* @ngInject */
   function movieQueueFactory(
-    $firebaseArray,
+    MovieQueue,
     $firebaseAuthService,
     firebaseRefFactory
   ) {
@@ -20,7 +20,7 @@
 
     function getForUserId(uid) {
       var ref = firebaseRefFactory.getRef(["userMovies", uid, "movies"]);
-      return $firebaseArray(ref);
+      return MovieQueue(ref);
     }
   }
 })();

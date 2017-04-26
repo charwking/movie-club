@@ -1,4 +1,4 @@
-(function(angular) {
+(function() {
   "use strict";
   angular
     .module("movieClub")
@@ -10,18 +10,17 @@
     vm.isSubmitting = false;
     vm.addMovie = addMovie;
     vm.watchTrailer = watchTrailer;
-    vm.removeMovie = removeMovie;
-    vm.moveDown = moveDown;
-    vm.moveUp = moveUp;
+    vm.removeMovie = vm.movies.removeMovie;
+    vm.moveDown = vm.movies.moveMovieDown;
+    vm.moveUp = vm.movies.moveMovieUp;
     vm.validateMovieData = validateMovieData;
     vm.newMovieName = "";
     vm.newMovieTrailer = "";
 
     function addMovie() {
-      vm.movies.$add({
+      vm.movies.addMovie({
         name: vm.newMovieName,
-        trailerUrl: vm.newMovieTrailer,
-        order: vm.movies.length
+        trailerUrl: vm.newMovieTrailer
       });
       vm.newMovieName = "";
       vm.newMovieTrailer = "";
@@ -32,34 +31,7 @@
     }
 
     function removeMovie(movie) {
-      vm.movies.$remove(movie).then(function() {
-        _(vm.movies)
-          .sortBy("order")
-          .forEach(function(movie, index) {
-            movie.order = index;
-            vm.movies.$save(movie);
-          })
-          .value();
-      });
-    }
-
-    function moveDown(movie) {
-      var movieBelow = _.find(vm.movies, { order: movie.order + 1 });
-      swapMovies(movie, movieBelow);
-    }
-
-    function moveUp(movie) {
-      var movieAbove = _.find(vm.movies, { order: movie.order - 1 });
-      swapMovies(movie, movieAbove);
-    }
-
-    function swapMovies(movieA, movieB) {
-      var tempOrder = movieA.order;
-      movieA.order = movieB.order;
-      movieB.order = tempOrder;
-
-      vm.movies.$save(movieA);
-      vm.movies.$save(movieB);
+      vm.movies.removeMovie(movie);
     }
 
     function validateMovieData() {
@@ -74,4 +46,4 @@
       }
     }
   }
-})(window.angular);
+})();
