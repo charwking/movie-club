@@ -53,6 +53,6 @@
     "angular-ui-router": "0.4.2",
     "angularfire": "2.3.0",
     "font-awesome": "4.7.0",
-    "lodash": "4.17.4"
+    "lodash": "^4.17.11"
   }
 }

@@ -4647,9 +4647,9 @@
       "dev": true
     },
     "lodash": {
-      "version": "4.17.4",
-      "from": "lodash@4.17.4",
-      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.4.tgz"
+      "version": "4.17.11",
+      "from": "lodash@4.17.11",
+      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.11.tgz"
     },
     "lodash.clonedeep": {
       "version": "4.5.0",
