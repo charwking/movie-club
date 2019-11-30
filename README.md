@@ -1,5 +1,9 @@
 # movie-club
 
+**ARCHIVED** Movie Club had a good run, but as of 2019-11-30, it's been archived. So long, and thanks for all the fish!
+
+## General
+
 Yup, I belong to a movie club with my friends from work. Oh, and most of us are developers. So why are we drawing paper slips from a box to determine which movie we're going to watch next? Lame. This web-app is an attempt to remedy that.
 
 ## Questions? Issues? Feedback?
